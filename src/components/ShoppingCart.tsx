@@ -15,17 +15,15 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CartComponent = () => {
   const { cartItems, removeFromCart, updateQuantity, clearCart, totalItems, totalPrice } = useCart();
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleCheckout = () => {
-    toast({
-      title: "Pedido realizado",
-      description: "Tu pedido ha sido procesado correctamente",
-    });
-    clearCart();
+    navigate("/checkout");
     setIsOpen(false);
   };
 
