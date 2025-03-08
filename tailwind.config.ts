@@ -64,12 +64,15 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				hotel: {
-					purple: '#9b87f5',
-					'dark-purple': '#7E69AB',
-					orange: '#FF9D6C',
-					'light-orange': '#FFDCC7',
-					cream: '#FEF7CD',
-					'light-blue': '#D3E4FD'
+					purple: '#FF8ACE',    // Softer pink instead of purple
+					'dark-purple': '#FF6B9E', // Darker pink
+					orange: '#FFB36B',    // Softer orange
+					'light-orange': '#FFECD9', // Lighter peach
+					cream: '#FFF9E3',     // Soft cream
+					'light-blue': '#BDEFFF', // Lighter, cuter blue
+					'pastel-green': '#B8F4D3', // Adding a pastel green
+					'pastel-yellow': '#FFF3B8', // Adding a pastel yellow
+					'soft-lavender': '#E0B8FF' // Adding a soft lavender
 				}
 			},
 			fontFamily: {
@@ -101,12 +104,22 @@ export default {
 				'float': {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' }
+				},
+				'wiggle': {
+					'0%, 100%': { transform: 'rotate(-3deg)' },
+					'50%': { transform: 'rotate(3deg)' }
+				},
+				'bounce-slight': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'float': 'float 5s ease-in-out infinite'
+				'float': 'float 5s ease-in-out infinite',
+				'wiggle': 'wiggle 2s ease-in-out infinite',
+				'bounce-slight': 'bounce-slight 2s ease-in-out infinite'
 			}
 		}
 	},
