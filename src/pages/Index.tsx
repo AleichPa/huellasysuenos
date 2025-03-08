@@ -1,11 +1,12 @@
-
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Calendar, Heart, PawPrint, Star, Sparkles, Gift, Clock } from "lucide-react";
+import { ArrowRight, Calendar, Heart, PawPrint, Star, Sparkles, Gift, Clock, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { products } from "@/data/products";
+import { Badge } from "@/components/ui/badge";
 
 const FeatureCard = ({ icon, title, description, link, color }) => (
   <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-100 flex flex-col items-center text-center group">
@@ -164,6 +165,52 @@ const Index = () => {
               <PawPrint className="absolute top-4 right-4 h-6 w-6 text-hotel-orange rotate-12 animate-bounce-slight" />
               <PawPrint className="absolute bottom-12 left-0 h-8 w-8 text-hotel-purple -rotate-12 animate-bounce-slight" style={{ animationDelay: "0.5s" }} />
             </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Product Showcase Section */}
+      <div className="py-16 bg-gradient-to-b from-white to-hotel-light-orange/10">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <span className="inline-block px-4 py-1 rounded-full bg-hotel-light-orange/20 text-hotel-orange text-sm font-medium mb-3">
+              Tienda para mascotas
+            </span>
+            <h2 className="text-3xl font-display font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-hotel-purple to-hotel-dark-purple">
+              Todo lo que tu mascota necesita
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Descubre nuestra selección de productos de alta calidad para el cuidado y diversión de tu mascota.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            {products.slice(0, 3).map((product) => (
+              <div key={product.id} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-100 group">
+                <div className="overflow-hidden rounded-lg mb-4 h-48">
+                  <img 
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-hotel-purple transition-colors">{product.name}</h3>
+                <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-lg font-bold text-hotel-dark-purple">{product.price.toFixed(2)}€</span>
+                  <Badge className="bg-hotel-purple">{product.category}</Badge>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-center">
+            <Button asChild className="bg-gradient-to-r from-hotel-purple to-hotel-dark-purple hover:from-hotel-dark-purple hover:to-hotel-purple text-white shadow-md hover:shadow-lg">
+              <Link to="/productos" className="flex items-center gap-2">
+                Ver todos los productos
+                <ShoppingBag className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

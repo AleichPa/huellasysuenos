@@ -1,8 +1,9 @@
 
 import { Button } from "@/components/ui/button";
-import { PawPrint, Menu, X, Heart, Cat, Dog } from "lucide-react";
+import { PawPrint, Menu, X, Heart, Cat, Dog, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ShoppingCart from "@/components/ShoppingCart";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,6 +57,11 @@ const Navbar = () => {
             <PawPrint size={14} className="text-hotel-orange opacity-0 group-hover:opacity-100 transition-opacity" />
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-hotel-purple group-hover:w-full transition-all duration-300"></span>
           </Link>
+          <Link to="/productos" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors relative group py-2 flex items-center gap-1">
+            <span>Productos</span>
+            <ShoppingBag size={14} className="text-hotel-orange opacity-0 group-hover:opacity-100 transition-opacity" />
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-hotel-purple group-hover:w-full transition-all duration-300"></span>
+          </Link>
           <Link to="/testimonios" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors relative group py-2 flex items-center gap-1">
             <span>Testimonios</span>
             <PawPrint size={14} className="text-hotel-orange opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -72,6 +78,9 @@ const Navbar = () => {
               <Heart className="h-4 w-4 animate-pulse" />
             </Link>
           </Button>
+          
+          {/* Shopping Cart */}
+          <ShoppingCart />
           
           {/* Cute little dog decoration */}
           <Dog size={18} className="text-hotel-orange hidden lg:block animate-bounce-slight" style={{ animationDelay: "0.5s" }} />
@@ -92,6 +101,10 @@ const Navbar = () => {
               <PawPrint size={16} className="text-hotel-pastel-green" />
               <span>Habitaciones</span>
             </Link>
+            <Link to="/productos" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2 border-b border-gray-100 flex items-center gap-2">
+              <ShoppingBag size={16} className="text-hotel-purple" />
+              <span>Productos</span>
+            </Link>
             <Link to="/testimonios" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2 border-b border-gray-100 flex items-center gap-2">
               <PawPrint size={16} className="text-hotel-soft-lavender" />
               <span>Testimonios</span>
@@ -100,12 +113,15 @@ const Navbar = () => {
               <PawPrint size={16} className="text-hotel-pastel-yellow" />
               <span>Contacto</span>
             </Link>
-            <Button asChild className="bg-gradient-to-r from-hotel-purple to-hotel-dark-purple hover:from-hotel-dark-purple hover:to-hotel-purple w-full shadow-sm rounded-full">
-              <Link to="/reservas" className="flex items-center justify-center gap-2">
-                <span>Reservar Ahora</span>
-                <Heart className="h-4 w-4 animate-pulse" />
-              </Link>
-            </Button>
+            <div className="flex gap-2">
+              <Button asChild className="flex-1 bg-gradient-to-r from-hotel-purple to-hotel-dark-purple hover:from-hotel-dark-purple hover:to-hotel-purple shadow-sm rounded-full">
+                <Link to="/reservas" className="flex items-center justify-center gap-2">
+                  <span>Reservar</span>
+                  <Heart className="h-4 w-4 animate-pulse" />
+                </Link>
+              </Button>
+              <ShoppingCart />
+            </div>
           </div>
         )}
       </div>
