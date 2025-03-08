@@ -78,16 +78,16 @@ const ServicesSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-2 overflow-hidden group rounded-xl">
+            <Card key={index} className="border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-2 overflow-hidden group relative rounded-xl">
               <div className="absolute inset-0 bg-gradient-to-br from-hotel-light-orange/10 via-transparent to-hotel-light-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardHeader className="pb-2 relative">
+              <CardHeader className="pb-2">
                 <div className="mb-4 transform transition-transform group-hover:scale-110 duration-300 p-4 bg-gradient-to-br from-white to-gray-50 rounded-full w-20 h-20 flex items-center justify-center mx-auto shadow-sm group-hover:shadow-md">{service.icon}</div>
-                <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
+                <CardTitle className="text-xl font-bold text-center">{service.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-gray-600">{service.description}</CardDescription>
+                <CardDescription className="text-gray-600 text-center">{service.description}</CardDescription>
               </CardContent>
-              <div className="absolute bottom-0 left-0 w-0 h-2 bg-gradient-to-r from-hotel-purple to-hotel-dark-purple group-hover:w-full transition-all duration-500 rounded-br-xl rounded-bl-xl"></div>
+              <div className="absolute bottom-0 left-0 w-0 h-2 bg-gradient-to-r from-hotel-purple to-hotel-dark-purple group-hover:w-full transition-all duration-500 rounded-br-xl rounded-bl-xl opacity-100"></div>
               
               {/* Tiny paw print in corner */}
               <div className="absolute top-3 right-3 opacity-20 group-hover:opacity-100 transition-opacity">

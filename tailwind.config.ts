@@ -64,15 +64,15 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				hotel: {
-					purple: '#FF8ACE',    // Softer pink instead of purple
-					'dark-purple': '#FF6B9E', // Darker pink
-					orange: '#FFB36B',    // Softer orange
-					'light-orange': '#FFECD9', // Lighter peach
-					cream: '#FFF9E3',     // Soft cream
-					'light-blue': '#BDEFFF', // Lighter, cuter blue
-					'pastel-green': '#B8F4D3', // Adding a pastel green
-					'pastel-yellow': '#FFF3B8', // Adding a pastel yellow
-					'soft-lavender': '#E0B8FF' // Adding a soft lavender
+					purple: '#9b87f5',    // Changed from pink to lilac purple
+					'dark-purple': '#7E69AB', // Darker purple
+					orange: '#FFB36B',    // Kept the same
+					'light-orange': '#FFECD9', // Kept the same
+					cream: '#FFF9E3',     // Kept the same
+					'light-blue': '#BDEFFF', // Kept the same
+					'pastel-green': '#B8F4D3', // Kept the same
+					'pastel-yellow': '#FFF3B8', // Kept the same
+					'soft-lavender': '#E5DEFF' // Lighter purple/lavender
 				}
 			},
 			fontFamily: {
