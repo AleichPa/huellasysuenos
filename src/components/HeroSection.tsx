@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { PawPrint } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -18,11 +19,11 @@ const HeroSection = () => {
             En Huellas y Sueños, nos dedicamos a darle a tu mascota una experiencia inolvidable mientras tú disfrutas de tu tiempo libre.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <Button className="bg-hotel-purple hover:bg-hotel-dark-purple text-white px-6 py-6 h-auto">
-              Reservar Ahora
+            <Button asChild className="bg-hotel-purple hover:bg-hotel-dark-purple text-white px-6 py-6 h-auto">
+              <Link to="/reservas">Reservar Ahora</Link>
             </Button>
             <Button variant="outline" className="border-hotel-purple text-hotel-purple hover:bg-hotel-purple/10 px-6 py-6 h-auto">
-              Conocer Más
+              <a href="#servicios">Conocer Más</a>
             </Button>
           </div>
         </div>

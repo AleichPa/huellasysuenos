@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const rooms = [
   {
@@ -68,8 +69,10 @@ const RoomsSection = () => {
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-hotel-purple hover:bg-hotel-dark-purple">
-                  Reservar Ahora
+                <Button asChild className="w-full bg-hotel-purple hover:bg-hotel-dark-purple">
+                  <Link to={`/reservas?room=${encodeURIComponent(room.title)}`}>
+                    Reservar Ahora
+                  </Link>
                 </Button>
               </CardFooter>
             </Card>

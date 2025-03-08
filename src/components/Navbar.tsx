@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { PawPrint, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,10 +14,10 @@ const Navbar = () => {
   return (
     <nav className="bg-white/80 backdrop-blur-sm fixed w-full z-10 py-3 px-4 md:px-6 shadow-sm">
       <div className="container mx-auto flex justify-between items-center">
-        <a href="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <PawPrint className="h-8 w-8 text-hotel-purple" />
           <span className="font-display font-semibold text-xl md:text-2xl">Huellas y Sueños</span>
-        </a>
+        </Link>
 
         {/* Mobile menu button */}
         <button 
@@ -43,8 +44,8 @@ const Navbar = () => {
           <a href="#contacto" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors">
             Contacto
           </a>
-          <Button className="bg-hotel-purple hover:bg-hotel-dark-purple">
-            Reservar Ahora
+          <Button asChild className="bg-hotel-purple hover:bg-hotel-dark-purple">
+            <Link to="/reservas">Reservar Ahora</Link>
           </Button>
         </div>
 
@@ -66,8 +67,8 @@ const Navbar = () => {
             <a href="#contacto" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2">
               Contacto
             </a>
-            <Button className="bg-hotel-purple hover:bg-hotel-dark-purple w-full">
-              Reservar Ahora
+            <Button asChild className="bg-hotel-purple hover:bg-hotel-dark-purple w-full">
+              <Link to="/reservas">Reservar Ahora</Link>
             </Button>
           </div>
         )}
