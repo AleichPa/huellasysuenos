@@ -19,6 +19,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/reserva" element={<ReservaProcess />} />
+          <Route path="/reservas" element={<ReservaProcess />} /> {/* Added route to match /reservas path */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
