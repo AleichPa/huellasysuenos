@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Star } from "lucide-react";
+import { Heart, Quote, Star } from "lucide-react";
 
 const testimonials = [
   {
@@ -28,11 +28,22 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section id="testimonios" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="testimonios" className="py-20 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-hotel-light-blue/10 to-white -z-10"></div>
+      
+      {/* Decorative elements */}
+      <div className="absolute top-20 left-20 w-72 h-72 bg-hotel-purple/5 rounded-full blur-3xl -z-5"></div>
+      <div className="absolute bottom-20 right-20 w-64 h-64 bg-hotel-orange/5 rounded-full blur-3xl -z-5"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <span className="text-hotel-purple font-medium">TESTIMONIOS</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold mt-2 mb-4">
+          <div className="inline-flex items-center justify-center">
+            <div className="h-px w-8 bg-hotel-purple/50 mr-4"></div>
+            <span className="text-hotel-purple font-medium">TESTIMONIOS</span>
+            <div className="h-px w-8 bg-hotel-purple/50 ml-4"></div>
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mt-2 mb-4 gradient-text">
             Lo Que Dicen Nuestros Clientes
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -40,10 +51,16 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-gray-50 border-none shadow-sm hover:shadow-md transition-shadow">
-              <CardContent className="pt-6 pb-4">
+            <Card 
+              key={index} 
+              className="relative bg-white border-none shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group"
+            >
+              <div className="absolute top-4 right-4 text-hotel-orange/50 opacity-30 group-hover:opacity-100 transition-opacity">
+                <Quote size={40} />
+              </div>
+              <CardContent className="pt-10 pb-4 relative z-10">
                 <div className="flex mb-3">
                   {[...Array(testimonial.stars)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 fill-hotel-orange text-hotel-orange" />
@@ -52,21 +69,25 @@ const TestimonialsSection = () => {
                     <Star key={i + testimonial.stars} className="h-5 w-5 text-gray-300" />
                   ))}
                 </div>
-                <p className="text-gray-700 italic">"{testimonial.text}"</p>
+                <p className="text-gray-700 italic relative">"{testimonial.text}"</p>
               </CardContent>
-              <CardFooter className="border-t border-gray-100 pt-4">
-                <div className="flex items-center gap-4">
+              <CardFooter className="border-t border-gray-100 pt-4 flex items-center gap-4">
+                <div className="relative">
                   <img 
                     src={testimonial.image} 
                     alt={testimonial.name} 
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md"
                   />
-                  <div>
-                    <h4 className="font-semibold">{testimonial.name}</h4>
-                    <p className="text-gray-500 text-sm">{testimonial.pet}</p>
-                  </div>
+                  <span className="absolute -bottom-1 -right-1 bg-hotel-purple text-white p-1 rounded-full shadow-md">
+                    <Heart size={12} className="fill-white" />
+                  </span>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                  <p className="text-gray-500 text-sm">{testimonial.pet}</p>
                 </div>
               </CardFooter>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-hotel-orange to-hotel-purple opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </Card>
           ))}
         </div>
