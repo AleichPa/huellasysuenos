@@ -22,8 +22,8 @@ const HeroSection = () => {
             <Button asChild className="bg-hotel-purple hover:bg-hotel-dark-purple text-white px-6 py-6 h-auto">
               <Link to="/reservas">Reservar Ahora</Link>
             </Button>
-            <Button variant="outline" className="border-hotel-purple text-hotel-purple hover:bg-hotel-purple/10 px-6 py-6 h-auto">
-              <a href="#servicios">Conocer Más</a>
+            <Button variant="outline" asChild className="border-hotel-purple text-hotel-purple hover:bg-hotel-purple/10 px-6 py-6 h-auto">
+              <Link to="/servicios">Conocer Más</Link>
             </Button>
           </div>
         </div>

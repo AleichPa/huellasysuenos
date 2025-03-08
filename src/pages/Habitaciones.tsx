@@ -1,16 +1,18 @@
 
 import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
+import RoomsSection from "@/components/RoomsSection";
 import Footer from "@/components/Footer";
 
-const Index = () => {
+const Habitaciones = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <HeroSection />
+      <div className="pt-24">
+        <RoomsSection />
+      </div>
       <Footer />
     </div>
   );
 };
 
-export default Index;
+export default Habitaciones;

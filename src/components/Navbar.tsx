@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white/80 backdrop-blur-sm fixed w-full z-10 py-3 px-4 md:px-6 shadow-sm">
+    <nav className="bg-white/80 backdrop-blur-sm fixed w-full z-50 py-3 px-4 md:px-6 shadow-sm">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2">
           <PawPrint className="h-8 w-8 text-hotel-purple" />
@@ -29,21 +29,21 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
-          <a href="#inicio" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors">
+          <Link to="/" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors">
             Inicio
-          </a>
-          <a href="#servicios" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors">
+          </Link>
+          <Link to="/servicios" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors">
             Servicios
-          </a>
-          <a href="#habitaciones" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors">
+          </Link>
+          <Link to="/habitaciones" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors">
             Habitaciones
-          </a>
-          <a href="#testimonios" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors">
+          </Link>
+          <Link to="/testimonios" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors">
             Testimonios
-          </a>
-          <a href="#contacto" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors">
+          </Link>
+          <Link to="/contacto" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors">
             Contacto
-          </a>
+          </Link>
           <Button asChild className="bg-hotel-purple hover:bg-hotel-dark-purple">
             <Link to="/reservas">Reservar Ahora</Link>
           </Button>
@@ -51,22 +51,22 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-white shadow-md py-4 px-6 md:hidden flex flex-col gap-4">
-            <a href="#inicio" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2">
+          <div className="absolute top-full left-0 right-0 bg-white shadow-md py-4 px-6 md:hidden flex flex-col gap-4 z-50">
+            <Link to="/" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2">
               Inicio
-            </a>
-            <a href="#servicios" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2">
+            </Link>
+            <Link to="/servicios" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2">
               Servicios
-            </a>
-            <a href="#habitaciones" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2">
+            </Link>
+            <Link to="/habitaciones" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2">
               Habitaciones
-            </a>
-            <a href="#testimonios" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2">
+            </Link>
+            <Link to="/testimonios" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2">
               Testimonios
-            </a>
-            <a href="#contacto" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2">
+            </Link>
+            <Link to="/contacto" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2">
               Contacto
-            </a>
+            </Link>
             <Button asChild className="bg-hotel-purple hover:bg-hotel-dark-purple w-full">
               <Link to="/reservas">Reservar Ahora</Link>
             </Button>
