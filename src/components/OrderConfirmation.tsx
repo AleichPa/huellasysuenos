@@ -1,11 +1,11 @@
-
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Product } from "@/types/product";
 import { CheckCircle, Copy, Download, ShoppingBag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
+import { useCart } from "@/contexts/CartContext";
 
 interface OrderConfirmationProps {
   items: (Product & { quantity: number })[];
@@ -15,12 +15,24 @@ interface OrderConfirmationProps {
     customerName: string;
     email: string;
     paymentMethod: string;
+    orderTotal?: number;
   };
 }
 
 const OrderConfirmation = ({ items, total, orderDetails }: OrderConfirmationProps) => {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
+  const { clearCart } = useCart();
+  
+  // Use the total value passed from props to ensure it shows the correct amount
+  const orderTotal = orderDetails.orderTotal || total;
+  
+  // Clear cart after showing confirmation
+  useEffect(() => {
+    return () => {
+      clearCart();
+    };
+  }, [clearCart]);
   
   const getPaymentMethodText = (method: string) => {
     switch (method) {
@@ -138,7 +150,7 @@ const OrderConfirmation = ({ items, total, orderDetails }: OrderConfirmationProp
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>{total.toFixed(2)}€</span>
+                  <span>{orderTotal.toFixed(2)}€</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Envío</span>
@@ -148,7 +160,7 @@ const OrderConfirmation = ({ items, total, orderDetails }: OrderConfirmationProp
                 <div className="flex justify-between font-bold">
                   <span>Total</span>
                   <span className="text-hotel-dark-purple">
-                    {total.toFixed(2)}€
+                    {orderTotal.toFixed(2)}€
                   </span>
                 </div>
               </div>

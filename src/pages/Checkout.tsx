@@ -8,7 +8,7 @@ import CheckoutForm from "@/components/CheckoutForm";
 import OrderConfirmation from "@/components/OrderConfirmation";
 
 const Checkout = () => {
-  const { cartItems, totalPrice } = useCart();
+  const { cartItems, totalPrice, clearCart } = useCart();
   const navigate = useNavigate();
   const [orderComplete, setOrderComplete] = useState(false);
   const [orderDetails, setOrderDetails] = useState<{
@@ -16,6 +16,7 @@ const Checkout = () => {
     customerName: string;
     email: string;
     paymentMethod: string;
+    orderTotal: number;
   } | null>(null);
 
   // If cart is empty and no completed order, redirect to products
@@ -32,11 +33,13 @@ const Checkout = () => {
     // Generate random order ID
     const orderId = `PET-${Math.floor(Math.random() * 100000)}`;
     
+    // Save order details including the current totalPrice
     setOrderDetails({
       orderId,
       customerName: formData.name,
       email: formData.email,
       paymentMethod: formData.paymentMethod,
+      orderTotal: totalPrice,
     });
     
     setOrderComplete(true);
@@ -57,7 +60,7 @@ const Checkout = () => {
           ) : (
             <OrderConfirmation 
               items={cartItems}
-              total={totalPrice}
+              total={orderDetails?.orderTotal || 0}
               orderDetails={orderDetails!}
             />
           )}
