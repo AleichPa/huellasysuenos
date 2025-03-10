@@ -172,12 +172,14 @@ const ContactSection = () => {
       }}></div>
       
       {/* Add the cat-paw-pattern style */}
-      <style jsx>{`
-        .cat-paw-pattern {
-          background-color: rgba(255, 255, 255, 0.8);
-          background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 25c-3-3-7-5-12-5-.9 0-1.9.1-2.8.3-1.6.3-2.7 1.7-2.7 3.4 0 .5.1 1 .2 1.5.7 3 2.7 5.4 5.3 6.8 1.2.7 2.5 1 3.8 1 1.3 0 2.7-.3 3.9-1C19.3 30.4 21 28 22 25c-1.7-2.7-5-5-9-5-2.8 0-5.2 1.2-7 3 .8-.5 1.6-.9 2.5-1.2 3.4-1.3 7.2-.3 9.5 2.2' fill='%239b87f5' fill-opacity='0.1'/%3E%3C/svg%3E");
-        }
-      `}</style>
+      <style>
+        {`
+          .cat-paw-pattern {
+            background-color: rgba(255, 255, 255, 0.8);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 25c-3-3-7-5-12-5-.9 0-1.9.1-2.8.3-1.6.3-2.7 1.7-2.7 3.4 0 .5.1 1 .2 1.5.7 3 2.7 5.4 5.3 6.8 1.2.7 2.5 1 3.8 1 1.3 0 2.7-.3 3.9-1C19.3 30.4 21 28 22 25c-1.7-2.7-5-5-9-5-2.8 0-5.2 1.2-7 3 .8-.5 1.6-.9 2.5-1.2 3.4-1.3 7.2-.3 9.5 2.2' fill='%239b87f5' fill-opacity='0.1'/%3E%3C/svg%3E");
+          }
+        `}
+      </style>
     </section>
   );
 };
