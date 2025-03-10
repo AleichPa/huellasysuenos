@@ -26,18 +26,21 @@ const NotFound = () => {
       
       {/* Main Content */}
       <div className="relative z-10 text-center max-w-md">
-        {/* Cute Error Icon */}
-        <div className="mb-6 flex justify-center">
-          <div className="relative">
-            <PawPrint size={120} className="text-hotel-purple animate-bounce-slight" />
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-display font-bold text-4xl text-white">
-              404
-            </div>
+        {/* 404 Error Display - Made more prominent */}
+        <div className="mb-8 relative">
+          <div className="text-[150px] font-display font-bold gradient-text leading-none">
+            404
+          </div>
+          <div className="absolute -top-4 -right-4 rotate-12">
+            <PawPrint size={60} className="text-hotel-purple" />
+          </div>
+          <div className="absolute -bottom-2 -left-4 -rotate-12">
+            <PawPrint size={40} className="text-hotel-orange" />
           </div>
         </div>
         
         {/* Error Text */}
-        <h1 className="font-display text-3xl md:text-4xl font-bold mb-4 gradient-text">
+        <h1 className="font-display text-3xl md:text-4xl font-bold mb-4 text-hotel-dark-purple">
           ¡Ups! Página no encontrada
         </h1>
         
