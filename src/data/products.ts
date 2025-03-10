@@ -1,4 +1,3 @@
-
 import { Product } from '@/types/product';
 
 export const products: Product[] = [
@@ -244,5 +243,14 @@ export const products: Product[] = [
     image: "https://images.unsplash.com/photo-1567014327298-1abd38a5a3ff",
     category: "antiparasitarios",
     stock: 20
+  },
+  {
+    id: "28",
+    name: "Rascador para Gatos con Poste",
+    price: 25.99,
+    description: "Rascador de sisal natural con poste y plataforma superior. Ideal para que tu gato ejercite sus garras, estire sus músculos y tenga un lugar propio para descansar. Base estable y duradera.",
+    image: "https://images.unsplash.com/photo-1574144113084-b6f450cc5e0c",
+    category: "juguetes",
+    stock: 10
   }
 ];
