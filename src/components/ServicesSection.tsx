@@ -1,8 +1,8 @@
 
 import { 
   Bath, Clock, Heart, PawPrint, Shield, Utensils, Dog, Cat, Bird, 
-  Scissors, ToothbrushIcon, Bone, Syringe, Book, Tv, Camera, Gift, 
-  SwimmingPool, User, Truck, PartyPopper, Images, Footprints, Sparkles
+  Scissors, Toothbrush, Bone, Syringe, Book, Tv, Camera, Gift, 
+  Waves, User, Truck, PartyPopper, Images, Footprints, Sparkles
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -75,7 +75,7 @@ const services = [
     price: "10€"
   },
   {
-    icon: <ToothbrushIcon className="h-12 w-12 text-hotel-orange" />,
+    icon: <Toothbrush className="h-12 w-12 text-hotel-orange" />,
     title: "Lavado de Dientes",
     description: "Lavado de dientes con productos especiales.",
     price: "1€"
@@ -111,7 +111,7 @@ const services = [
     price: "15€/sesión"
   },
   {
-    icon: <SwimmingPool className="h-12 w-12 text-hotel-orange" />,
+    icon: <Waves className="h-12 w-12 text-hotel-orange" />,
     title: "Piscina",
     description: "Pueden nadar y ejercitarse en la piscina.",
     price: "2€/hora"
