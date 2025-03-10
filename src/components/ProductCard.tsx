@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Info } from "lucide-react";
+import { ShoppingCart, Info, Utensils, ToyBrick, Shirt, Package, Umbrella, Droplets } from "lucide-react";
 import { Product } from "@/types/product";
 import { useCart } from "@/contexts/CartContext";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +16,40 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const { addToCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
 
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case 'alimentacion':
+        return <Utensils size={14} />;
+      case 'juguetes':
+        return <ToyBrick size={14} />;
+      case 'abrigos':
+      case 'arnes':
+        return <Shirt size={14} />;
+      case 'chubasqueros':
+        return <Umbrella size={14} />;
+      case 'feromonas':
+        return <Droplets size={14} />;
+      case 'transportin':
+        return <Package size={14} />;
+      default:
+        return null;
+    }
+  };
+
+  const getCategoryLabel = (category: string) => {
+    const labels: Record<string, string> = {
+      'alimentacion': 'Alimentación',
+      'juguetes': 'Juguetes',
+      'abrigos': 'Abrigos',
+      'arnes': 'Arnés',
+      'chubasqueros': 'Chubasqueros',
+      'feromonas': 'Feromonas',
+      'transportin': 'Transportín'
+    };
+    
+    return labels[category] || category;
+  };
+
   return (
     <Card className="group overflow-hidden transition-all duration-300 hover:shadow-lg border-2 border-transparent hover:border-hotel-light-purple/30">
       <CardHeader className="p-0 relative overflow-hidden">
@@ -26,8 +60,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
         </div>
-        <Badge className="absolute top-2 right-2 bg-hotel-purple text-white">
-          {product.category}
+        <Badge className="absolute top-2 right-2 bg-hotel-purple text-white flex items-center gap-1">
+          {getCategoryIcon(product.category)}
+          {getCategoryLabel(product.category)}
         </Badge>
       </CardHeader>
       <CardContent className="p-4">

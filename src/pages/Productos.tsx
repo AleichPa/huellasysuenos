@@ -70,10 +70,13 @@ const Productos = () => {
 
   const categories = [
     { value: "todas", label: "Todas las categorías" },
-    { value: "comida", label: "Comida" },
+    { value: "alimentacion", label: "Alimentación" },
     { value: "juguetes", label: "Juguetes" },
-    { value: "accesorios", label: "Accesorios" },
-    { value: "higiene", label: "Higiene" }
+    { value: "abrigos", label: "Abrigos" },
+    { value: "arnes", label: "Arnés" },
+    { value: "chubasqueros", label: "Chubasqueros" },
+    { value: "feromonas", label: "Feromonas" },
+    { value: "transportin", label: "Bolso Transportín" }
   ];
 
   return (

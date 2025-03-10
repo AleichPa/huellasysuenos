@@ -5,6 +5,6 @@ export interface Product {
   price: number;
   description: string;
   image: string;
-  category: 'comida' | 'juguetes' | 'accesorios' | 'higiene';
+  category: 'alimentacion' | 'juguetes' | 'abrigos' | 'arnes' | 'chubasqueros' | 'feromonas' | 'transportin';
   stock: number;
 }
