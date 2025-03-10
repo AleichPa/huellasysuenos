@@ -1,3 +1,4 @@
+
 import { Product } from '@/types/product';
 
 export const products: Product[] = [
@@ -246,11 +247,65 @@ export const products: Product[] = [
   },
   {
     id: "28",
-    name: "Rascador para Gatos con Poste",
-    price: 25.99,
-    description: "Rascador de sisal natural con poste y plataforma superior. Ideal para que tu gato ejercite sus garras, estire sus músculos y tenga un lugar propio para descansar. Base estable y duradera.",
-    image: "https://images.unsplash.com/photo-1574144113084-b6f450cc5e0c",
-    category: "juguetes",
-    stock: 10
+    name: "Golosinas para Perros Variadas",
+    price: 7.99,
+    description: "Surtido de golosinas para perros con diferentes sabores y texturas. Perfectas para el entrenamiento o como premio. Elaboradas con ingredientes naturales.",
+    image: "https://images.unsplash.com/photo-1582798358481-d199fb7347bb",
+    category: "snacks",
+    stock: 25
+  },
+  {
+    id: "29",
+    name: "Barritas de Semillas para Aves",
+    price: 4.99,
+    description: "Barritas nutritivas con mezcla de semillas y frutas para canarios, periquitos y otras aves. Proporcionan vitaminas y minerales esenciales.",
+    image: "https://images.unsplash.com/photo-1553264701-d138db4fd5d4",
+    category: "snacks",
+    stock: 20
+  },
+  {
+    id: "30",
+    name: "Snacks de Heno para Conejos",
+    price: 3.75,
+    description: "Snacks de heno prensado con hierbas aromáticas. Ayudan al desgaste dental y aportan fibra a la dieta de conejos y roedores.",
+    image: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308",
+    category: "snacks",
+    stock: 18
+  },
+  {
+    id: "31",
+    name: "Topping de Vegetales para Roedores",
+    price: 2.95,
+    description: "Mezcla deshidratada de vegetales para complementar la alimentación de cobayos, hámsters y otros pequeños roedores. Rico en vitamina C.",
+    image: "https://images.unsplash.com/photo-1522184216316-3c25379f9760",
+    category: "snacks",
+    stock: 22
+  },
+  {
+    id: "32",
+    name: "Cubos de Alfalfa para Conejos",
+    price: 5.25,
+    description: "Cubos de alfalfa comprimida, ideales como golosina nutritiva para conejos y cobayas. Favorecen un correcto desgaste dental.",
+    image: "https://images.unsplash.com/photo-1560788784-66abd38628d8",
+    category: "snacks",
+    stock: 15
+  },
+  {
+    id: "33",
+    name: "Insectos Deshidratados para Reptiles",
+    price: 8.50,
+    description: "Mezcla de grillos y gusanos de la harina deshidratados. Alimento complementario alto en proteínas para lagartos, camaleones y otros reptiles.",
+    image: "https://images.unsplash.com/photo-1559804452-a688d0d12f21",
+    category: "snacks",
+    stock: 12
+  },
+  {
+    id: "34",
+    name: "Alimento Liofilizado para Peces",
+    price: 6.75,
+    description: "Alimento liofilizado en escamas para peces tropicales. Conserva todas las propiedades nutricionales y vitaminas. No enturbia el agua.",
+    image: "https://images.unsplash.com/photo-1520302518254-ea46e7c71955",
+    category: "snacks",
+    stock: 20
   }
 ];
