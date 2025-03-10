@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Product } from "@/types/product";
@@ -6,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
 import { useCart } from "@/contexts/CartContext";
+import { generateInvoicePDF } from "@/utils/pdfGenerator";
 
 interface OrderConfirmationProps {
   items: (Product & { quantity: number })[];
@@ -63,6 +65,25 @@ const OrderConfirmation = ({ items, total, orderDetails }: OrderConfirmationProp
       month: "long",
       day: "numeric",
     }).format(date);
+  };
+  
+  const handleDownloadInvoice = () => {
+    generateInvoicePDF(
+      items, 
+      {
+        orderId: orderDetails.orderId,
+        customerName: orderDetails.customerName,
+        email: orderDetails.email,
+        paymentMethod: orderDetails.paymentMethod,
+        orderDate: new Date(),
+        orderTotal: orderTotal
+      }
+    );
+    
+    toast({
+      title: "Factura descargada",
+      description: "Se ha descargado la factura en formato PDF",
+    });
   };
   
   const estimatedDelivery = new Date();
@@ -202,6 +223,7 @@ const OrderConfirmation = ({ items, total, orderDetails }: OrderConfirmationProp
               <Button 
                 variant="outline" 
                 className="w-full border-hotel-purple text-hotel-purple hover:bg-hotel-light-purple/10"
+                onClick={handleDownloadInvoice}
               >
                 <Download className="mr-2 h-4 w-4" />
                 Descargar factura

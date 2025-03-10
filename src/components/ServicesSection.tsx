@@ -1,5 +1,9 @@
 
-import { Bath, Clock, Heart, PawPrint, Shield, Utensils, Dog, Cat, Bird } from "lucide-react";
+import { 
+  Bath, Clock, Heart, PawPrint, Shield, Utensils, Dog, Cat, Bird, 
+  Scissors, ToothbrushIcon, Bone, Syringe, Book, Tv, Camera, Gift, 
+  SwimmingPool, User, Truck, PartyPopper, Images, Footprints, Sparkles
+} from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const services = [
@@ -32,6 +36,133 @@ const services = [
     icon: <Heart className="h-12 w-12 text-hotel-dark-purple" />,
     title: "Atención Veterinaria",
     description: "Veterinarios amables y amantes de los animales listos para cualquier emergencia."
+  },
+  // Nuevos servicios
+  {
+    icon: <Dog className="h-12 w-12 text-hotel-orange" />,
+    title: "Guardería",
+    description: "Cuidado del animal de 9:00h a 20:00h.",
+    price: "20€"
+  },
+  {
+    icon: <Camera className="h-12 w-12 text-hotel-purple" />,
+    title: "Foto Diaria",
+    description: "Foto diaria para ver el estado de la mascota.",
+    price: "2€/día"
+  },
+  {
+    icon: <Utensils className="h-12 w-12 text-hotel-pastel-green" />,
+    title: "Menú Extra",
+    description: "En caso de que el dueño desee añadir algún alimento que no esté incluido en nuestras recetas.",
+    price: "Según productos y cantidad"
+  },
+  {
+    icon: <Scissors className="h-12 w-12 text-hotel-soft-lavender" />,
+    title: "Peluquería",
+    description: "Baño con tratamientos específicos según el tipo de pelaje, corte de pelo, cepillado, desenredado, limpieza de oídos.",
+    price: "20€ - 30€"
+  },
+  {
+    icon: <Sparkles className="h-12 w-12 text-hotel-pastel-yellow" />,
+    title: "Spa",
+    description: "Agua caliente, baño, tratamientos capilares, música relajante, masaje, lavado de dientes, corte de uñas.",
+    price: "40€"
+  },
+  {
+    icon: <Bath className="h-12 w-12 text-hotel-dark-purple" />,
+    title: "Baño",
+    description: "Baño con tratamientos específicos según el tipo de pelaje, cepillado y desenredado.",
+    price: "10€"
+  },
+  {
+    icon: <ToothbrushIcon className="h-12 w-12 text-hotel-orange" />,
+    title: "Lavado de Dientes",
+    description: "Lavado de dientes con productos especiales.",
+    price: "1€"
+  },
+  {
+    icon: <Scissors className="h-12 w-12 text-hotel-purple" />,
+    title: "Cortado de Uñas",
+    description: "Corte de uñas profesional y cuidadoso.",
+    price: "5€"
+  },
+  {
+    icon: <Footprints className="h-12 w-12 text-hotel-pastel-green" />,
+    title: "Rehabilitación",
+    description: "Fisioterapia y quiropráctica. Ejercicios para mejorar la movilidad, reducir el dolor y acelerar la recuperación de lesiones.",
+    price: "20€/sesión"
+  },
+  {
+    icon: <Syringe className="h-12 w-12 text-hotel-soft-lavender" />,
+    title: "Suministro Medicación",
+    description: "Suministro de la medicación que esté tomando la mascota.",
+    price: "2€/día, varias veces: 3,50€/día"
+  },
+  {
+    icon: <Heart className="h-12 w-12 text-hotel-pastel-yellow" />,
+    title: "Curas Especiales",
+    description: "Se le limpia la herida y se le hace una nueva cura al animal herido.",
+    price: "3€/día"
+  },
+  {
+    icon: <Book className="h-12 w-12 text-hotel-dark-purple" />,
+    title: "Adiestramiento",
+    description: "Clases para mejorar la conducta, obediencia, socialización, disminución de ladridos y más.",
+    price: "15€/sesión"
+  },
+  {
+    icon: <SwimmingPool className="h-12 w-12 text-hotel-orange" />,
+    title: "Piscina",
+    description: "Pueden nadar y ejercitarse en la piscina.",
+    price: "2€/hora"
+  },
+  {
+    icon: <User className="h-12 w-12 text-hotel-purple" />,
+    title: "Socialización Guiada",
+    description: "Enseñarles a interactuar adecuadamente (sin miedo ni agresividad).",
+    price: "0€"
+  },
+  {
+    icon: <Tv className="h-12 w-12 text-hotel-pastel-green" />,
+    title: "Televisión",
+    description: "Para la hora de dormir (hay dueños que la piden porque en casa suelen ver la tele con su mascota).",
+    price: "2€/día"
+  },
+  {
+    icon: <Camera className="h-12 w-12 text-hotel-soft-lavender" />,
+    title: "Cámaras y Micros",
+    description: "Las cámaras funcionan constantemente, si los dueños lo solicitan, se les dará acceso a verlas.",
+    price: "5€/día"
+  },
+  {
+    icon: <Images className="h-12 w-12 text-hotel-pastel-yellow" />,
+    title: "Fotografía Profesional",
+    description: "Sesiones de fotos para capturar momentos especiales y únicos durante la estancia.",
+    price: "15€"
+  },
+  {
+    icon: <Sparkles className="h-12 w-12 text-hotel-dark-purple" />,
+    title: "Holograma",
+    description: "Sistema de holograma para que los dueños puedan grabarse y el perro sienta que está con ellos.",
+    price: "80€"
+  },
+  {
+    icon: <Truck className="h-12 w-12 text-hotel-orange" />,
+    title: "Transporte",
+    description: "Recogida o entrega de animal en un punto acordado.",
+    price: "15€ - 70€ (según distancia)"
+  },
+  {
+    icon: <Footprints className="h-12 w-12 text-hotel-purple" />,
+    title: "Excursiones Guiadas",
+    description: "Excursiones para que los dueños puedan disfrutar de un día de paseo guiado con sus perros.",
+    price: "10€"
+  },
+  {
+    icon: <PartyPopper className="h-12 w-12 text-hotel-pastel-green" />,
+    title: "Celebraciones Especiales",
+    description: "Celebración de cumple perruno con sus amigos perrunos.",
+    price: "desde 50€"
   }
 ];
 
@@ -83,6 +214,11 @@ const ServicesSection = () => {
               <CardHeader className="pb-2">
                 <div className="mb-4 transform transition-transform group-hover:scale-110 duration-300 p-4 bg-gradient-to-br from-white to-gray-50 rounded-full w-20 h-20 flex items-center justify-center mx-auto shadow-sm group-hover:shadow-md">{service.icon}</div>
                 <CardTitle className="text-xl font-bold text-center">{service.title}</CardTitle>
+                {service.price && (
+                  <div className="mt-2 text-hotel-purple font-semibold text-center">
+                    {service.price}
+                  </div>
+                )}
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-gray-600 text-center">{service.description}</CardDescription>
