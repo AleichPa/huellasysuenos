@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Info, Utensils, ToyBrick, Shirt, Package, Umbrella, Droplets } from "lucide-react";
+import { ShoppingCart, Info, Utensils, ToyBrick, Shirt, Package, Umbrella, Droplets, Scissors, Bath, Cookie, Tooth, Shield } from "lucide-react";
 import { Product } from "@/types/product";
 import { useCart } from "@/contexts/CartContext";
 import { Badge } from "@/components/ui/badge";
@@ -31,6 +31,18 @@ const ProductCard = ({ product }: ProductCardProps) => {
         return <Droplets size={14} />;
       case 'transportin':
         return <Package size={14} />;
+      case 'correas':
+        return <Scissors size={14} />;
+      case 'cepillos':
+        return <Scissors size={14} />;
+      case 'champus':
+        return <Bath size={14} />;
+      case 'snacks':
+        return <Cookie size={14} />;
+      case 'higiene-dental':
+        return <Tooth size={14} />;
+      case 'antiparasitarios':
+        return <Shield size={14} />;
       default:
         return null;
     }
@@ -44,7 +56,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
       'arnes': 'Arnés',
       'chubasqueros': 'Chubasqueros',
       'feromonas': 'Feromonas',
-      'transportin': 'Transportín'
+      'transportin': 'Transportín',
+      'correas': 'Correas y Collares',
+      'cepillos': 'Cepillos y Peines',
+      'champus': 'Champús',
+      'snacks': 'Snacks y Premios',
+      'higiene-dental': 'Higiene Dental',
+      'antiparasitarios': 'Antiparasitarios'
     };
     
     return labels[category] || category;

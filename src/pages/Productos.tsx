@@ -76,7 +76,13 @@ const Productos = () => {
     { value: "arnes", label: "Arnés" },
     { value: "chubasqueros", label: "Chubasqueros" },
     { value: "feromonas", label: "Feromonas" },
-    { value: "transportin", label: "Bolso Transportín" }
+    { value: "transportin", label: "Bolso Transportín" },
+    { value: "correas", label: "Correas y Collares" },
+    { value: "cepillos", label: "Cepillos y Peines" },
+    { value: "champus", label: "Champús y Acondicionadores" },
+    { value: "snacks", label: "Snacks y Premios" },
+    { value: "higiene-dental", label: "Higiene Dental" },
+    { value: "antiparasitarios", label: "Antiparasitarios" }
   ];
 
   return (
