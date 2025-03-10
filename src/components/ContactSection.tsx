@@ -101,15 +101,15 @@ const ContactSection = () => {
           
           <div className="lg:col-span-3">
             <form className="bg-white p-8 rounded-3xl shadow-md relative overflow-hidden hover:shadow-lg transition-all group">
-              {/* Cute heart pattern overlay */}
-              <div className="absolute inset-0 heart-pattern opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* Changed from heart-pattern to cat-paw-pattern overlay */}
+              <div className="absolute inset-0 cat-paw-pattern opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
               <h3 className="text-2xl font-bold mb-6 font-display relative z-10">Envíanos un Mensaje</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 relative z-10">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-1">
-                    <Heart size={12} className="text-hotel-purple" />
+                    <PawPrint size={12} className="text-hotel-purple" />
                     Nombre
                   </label>
                   <Input id="name" placeholder="Tu nombre" className="rounded-full border-hotel-purple/20 focus:border-hotel-purple" />
@@ -117,7 +117,7 @@ const ContactSection = () => {
                 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-1">
-                    <Heart size={12} className="text-hotel-purple" />
+                    <PawPrint size={12} className="text-hotel-purple" />
                     Email
                   </label>
                   <Input id="email" type="email" placeholder="Tu email" className="rounded-full border-hotel-purple/20 focus:border-hotel-purple" />
@@ -125,7 +125,7 @@ const ContactSection = () => {
                 
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-1">
-                    <Heart size={12} className="text-hotel-purple" />
+                    <PawPrint size={12} className="text-hotel-purple" />
                     Teléfono
                   </label>
                   <Input id="phone" placeholder="Tu teléfono" className="rounded-full border-hotel-purple/20 focus:border-hotel-purple" />
@@ -150,7 +150,7 @@ const ContactSection = () => {
               
               <Button className="w-full md:w-auto bg-gradient-to-r from-hotel-purple to-hotel-dark-purple hover:from-hotel-dark-purple hover:to-hotel-purple relative z-10 rounded-full shadow-md hover:shadow-lg transition-all flex items-center gap-2">
                 <span>Enviar Mensaje</span>
-                <Heart className="h-4 w-4 animate-pulse" />
+                <PawPrint className="h-4 w-4 animate-pulse" />
               </Button>
               
               {/* Corner decorations */}
@@ -170,6 +170,14 @@ const ContactSection = () => {
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='20' viewBox='0 0 60 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0 20 C 10 10, 30 10, 30 20 C 30 10, 50 10, 60 20 L 60 20 L 0 20' fill='%23BDEFFF' /%3E%3C/svg%3E")`,
         backgroundSize: '60px 20px'
       }}></div>
+      
+      {/* Add the cat-paw-pattern style */}
+      <style jsx>{`
+        .cat-paw-pattern {
+          background-color: rgba(255, 255, 255, 0.8);
+          background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 25c-3-3-7-5-12-5-.9 0-1.9.1-2.8.3-1.6.3-2.7 1.7-2.7 3.4 0 .5.1 1 .2 1.5.7 3 2.7 5.4 5.3 6.8 1.2.7 2.5 1 3.8 1 1.3 0 2.7-.3 3.9-1C19.3 30.4 21 28 22 25c-1.7-2.7-5-5-9-5-2.8 0-5.2 1.2-7 3 .8-.5 1.6-.9 2.5-1.2 3.4-1.3 7.2-.3 9.5 2.2' fill='%239b87f5' fill-opacity='0.1'/%3E%3C/svg%3E");
+        }
+      `}</style>
     </section>
   );
 };
