@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Info, Utensils, ToyBrick, Shirt, Package, Umbrella, Droplets, Scissors, Bath, Cookie, Tooth, Shield } from "lucide-react";
+import { ShoppingCart, Info, Utensils, ToyBrick, Shirt, Package, Umbrella, Droplets, Scissors, Bath, Cookie, Brush, Shield } from "lucide-react";
 import { Product } from "@/types/product";
 import { useCart } from "@/contexts/CartContext";
 import { Badge } from "@/components/ui/badge";
@@ -40,7 +40,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       case 'snacks':
         return <Cookie size={14} />;
       case 'higiene-dental':
-        return <Tooth size={14} />;
+        return <Brush size={14} />; // Changed from Tooth to Brush
       case 'antiparasitarios':
         return <Shield size={14} />;
       default:
