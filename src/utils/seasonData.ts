@@ -134,3 +134,9 @@ export const generateSeasonDates = (year: number = new Date().getFullYear()): Re
     high: highSeasonDates
   };
 };
+
+// Helper function to format percentage display
+export const formatPercentage = (multiplier: number): string => {
+  const percentage = (multiplier - 1) * 100;
+  return `${Math.round(percentage)}%`;
+};

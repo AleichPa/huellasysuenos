@@ -25,7 +25,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { SEASONS, generateSeasonDates, getSeason, SeasonType } from "@/utils/seasonData";
+import { SEASONS, generateSeasonDates, getSeason, SeasonType, formatPercentage } from "@/utils/seasonData";
 
 const rooms = [
   {
@@ -336,11 +336,11 @@ const ReservaProcess = () => {
             </div>
             <div className="flex items-center gap-2">
               <div className="h-4 w-4 rounded-full" style={{ backgroundColor: SEASONS.medium.color }}></div>
-              <span>{SEASONS.medium.name} - Recargo del {(SEASONS.medium.priceMultiplier - 1) * 100}%</span>
+              <span>{SEASONS.medium.name} - Recargo del {formatPercentage(SEASONS.medium.priceMultiplier)}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="h-4 w-4 rounded-full" style={{ backgroundColor: SEASONS.high.color }}></div>
-              <span>{SEASONS.high.name} - Recargo del {(SEASONS.high.priceMultiplier - 1) * 100}%</span>
+              <span>{SEASONS.high.name} - Recargo del {formatPercentage(SEASONS.high.priceMultiplier)}</span>
             </div>
           </div>
         </DialogContent>
