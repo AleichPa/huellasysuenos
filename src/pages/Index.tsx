@@ -47,9 +47,9 @@ const Index = () => {
     },
     {
       icon: <Calendar className="h-8 w-8 text-hotel-purple" />,
-      title: "Reservas Flexibles",
-      description: "Sistema de reservas fácil y adaptable a tus necesidades.",
-      link: "/reservas",
+      title: "Temporadas y Tarifas",
+      description: "Consulta nuestro calendario de temporadas y planifica al mejor precio.",
+      link: "/temporadas",
       color: "bg-hotel-soft-lavender/30 group-hover:bg-hotel-soft-lavender/50"
     },
   ];
