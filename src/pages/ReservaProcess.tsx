@@ -100,6 +100,32 @@ const additionalServices = [
   },
 ];
 
+// Función para determinar la temporada de una fecha
+const getDateSeason = (date: Date): Season | null => {
+  for (const period of seasons) {
+    if (date >= period.from && date <= period.to) {
+      return period.season;
+    }
+  }
+  return null;
+};
+
+// Función para aplicar estilos según la temporada
+const getSeasonStyles = (day: Date): string => {
+  const season = getDateSeason(day);
+  
+  switch (season) {
+    case "baja":
+      return "bg-green-100 text-green-800 hover:bg-green-200";
+    case "media":
+      return "bg-orange-100 text-orange-800 hover:bg-orange-200";
+    case "alta":
+      return "bg-red-100 text-red-800 hover:bg-red-200";
+    default:
+      return "";
+  }
+};
+
 const ReservaProcess = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -118,47 +144,6 @@ const ReservaProcess = () => {
   const [ownerName, setOwnerName] = useState("");
   const [ownerEmail, setOwnerEmail] = useState("");
   const [ownerPhone, setOwnerPhone] = useState("");
-
-  // Función para determinar la temporada de una fecha
-  const getDateSeason = (date: Date): Season | null => {
-    for (const period of seasons) {
-      if (date >= period.from && date <= period.to) {
-        return period.season;
-      }
-    }
-    return null;
-  };
-
-  // Función para aplicar estilos según la temporada
-  const getSeasonStyles = (day: Date): string => {
-    const season = getDateSeason(day);
-    
-    switch (season) {
-      case "baja":
-        return "bg-green-100 text-green-800 hover:bg-green-200";
-      case "media":
-        return "bg-orange-100 text-orange-800 hover:bg-orange-200";
-      case "alta":
-        return "bg-red-100 text-red-800 hover:bg-red-200";
-      default:
-        return "";
-    }
-  };
-
-  // Función para mostrar el precio según la temporada
-  const getSeasonLabel = (day: Date): string => {
-    const season = getDateSeason(day);
-    switch (season) {
-      case "baja":
-        return "B";
-      case "media":
-        return "M";
-      case "alta":
-        return "A";
-      default:
-        return "";
-    }
-  };
 
   // Cálculo de costos con ajuste por temporada
   const getSelectedRoom = () => rooms.find(room => room.id === selectedRoom);
@@ -347,9 +332,9 @@ const ReservaProcess = () => {
         <div className="flex-1">
           <p className="text-sm mb-2">Los precios varían según temporada:</p>
           <div className="flex flex-wrap gap-2">
-            <Badge className="bg-green-100 text-green-800">Temporada Baja (B) - Tarifa Estándar</Badge>
-            <Badge className="bg-orange-100 text-orange-800">Temporada Media (M) - +15%</Badge>
-            <Badge className="bg-red-100 text-red-800">Temporada Alta (A) - +30%</Badge>
+            <Badge className="bg-green-100 text-green-800">Temporada Baja - Tarifa Estándar</Badge>
+            <Badge className="bg-orange-100 text-orange-800">Temporada Media - +15%</Badge>
+            <Badge className="bg-red-100 text-red-800">Temporada Alta - +30%</Badge>
           </div>
         </div>
         <Popover>
@@ -362,13 +347,13 @@ const ReservaProcess = () => {
             <div className="space-y-2">
               <h4 className="font-medium">Detalles de Temporadas</h4>
               <p className="text-sm">
-                <span className="font-medium">Temporada Baja (B):</span> Enero-Mayo y Octubre-15 Diciembre
+                <span className="font-medium">Temporada Baja:</span> Enero-Mayo y Octubre-15 Diciembre
               </p>
               <p className="text-sm">
-                <span className="font-medium">Temporada Media (M):</span> Junio y Septiembre
+                <span className="font-medium">Temporada Media:</span> Junio y Septiembre
               </p>
               <p className="text-sm">
-                <span className="font-medium">Temporada Alta (A):</span> Julio-Agosto y 16-31 Diciembre
+                <span className="font-medium">Temporada Alta:</span> Julio-Agosto y 16-31 Diciembre
               </p>
             </div>
           </PopoverContent>
@@ -399,27 +384,24 @@ const ReservaProcess = () => {
               <Calendar
                 mode="single"
                 selected={checkIn}
-                onSelect={setCheckIn}
+                onSelect={(date) => {
+                  if (date) {
+                    setCheckIn(date);
+                  }
+                }}
                 initialFocus
                 disabled={(date) => date < new Date()}
-                className="p-3 pointer-events-auto"
                 components={{
-                  Day: (props) => {
-                    const seasonStyle = getSeasonStyles(props.date);
-                    const seasonLabel = getSeasonLabel(props.date);
-                    const isSelected = checkIn && props.date.toDateString() === checkIn.toDateString();
+                  Day: ({ date, ...props }) => {
+                    const seasonStyle = getSeasonStyles(date);
+                    const isSelected = checkIn && date.toDateString() === checkIn.toDateString();
                     
                     return (
                       <div 
                         className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 ${seasonStyle} ${isSelected ? 'ring-2 ring-hotel-purple' : ''}`} 
                         {...props}
                       >
-                        <div className="flex flex-col items-center justify-center">
-                          <span>{props.date.getDate()}</span>
-                          {seasonLabel && (
-                            <span className="text-xs font-bold">{seasonLabel}</span>
-                          )}
-                        </div>
+                        <span>{date.getDate()}</span>
                       </div>
                     );
                   }
@@ -468,27 +450,24 @@ const ReservaProcess = () => {
               <Calendar
                 mode="single"
                 selected={checkOut}
-                onSelect={setCheckOut}
+                onSelect={(date) => {
+                  if (date) {
+                    setCheckOut(date);
+                  }
+                }}
                 initialFocus
                 disabled={(date) => !checkIn || date <= checkIn}
-                className="p-3 pointer-events-auto"
                 components={{
-                  Day: (props) => {
-                    const seasonStyle = getSeasonStyles(props.date);
-                    const seasonLabel = getSeasonLabel(props.date);
-                    const isSelected = checkOut && props.date.toDateString() === checkOut.toDateString();
+                  Day: ({ date, ...props }) => {
+                    const seasonStyle = getSeasonStyles(date);
+                    const isSelected = checkOut && date.toDateString() === checkOut.toDateString();
                     
                     return (
                       <div 
                         className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 ${seasonStyle} ${isSelected ? 'ring-2 ring-hotel-purple' : ''}`} 
                         {...props}
                       >
-                        <div className="flex flex-col items-center justify-center">
-                          <span>{props.date.getDate()}</span>
-                          {seasonLabel && (
-                            <span className="text-xs font-bold">{seasonLabel}</span>
-                          )}
-                        </div>
+                        <span>{date.getDate()}</span>
                       </div>
                     );
                   }
