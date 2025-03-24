@@ -70,6 +70,21 @@ const getSeasonStyles = (day: Date): string => {
   }
 };
 
+// Función para mostrar el precio según la temporada
+const getSeasonLabel = (day: Date): string => {
+  const season = getDateSeason(day);
+  switch (season) {
+    case "baja":
+      return "B";
+    case "media":
+      return "M";
+    case "alta":
+      return "A";
+    default:
+      return "";
+  }
+};
+
 const Reservas = () => {
   const navigate = useNavigate();
   const [checkIn, setCheckIn] = useState<Date>();
@@ -151,9 +166,9 @@ const Reservas = () => {
             <div className="flex-1">
               <p className="text-sm mb-2">Los precios varían según temporada:</p>
               <div className="flex flex-wrap gap-2">
-                <Badge className="bg-green-100 text-green-800">Temporada Baja - Tarifa Estándar</Badge>
-                <Badge className="bg-orange-100 text-orange-800">Temporada Media - +15%</Badge>
-                <Badge className="bg-red-100 text-red-800">Temporada Alta - +30%</Badge>
+                <Badge className="bg-green-100 text-green-800">Temporada Baja (B) - Tarifa Estándar</Badge>
+                <Badge className="bg-orange-100 text-orange-800">Temporada Media (M) - +15%</Badge>
+                <Badge className="bg-red-100 text-red-800">Temporada Alta (A) - +30%</Badge>
               </div>
             </div>
             <Popover>
@@ -166,13 +181,13 @@ const Reservas = () => {
                 <div className="space-y-2">
                   <h4 className="font-medium">Detalles de Temporadas</h4>
                   <p className="text-sm">
-                    <span className="font-medium">Temporada Baja:</span> Enero-Mayo y Octubre-15 Diciembre
+                    <span className="font-medium">Temporada Baja (B):</span> Enero-Mayo y Octubre-15 Diciembre
                   </p>
                   <p className="text-sm">
-                    <span className="font-medium">Temporada Media:</span> Junio y Septiembre
+                    <span className="font-medium">Temporada Media (M):</span> Junio y Septiembre
                   </p>
                   <p className="text-sm">
-                    <span className="font-medium">Temporada Alta:</span> Julio-Agosto y 16-31 Diciembre
+                    <span className="font-medium">Temporada Alta (A):</span> Julio-Agosto y 16-31 Diciembre
                   </p>
                 </div>
               </PopoverContent>
@@ -212,11 +227,21 @@ const Reservas = () => {
                       components={{
                         Day: (props) => {
                           const seasonStyle = getSeasonStyles(props.date);
+                          const seasonLabel = getSeasonLabel(props.date);
+                          const isSelected = checkIn && props.date.toDateString() === checkIn.toDateString();
+                          
                           return (
                             <div 
-                              className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 aria-selected:opacity-100 ${seasonStyle}`} 
+                              className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 ${seasonStyle} ${isSelected ? 'ring-2 ring-hotel-purple' : ''}`} 
                               {...props}
-                            />
+                            >
+                              <div className="flex flex-col items-center justify-center">
+                                <span>{props.date.getDate()}</span>
+                                {seasonLabel && (
+                                  <span className="text-xs font-bold">{seasonLabel}</span>
+                                )}
+                              </div>
+                            </div>
                           );
                         }
                       }}
@@ -272,11 +297,21 @@ const Reservas = () => {
                       components={{
                         Day: (props) => {
                           const seasonStyle = getSeasonStyles(props.date);
+                          const seasonLabel = getSeasonLabel(props.date);
+                          const isSelected = checkOut && props.date.toDateString() === checkOut.toDateString();
+                          
                           return (
                             <div 
-                              className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 aria-selected:opacity-100 ${seasonStyle}`} 
+                              className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 ${seasonStyle} ${isSelected ? 'ring-2 ring-hotel-purple' : ''}`} 
                               {...props}
-                            />
+                            >
+                              <div className="flex flex-col items-center justify-center">
+                                <span>{props.date.getDate()}</span>
+                                {seasonLabel && (
+                                  <span className="text-xs font-bold">{seasonLabel}</span>
+                                )}
+                              </div>
+                            </div>
                           );
                         }
                       }}
