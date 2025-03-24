@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -166,9 +165,9 @@ const Reservas = () => {
             <div className="flex-1">
               <p className="text-sm mb-2">Los precios varían según temporada:</p>
               <div className="flex flex-wrap gap-2">
-                <Badge className="bg-green-100 text-green-800">Temporada Baja (B) - Tarifa Estándar</Badge>
-                <Badge className="bg-orange-100 text-orange-800">Temporada Media (M) - +15%</Badge>
-                <Badge className="bg-red-100 text-red-800">Temporada Alta (A) - +30%</Badge>
+                <Badge className="bg-green-100 text-green-800">Temporada Baja - Tarifa Estándar</Badge>
+                <Badge className="bg-orange-100 text-orange-800">Temporada Media - +15%</Badge>
+                <Badge className="bg-red-100 text-red-800">Temporada Alta - +30%</Badge>
               </div>
             </div>
             <Popover>
@@ -181,13 +180,13 @@ const Reservas = () => {
                 <div className="space-y-2">
                   <h4 className="font-medium">Detalles de Temporadas</h4>
                   <p className="text-sm">
-                    <span className="font-medium">Temporada Baja (B):</span> Enero-Mayo y Octubre-15 Diciembre
+                    <span className="font-medium">Temporada Baja:</span> Enero-Mayo y Octubre-15 Diciembre
                   </p>
                   <p className="text-sm">
-                    <span className="font-medium">Temporada Media (M):</span> Junio y Septiembre
+                    <span className="font-medium">Temporada Media:</span> Junio y Septiembre
                   </p>
                   <p className="text-sm">
-                    <span className="font-medium">Temporada Alta (A):</span> Julio-Agosto y 16-31 Diciembre
+                    <span className="font-medium">Temporada Alta:</span> Julio-Agosto y 16-31 Diciembre
                   </p>
                 </div>
               </PopoverContent>
@@ -223,7 +222,6 @@ const Reservas = () => {
                       onSelect={setCheckIn}
                       initialFocus
                       disabled={(date) => date < new Date()}
-                      className="pointer-events-auto"
                       components={{
                         Day: (props) => {
                           const seasonStyle = getSeasonStyles(props.date);
@@ -293,7 +291,6 @@ const Reservas = () => {
                       onSelect={setCheckOut}
                       initialFocus
                       disabled={(date) => !checkIn || date <= checkIn}
-                      className="pointer-events-auto"
                       components={{
                         Day: (props) => {
                           const seasonStyle = getSeasonStyles(props.date);
