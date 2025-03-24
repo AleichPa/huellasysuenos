@@ -3,9 +3,10 @@ import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { CalendarIcon, ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { CalendarIcon, ArrowLeft, ArrowRight, Check, InfoIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { Badge } from "@/components/ui/badge";
 import {
   Popover,
   PopoverContent,
@@ -19,6 +20,31 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+
+// Definición de temporadas
+type Season = "baja" | "media" | "alta";
+
+interface SeasonDate {
+  from: Date;
+  to: Date;
+  season: Season;
+}
+
+// Datos de temporadas para el año actual
+const currentYear = new Date().getFullYear();
+const seasons: SeasonDate[] = [
+  // Temporada Baja (verde)
+  { from: new Date(currentYear, 0, 1), to: new Date(currentYear, 4, 31), season: "baja" }, // Enero - Mayo
+  { from: new Date(currentYear, 9, 1), to: new Date(currentYear, 11, 15), season: "baja" }, // Octubre - 15 Diciembre
+  
+  // Temporada Media (naranja)
+  { from: new Date(currentYear, 5, 1), to: new Date(currentYear, 5, 30), season: "media" }, // Junio
+  { from: new Date(currentYear, 8, 1), to: new Date(currentYear, 8, 30), season: "media" }, // Septiembre
+  
+  // Temporada Alta (roja)
+  { from: new Date(currentYear, 6, 1), to: new Date(currentYear, 7, 31), season: "alta" }, // Julio - Agosto
+  { from: new Date(currentYear, 11, 16), to: new Date(currentYear, 11, 31), season: "alta" }, // 16 Diciembre - 31 Diciembre
+];
 
 const rooms = [
   {
@@ -93,9 +119,35 @@ const ReservaProcess = () => {
   const [ownerEmail, setOwnerEmail] = useState("");
   const [ownerPhone, setOwnerPhone] = useState("");
 
-  // Cálculo de costos
+  // Función para determinar la temporada de una fecha
+  const getDateSeason = (date: Date): Season | null => {
+    for (const period of seasons) {
+      if (date >= period.from && date <= period.to) {
+        return period.season;
+      }
+    }
+    return null;
+  };
+
+  // Función para aplicar estilos según la temporada
+  const getSeasonStyles = (day: Date): string => {
+    const season = getDateSeason(day);
+    
+    switch (season) {
+      case "baja":
+        return "bg-green-100 text-green-800 hover:bg-green-200";
+      case "media":
+        return "bg-orange-100 text-orange-800 hover:bg-orange-200";
+      case "alta":
+        return "bg-red-100 text-red-800 hover:bg-red-200";
+      default:
+        return "";
+    }
+  };
+
+  // Cálculo de costos con ajuste por temporada
   const getSelectedRoom = () => rooms.find(room => room.id === selectedRoom);
-  const roomPrice = getSelectedRoom()?.price || 0;
+  const roomBasePrice = getSelectedRoom()?.price || 0;
   
   const getServicesPrice = () => {
     return selectedServices.reduce((total, serviceId) => {
@@ -109,7 +161,20 @@ const ReservaProcess = () => {
     const diffTime = Math.abs(checkOut.getTime() - checkIn.getTime());
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   };
+
+  // Aplicar recargo según temporada de entrada
+  const getSeasonPriceMultiplier = () => {
+    if (!checkIn) return 1;
+    const season = getDateSeason(checkIn);
+    switch (season) {
+      case "baja": return 1;    // Precio estándar
+      case "media": return 1.15; // +15%
+      case "alta": return 1.3;  // +30%
+      default: return 1;
+    }
+  };
   
+  const roomPrice = roomBasePrice * getSeasonPriceMultiplier();
   const totalPrice = (roomPrice + getServicesPrice()) * Math.max(1, calculateNights());
 
   // Manejadores de eventos
@@ -260,7 +325,41 @@ const ReservaProcess = () => {
 
   const renderDateSelection = () => (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-center mb-6">Selecciona fechas de estancia</h2>
+      <h2 className="text-2xl font-bold text-center mb-3">Selecciona fechas de estancia</h2>
+      
+      <div className="bg-gray-50 p-4 rounded-lg mb-4 flex items-center gap-2">
+        <InfoIcon className="h-5 w-5 text-hotel-purple" />
+        <div className="flex-1">
+          <p className="text-sm mb-2">Los precios varían según temporada:</p>
+          <div className="flex flex-wrap gap-2">
+            <Badge className="bg-green-100 text-green-800">Temporada Baja - Tarifa Estándar</Badge>
+            <Badge className="bg-orange-100 text-orange-800">Temporada Media - +15%</Badge>
+            <Badge className="bg-red-100 text-red-800">Temporada Alta - +30%</Badge>
+          </div>
+        </div>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="outline" size="sm">
+              <InfoIcon className="h-4 w-4" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-80 p-4">
+            <div className="space-y-2">
+              <h4 className="font-medium">Detalles de Temporadas</h4>
+              <p className="text-sm">
+                <span className="font-medium">Temporada Baja:</span> Enero-Mayo y Octubre-15 Diciembre
+              </p>
+              <p className="text-sm">
+                <span className="font-medium">Temporada Media:</span> Junio y Septiembre
+              </p>
+              <p className="text-sm">
+                <span className="font-medium">Temporada Alta:</span> Julio-Agosto y 16-31 Diciembre
+              </p>
+            </div>
+          </PopoverContent>
+        </Popover>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label>Fecha de entrada</Label>
@@ -288,10 +387,37 @@ const ReservaProcess = () => {
                 onSelect={setCheckIn}
                 initialFocus
                 disabled={(date) => date < new Date()}
-                className={cn("p-3 pointer-events-auto")}
+                className="p-3 pointer-events-auto"
+                components={{
+                  Day: (props) => {
+                    const seasonStyle = getSeasonStyles(props.date);
+                    return (
+                      <div 
+                        className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 aria-selected:opacity-100 ${seasonStyle}`} 
+                        {...props}
+                      />
+                    );
+                  }
+                }}
               />
             </PopoverContent>
           </Popover>
+          {checkIn && getDateSeason(checkIn) && (
+            <div className="mt-2 flex items-center gap-2">
+              <Badge className={cn(
+                getDateSeason(checkIn) === "baja" && "bg-green-100 text-green-800",
+                getDateSeason(checkIn) === "media" && "bg-orange-100 text-orange-800",
+                getDateSeason(checkIn) === "alta" && "bg-red-100 text-red-800"
+              )}>
+                Temporada {getDateSeason(checkIn)?.charAt(0).toUpperCase() + getDateSeason(checkIn)?.slice(1)}
+              </Badge>
+              {getDateSeason(checkIn) !== "baja" && (
+                <span className="text-xs text-gray-500">
+                  {getDateSeason(checkIn) === "media" ? "+15%" : "+30%"} sobre tarifa estándar
+                </span>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="space-y-2">
@@ -320,7 +446,18 @@ const ReservaProcess = () => {
                 onSelect={setCheckOut}
                 initialFocus
                 disabled={(date) => !checkIn || date <= checkIn}
-                className={cn("p-3 pointer-events-auto")}
+                className="p-3 pointer-events-auto"
+                components={{
+                  Day: (props) => {
+                    const seasonStyle = getSeasonStyles(props.date);
+                    return (
+                      <div 
+                        className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 aria-selected:opacity-100 ${seasonStyle}`} 
+                        {...props}
+                      />
+                    );
+                  }
+                }}
               />
             </PopoverContent>
           </Popover>
@@ -440,9 +577,21 @@ const ReservaProcess = () => {
                 <h3 className="font-bold mb-2">Resumen de costos</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span>Habitación ({getSelectedRoom()?.title})</span>
-                    <span>${roomPrice}/noche</span>
+                    <div>
+                      <span>Habitación ({getSelectedRoom()?.title})</span>
+                      {checkIn && getDateSeason(checkIn) !== "baja" && (
+                        <Badge className={cn(
+                          "ml-2",
+                          getDateSeason(checkIn) === "media" && "bg-orange-100 text-orange-800",
+                          getDateSeason(checkIn) === "alta" && "bg-red-100 text-red-800"
+                        )}>
+                          {getDateSeason(checkIn) === "media" ? "+15%" : "+30%"}
+                        </Badge>
+                      )}
+                    </div>
+                    <span>${roomPrice.toFixed(2)}/noche</span>
                   </div>
+                  
                   {selectedServices.length > 0 && (
                     <>
                       <div className="border-t pt-2">
@@ -467,7 +616,7 @@ const ReservaProcess = () => {
                   <div className="border-t pt-2 font-bold">
                     <div className="flex justify-between">
                       <span>Total</span>
-                      <span>${totalPrice}</span>
+                      <span>${totalPrice.toFixed(2)}</span>
                     </div>
                   </div>
                 </div>
@@ -477,9 +626,7 @@ const ReservaProcess = () => {
             <div className="mt-8 flex justify-end">
               <Button
                 onClick={handleNextStep}
-                className="bg-hotel-purple hover:bg-hotel-dark-purple text
-
--white px-8"
+                className="bg-hotel-purple hover:bg-hotel-dark-purple text-white px-8"
               >
                 {currentStep === 4 ? (
                   'Confirmar Reserva'

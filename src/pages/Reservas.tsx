@@ -3,9 +3,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { CalendarIcon, ArrowLeft } from "lucide-react";
+import { CalendarIcon, ArrowLeft, InfoIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { Badge } from "@/components/ui/badge";
 import {
   Popover,
   PopoverContent,
@@ -17,6 +18,57 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+// Definición de temporadas
+type Season = "baja" | "media" | "alta";
+
+interface SeasonDate {
+  from: Date;
+  to: Date;
+  season: Season;
+}
+
+// Datos de temporadas para el año actual
+const currentYear = new Date().getFullYear();
+const seasons: SeasonDate[] = [
+  // Temporada Baja (verde)
+  { from: new Date(currentYear, 0, 1), to: new Date(currentYear, 4, 31), season: "baja" }, // Enero - Mayo
+  { from: new Date(currentYear, 9, 1), to: new Date(currentYear, 11, 15), season: "baja" }, // Octubre - 15 Diciembre
+  
+  // Temporada Media (naranja)
+  { from: new Date(currentYear, 5, 1), to: new Date(currentYear, 5, 30), season: "media" }, // Junio
+  { from: new Date(currentYear, 8, 1), to: new Date(currentYear, 8, 30), season: "media" }, // Septiembre
+  
+  // Temporada Alta (roja)
+  { from: new Date(currentYear, 6, 1), to: new Date(currentYear, 7, 31), season: "alta" }, // Julio - Agosto
+  { from: new Date(currentYear, 11, 16), to: new Date(currentYear, 11, 31), season: "alta" }, // 16 Diciembre - 31 Diciembre
+];
+
+// Función para determinar la temporada de una fecha
+const getDateSeason = (date: Date): Season | null => {
+  for (const period of seasons) {
+    if (date >= period.from && date <= period.to) {
+      return period.season;
+    }
+  }
+  return null;
+};
+
+// Función para aplicar estilos según la temporada
+const getSeasonStyles = (day: Date): string => {
+  const season = getDateSeason(day);
+  
+  switch (season) {
+    case "baja":
+      return "bg-green-100 text-green-800 hover:bg-green-200";
+    case "media":
+      return "bg-orange-100 text-orange-800 hover:bg-orange-200";
+    case "alta":
+      return "bg-red-100 text-red-800 hover:bg-red-200";
+    default:
+      return "";
+  }
+};
 
 const Reservas = () => {
   const navigate = useNavigate();
@@ -94,6 +146,39 @@ const Reservas = () => {
             </div>
           )}
 
+          <div className="bg-gray-50 p-4 rounded-lg mb-6 flex items-center gap-2">
+            <InfoIcon className="h-5 w-5 text-hotel-purple" />
+            <div className="flex-1">
+              <p className="text-sm mb-2">Los precios varían según temporada:</p>
+              <div className="flex flex-wrap gap-2">
+                <Badge className="bg-green-100 text-green-800">Temporada Baja - Tarifa Estándar</Badge>
+                <Badge className="bg-orange-100 text-orange-800">Temporada Media - +15%</Badge>
+                <Badge className="bg-red-100 text-red-800">Temporada Alta - +30%</Badge>
+              </div>
+            </div>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline" size="sm">
+                  <InfoIcon className="h-4 w-4" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80 p-4">
+                <div className="space-y-2">
+                  <h4 className="font-medium">Detalles de Temporadas</h4>
+                  <p className="text-sm">
+                    <span className="font-medium">Temporada Baja:</span> Enero-Mayo y Octubre-15 Diciembre
+                  </p>
+                  <p className="text-sm">
+                    <span className="font-medium">Temporada Media:</span> Junio y Septiembre
+                  </p>
+                  <p className="text-sm">
+                    <span className="font-medium">Temporada Alta:</span> Julio-Agosto y 16-31 Diciembre
+                  </p>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
@@ -124,9 +209,36 @@ const Reservas = () => {
                       initialFocus
                       disabled={(date) => date < new Date()}
                       className="pointer-events-auto"
+                      components={{
+                        Day: (props) => {
+                          const seasonStyle = getSeasonStyles(props.date);
+                          return (
+                            <div 
+                              className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 aria-selected:opacity-100 ${seasonStyle}`} 
+                              {...props}
+                            />
+                          );
+                        }
+                      }}
                     />
                   </PopoverContent>
                 </Popover>
+                {checkIn && getDateSeason(checkIn) && (
+                  <div className="mt-2 flex items-center gap-2">
+                    <Badge className={cn(
+                      getDateSeason(checkIn) === "baja" && "bg-green-100 text-green-800",
+                      getDateSeason(checkIn) === "media" && "bg-orange-100 text-orange-800",
+                      getDateSeason(checkIn) === "alta" && "bg-red-100 text-red-800"
+                    )}>
+                      Temporada {getDateSeason(checkIn)?.charAt(0).toUpperCase() + getDateSeason(checkIn)?.slice(1)}
+                    </Badge>
+                    {getDateSeason(checkIn) !== "baja" && (
+                      <span className="text-xs text-gray-500">
+                        {getDateSeason(checkIn) === "media" ? "+15%" : "+30%"} sobre tarifa estándar
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -157,6 +269,17 @@ const Reservas = () => {
                       initialFocus
                       disabled={(date) => !checkIn || date <= checkIn}
                       className="pointer-events-auto"
+                      components={{
+                        Day: (props) => {
+                          const seasonStyle = getSeasonStyles(props.date);
+                          return (
+                            <div 
+                              className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 aria-selected:opacity-100 ${seasonStyle}`} 
+                              {...props}
+                            />
+                          );
+                        }
+                      }}
                     />
                   </PopoverContent>
                 </Popover>
