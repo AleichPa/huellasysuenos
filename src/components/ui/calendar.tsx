@@ -8,14 +8,37 @@ import { DayPicker } from "react-day-picker";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>;
+export type CalendarProps = React.ComponentProps<typeof DayPicker> & {
+  seasonModifiers?: {
+    low?: Date[];
+    medium?: Date[];
+    high?: Date[];
+  };
+};
 
 function Calendar({
   className,
   classNames,
   showOutsideDays = true,
+  seasonModifiers,
   ...props
 }: CalendarProps) {
+  // Create modifiers for different seasons
+  const modifiers = {
+    ...props.modifiers,
+    lowSeason: seasonModifiers?.low || [],
+    mediumSeason: seasonModifiers?.medium || [],
+    highSeason: seasonModifiers?.high || [],
+  };
+
+  // Create modifier styles for different seasons
+  const modifiersStyles = {
+    ...props.modifiersStyles,
+    lowSeason: { backgroundColor: 'rgba(184, 244, 211, 0.5)' }, // Green for low season
+    mediumSeason: { backgroundColor: 'rgba(255, 179, 107, 0.5)' }, // Orange for medium season
+    highSeason: { backgroundColor: 'rgba(234, 56, 76, 0.5)' }, // Red for high season
+  };
+
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
@@ -58,6 +81,8 @@ function Calendar({
         IconLeft: ({ ..._props }) => <ChevronLeft className="h-4 w-4" />,
         IconRight: ({ ..._props }) => <ChevronRight className="h-4 w-4" />,
       }}
+      modifiers={modifiers}
+      modifiersStyles={modifiersStyles}
       {...props}
     />
   );

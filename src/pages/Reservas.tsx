@@ -1,9 +1,9 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { CalendarIcon, ArrowLeft } from "lucide-react";
+import { CalendarIcon, ArrowLeft, InfoIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -17,6 +17,13 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const Reservas = () => {
   const navigate = useNavigate();
@@ -28,6 +35,45 @@ const Reservas = () => {
   const [ownerEmail, setOwnerEmail] = useState("");
   const [ownerPhone, setOwnerPhone] = useState("");
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
+  const [showSeasonInfo, setShowSeasonInfo] = useState(false);
+
+  // Season data
+  const [seasonData, setSeasonData] = useState({
+    low: [] as Date[],
+    medium: [] as Date[],
+    high: [] as Date[]
+  });
+
+  useEffect(() => {
+    // Generate mock season data
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth();
+    
+    const lowSeasonDates: Date[] = [];
+    const mediumSeasonDates: Date[] = [];
+    const highSeasonDates: Date[] = [];
+    
+    // Create mock season data (in reality, this would be actual business data)
+    for (let i = 0; i < 90; i++) {
+      const date = new Date(currentYear, currentMonth, today.getDate() + i);
+      
+      // Assign dates to seasons (example pattern)
+      if (i % 7 === 0 || i % 7 === 6) { // Weekends are high season
+        highSeasonDates.push(date);
+      } else if (i % 7 === 1 || i % 7 === 5) { // Days around weekends are medium
+        mediumSeasonDates.push(date);
+      } else { // Weekdays are low season
+        lowSeasonDates.push(date);
+      }
+    }
+    
+    setSeasonData({
+      low: lowSeasonDates,
+      medium: mediumSeasonDates,
+      high: highSeasonDates
+    });
+  }, []);
 
   // Obtener el tipo de habitación de los parámetros de URL si existe
   useState(() => {
@@ -94,6 +140,41 @@ const Reservas = () => {
             </div>
           )}
 
+          <div className="flex justify-center mb-6">
+            <Button 
+              variant="outline"
+              className="text-xs flex items-center gap-1"
+              onClick={() => setShowSeasonInfo(true)}
+            >
+              <InfoIcon size={14} /> Ver información de temporadas
+            </Button>
+          </div>
+
+          <Dialog open={showSeasonInfo} onOpenChange={setShowSeasonInfo}>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Información de temporadas</DialogTitle>
+                <DialogDescription>
+                  Los precios varían según la temporada:
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 py-4">
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 rounded-full bg-hotel-pastel-green opacity-50"></div>
+                  <span>Temporada Baja - Precio regular</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 rounded-full bg-hotel-orange opacity-50"></div>
+                  <span>Temporada Media - Recargo del 15%</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 rounded-full bg-red-500 opacity-50"></div>
+                  <span>Temporada Alta - Recargo del 30%</span>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
@@ -123,6 +204,7 @@ const Reservas = () => {
                       onSelect={setCheckIn}
                       initialFocus
                       disabled={(date) => date < new Date()}
+                      seasonModifiers={seasonData}
                       className="pointer-events-auto"
                     />
                   </PopoverContent>
@@ -156,6 +238,7 @@ const Reservas = () => {
                       onSelect={setCheckOut}
                       initialFocus
                       disabled={(date) => !checkIn || date <= checkIn}
+                      seasonModifiers={seasonData}
                       className="pointer-events-auto"
                     />
                   </PopoverContent>

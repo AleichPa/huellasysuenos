@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
@@ -19,6 +18,13 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const rooms = [
   {
@@ -111,6 +117,47 @@ const ReservaProcess = () => {
   };
   
   const totalPrice = (roomPrice + getServicesPrice()) * Math.max(1, calculateNights());
+
+  // Generate season dates (example data - normally this would come from an API or database)
+  const [seasonData, setSeasonData] = useState({
+    low: [] as Date[],
+    medium: [] as Date[],
+    high: [] as Date[]
+  });
+
+  const [showSeasonInfo, setShowSeasonInfo] = useState(false);
+
+  useEffect(() => {
+    // This is mock data - in a real application, this would come from a backend
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth();
+    
+    // Generate example season data for the next 3 months
+    const lowSeasonDates: Date[] = [];
+    const mediumSeasonDates: Date[] = [];
+    const highSeasonDates: Date[] = [];
+    
+    // Create mock season data (in reality, this would be actual business data)
+    for (let i = 0; i < 90; i++) {
+      const date = new Date(currentYear, currentMonth, today.getDate() + i);
+      
+      // Assign dates to seasons (example pattern)
+      if (i % 7 === 0 || i % 7 === 6) { // Weekends are high season
+        highSeasonDates.push(date);
+      } else if (i % 7 === 1 || i % 7 === 5) { // Days around weekends are medium
+        mediumSeasonDates.push(date);
+      } else { // Weekdays are low season
+        lowSeasonDates.push(date);
+      }
+    }
+    
+    setSeasonData({
+      low: lowSeasonDates,
+      medium: mediumSeasonDates,
+      high: highSeasonDates
+    });
+  }, []);
 
   // Manejadores de eventos
   const handleSelectRoom = (roomId: string) => {
@@ -261,6 +308,42 @@ const ReservaProcess = () => {
   const renderDateSelection = () => (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold text-center mb-6">Selecciona fechas de estancia</h2>
+      
+      <div className="flex justify-center mb-2">
+        <Button 
+          variant="outline"
+          className="text-xs flex items-center gap-1"
+          onClick={() => setShowSeasonInfo(true)}
+        >
+          Ver información de temporadas
+        </Button>
+      </div>
+
+      <Dialog open={showSeasonInfo} onOpenChange={setShowSeasonInfo}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Información de temporadas</DialogTitle>
+            <DialogDescription>
+              Los precios varían según la temporada:
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="flex items-center gap-2">
+              <div className="h-4 w-4 rounded-full bg-hotel-pastel-green opacity-50"></div>
+              <span>Temporada Baja - Precio regular</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="h-4 w-4 rounded-full bg-hotel-orange opacity-50"></div>
+              <span>Temporada Media - Recargo del 15%</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="h-4 w-4 rounded-full bg-red-500 opacity-50"></div>
+              <span>Temporada Alta - Recargo del 30%</span>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label>Fecha de entrada</Label>
@@ -288,6 +371,7 @@ const ReservaProcess = () => {
                 onSelect={setCheckIn}
                 initialFocus
                 disabled={(date) => date < new Date()}
+                seasonModifiers={seasonData}
                 className={cn("p-3 pointer-events-auto")}
               />
             </PopoverContent>
@@ -320,6 +404,7 @@ const ReservaProcess = () => {
                 onSelect={setCheckOut}
                 initialFocus
                 disabled={(date) => !checkIn || date <= checkIn}
+                seasonModifiers={seasonData}
                 className={cn("p-3 pointer-events-auto")}
               />
             </PopoverContent>
