@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -24,6 +23,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { SEASONS, generateSeasonDates } from "@/utils/seasonData";
 
 const Reservas = () => {
   const navigate = useNavigate();
@@ -45,39 +45,8 @@ const Reservas = () => {
   });
 
   useEffect(() => {
-    // Generate mock season data
-    const today = new Date();
-    const currentYear = today.getFullYear();
-    
-    const lowSeasonDates: Date[] = [];
-    const mediumSeasonDates: Date[] = [];
-    const highSeasonDates: Date[] = [];
-    
-    // Create season data for the entire year to cover all calendar views
-    for (let month = 0; month < 12; month++) {
-      // Get number of days in current month
-      const daysInMonth = new Date(currentYear, month + 1, 0).getDate();
-      
-      for (let day = 1; day <= daysInMonth; day++) {
-        const date = new Date(currentYear, month, day);
-        const dayOfWeek = date.getDay();
-        
-        // Assign dates to seasons based on day of week
-        if (dayOfWeek === 0 || dayOfWeek === 6) { // Weekends (Sunday = 0, Saturday = 6)
-          highSeasonDates.push(date);
-        } else if (dayOfWeek === 1 || dayOfWeek === 5) { // Monday and Friday
-          mediumSeasonDates.push(date);
-        } else { // Other weekdays
-          lowSeasonDates.push(date);
-        }
-      }
-    }
-    
-    setSeasonData({
-      low: lowSeasonDates,
-      medium: mediumSeasonDates,
-      high: highSeasonDates
-    });
+    // Generate season data for the current year
+    setSeasonData(generateSeasonDates());
   }, []);
 
   // Obtener el tipo de habitación de los parámetros de URL si existe
@@ -165,16 +134,16 @@ const Reservas = () => {
               </DialogHeader>
               <div className="space-y-4 py-4">
                 <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 rounded-full bg-hotel-pastel-green opacity-50"></div>
-                  <span>Temporada Baja - Precio regular</span>
+                  <div className="h-4 w-4 rounded-full" style={{ backgroundColor: SEASONS.low.color }}></div>
+                  <span>{SEASONS.low.name} - Precio regular</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 rounded-full bg-hotel-orange opacity-50"></div>
-                  <span>Temporada Media - Recargo del 15%</span>
+                  <div className="h-4 w-4 rounded-full" style={{ backgroundColor: SEASONS.medium.color }}></div>
+                  <span>{SEASONS.medium.name} - Recargo del {(SEASONS.medium.priceMultiplier - 1) * 100}%</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 rounded-full bg-red-500 opacity-50"></div>
-                  <span>Temporada Alta - Recargo del 30%</span>
+                  <div className="h-4 w-4 rounded-full" style={{ backgroundColor: SEASONS.high.color }}></div>
+                  <span>{SEASONS.high.name} - Recargo del {(SEASONS.high.priceMultiplier - 1) * 100}%</span>
                 </div>
               </div>
             </DialogContent>

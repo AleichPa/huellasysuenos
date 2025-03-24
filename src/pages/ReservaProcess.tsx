@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { format } from "date-fns";
@@ -26,6 +25,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { SEASONS, generateSeasonDates, getSeason, SeasonType } from "@/utils/seasonData";
 
 const rooms = [
   {
@@ -117,9 +117,37 @@ const ReservaProcess = () => {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   };
   
-  const totalPrice = (roomPrice + getServicesPrice()) * Math.max(1, calculateNights());
+  // Calculate price with season adjustments
+  const calculateTotalPrice = () => {
+    if (!checkIn || !checkOut) return 0;
+    
+    const nights = calculateNights();
+    if (nights <= 0) return 0;
+    
+    let totalPrice = 0;
+    const baseNightPrice = roomPrice + getServicesPrice();
+    
+    // Iterate through each night to apply correct seasonal rates
+    const currentDate = new Date(checkIn);
+    for (let i = 0; i < nights; i++) {
+      // Clone the date to avoid modifying the original
+      const nightDate = new Date(currentDate);
+      nightDate.setDate(nightDate.getDate() + i);
+      
+      // Get the season for this specific date
+      const season = getSeason(nightDate);
+      const priceMultiplier = SEASONS[season].priceMultiplier;
+      
+      // Add price for this night with seasonal adjustment
+      totalPrice += baseNightPrice * priceMultiplier;
+    }
+    
+    return Math.round(totalPrice);
+  };
+  
+  const totalPrice = calculateTotalPrice();
 
-  // Generate season dates (example data - normally this would come from an API or database)
+  // Generate season dates for calendar display
   const [seasonData, setSeasonData] = useState({
     low: [] as Date[],
     medium: [] as Date[],
@@ -129,39 +157,8 @@ const ReservaProcess = () => {
   const [showSeasonInfo, setShowSeasonInfo] = useState(false);
 
   useEffect(() => {
-    // Generate mock season data for the entire year
-    const today = new Date();
-    const currentYear = today.getFullYear();
-    
-    const lowSeasonDates: Date[] = [];
-    const mediumSeasonDates: Date[] = [];
-    const highSeasonDates: Date[] = [];
-    
-    // Create season data for the entire year to cover all calendar views
-    for (let month = 0; month < 12; month++) {
-      // Get number of days in current month
-      const daysInMonth = new Date(currentYear, month + 1, 0).getDate();
-      
-      for (let day = 1; day <= daysInMonth; day++) {
-        const date = new Date(currentYear, month, day);
-        const dayOfWeek = date.getDay();
-        
-        // Assign dates to seasons based on day of week
-        if (dayOfWeek === 0 || dayOfWeek === 6) { // Weekends (Sunday = 0, Saturday = 6)
-          highSeasonDates.push(date);
-        } else if (dayOfWeek === 1 || dayOfWeek === 5) { // Monday and Friday
-          mediumSeasonDates.push(date);
-        } else { // Other weekdays
-          lowSeasonDates.push(date);
-        }
-      }
-    }
-    
-    setSeasonData({
-      low: lowSeasonDates,
-      medium: mediumSeasonDates,
-      high: highSeasonDates
-    });
+    // Generate season data for the entire year
+    setSeasonData(generateSeasonDates());
   }, []);
 
   // Manejadores de eventos
@@ -334,16 +331,16 @@ const ReservaProcess = () => {
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-full bg-hotel-pastel-green opacity-50"></div>
-              <span>Temporada Baja - Precio regular</span>
+              <div className="h-4 w-4 rounded-full" style={{ backgroundColor: SEASONS.low.color }}></div>
+              <span>{SEASONS.low.name} - Precio regular</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-full bg-hotel-orange opacity-50"></div>
-              <span>Temporada Media - Recargo del 15%</span>
+              <div className="h-4 w-4 rounded-full" style={{ backgroundColor: SEASONS.medium.color }}></div>
+              <span>{SEASONS.medium.name} - Recargo del {(SEASONS.medium.priceMultiplier - 1) * 100}%</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-full bg-red-500 opacity-50"></div>
-              <span>Temporada Alta - Recargo del 30%</span>
+              <div className="h-4 w-4 rounded-full" style={{ backgroundColor: SEASONS.high.color }}></div>
+              <span>{SEASONS.high.name} - Recargo del {(SEASONS.high.priceMultiplier - 1) * 100}%</span>
             </div>
           </div>
         </DialogContent>
@@ -524,7 +521,7 @@ const ReservaProcess = () => {
             {currentStep === 3 && renderDateSelection()}
             {currentStep === 4 && renderContactForm()}
 
-            {/* Resumen de costos */}
+            {/* Resumen de costos con información de temporada */}
             {selectedRoom && (
               <div className="mt-8 p-4 bg-gray-50 rounded-lg">
                 <h3 className="font-bold mb-2">Resumen de costos</h3>
@@ -551,7 +548,20 @@ const ReservaProcess = () => {
                   )}
                   {checkIn && checkOut && (
                     <div className="border-t pt-2">
-                      <span>Noches: {calculateNights()}</span>
+                      <div className="flex justify-between">
+                        <span>Noches:</span>
+                        <span>{calculateNights()}</span>
+                      </div>
+                      
+                      {/* Show season info for selected dates if available */}
+                      {checkIn && (
+                        <div className="flex items-center gap-2 mt-2">
+                          <span>Temporada:</span>
+                          <div className="h-3 w-3 rounded-full" 
+                               style={{ backgroundColor: SEASONS[getSeason(checkIn)].color }}></div>
+                          <span>{SEASONS[getSeason(checkIn)].name}</span>
+                        </div>
+                      )}
                     </div>
                   )}
                   <div className="border-t pt-2 font-bold">
@@ -567,9 +577,7 @@ const ReservaProcess = () => {
             <div className="mt-8 flex justify-end">
               <Button
                 onClick={handleNextStep}
-                className="bg-hotel-purple hover:bg-hotel-dark-purple text
-
--white px-8"
+                className="bg-hotel-purple hover:bg-hotel-dark-purple text-white px-8"
               >
                 {currentStep === 4 ? (
                   'Confirmar Reserva'
