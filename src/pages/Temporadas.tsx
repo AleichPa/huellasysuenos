@@ -1,7 +1,6 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import SeasonCalendar from "@/components/SeasonCalendar";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -21,7 +20,9 @@ const Temporadas = () => {
             </p>
           </div>
           
-          <SeasonCalendar />
+          <div className="p-6 bg-gray-100 rounded-lg mb-8">
+            <p className="text-center text-gray-600">Información sobre temporadas disponible durante el proceso de reserva.</p>
+          </div>
           
           <div className="mt-12 p-6 bg-gradient-to-r from-hotel-purple/10 to-hotel-soft-lavender/20 rounded-xl">
             <h2 className="text-xl font-bold mb-4">¿Listo para reservar?</h2>
