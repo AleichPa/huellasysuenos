@@ -48,23 +48,28 @@ const Reservas = () => {
     // Generate mock season data
     const today = new Date();
     const currentYear = today.getFullYear();
-    const currentMonth = today.getMonth();
     
     const lowSeasonDates: Date[] = [];
     const mediumSeasonDates: Date[] = [];
     const highSeasonDates: Date[] = [];
     
-    // Create mock season data (in reality, this would be actual business data)
-    for (let i = 0; i < 90; i++) {
-      const date = new Date(currentYear, currentMonth, today.getDate() + i);
+    // Create season data for the entire year to cover all calendar views
+    for (let month = 0; month < 12; month++) {
+      // Get number of days in current month
+      const daysInMonth = new Date(currentYear, month + 1, 0).getDate();
       
-      // Assign dates to seasons (example pattern)
-      if (i % 7 === 0 || i % 7 === 6) { // Weekends are high season
-        highSeasonDates.push(date);
-      } else if (i % 7 === 1 || i % 7 === 5) { // Days around weekends are medium
-        mediumSeasonDates.push(date);
-      } else { // Weekdays are low season
-        lowSeasonDates.push(date);
+      for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(currentYear, month, day);
+        const dayOfWeek = date.getDay();
+        
+        // Assign dates to seasons based on day of week
+        if (dayOfWeek === 0 || dayOfWeek === 6) { // Weekends (Sunday = 0, Saturday = 6)
+          highSeasonDates.push(date);
+        } else if (dayOfWeek === 1 || dayOfWeek === 5) { // Monday and Friday
+          mediumSeasonDates.push(date);
+        } else { // Other weekdays
+          lowSeasonDates.push(date);
+        }
       }
     }
     
