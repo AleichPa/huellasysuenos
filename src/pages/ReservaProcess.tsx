@@ -390,20 +390,15 @@ const ReservaProcess = () => {
                 }}
                 initialFocus
                 disabled={(date) => date < new Date()}
-                components={{
-                  Day: ({ date, ...props }) => {
-                    const seasonStyle = getSeasonStyles(date);
-                    const isSelected = checkIn && date.toDateString() === checkIn.toDateString();
-                    
-                    return (
-                      <div 
-                        className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 ${seasonStyle} ${isSelected ? 'ring-2 ring-hotel-purple' : ''}`} 
-                        {...props}
-                      >
-                        <span>{date.getDate()}</span>
-                      </div>
-                    );
-                  }
+                modifiers={{
+                  baja: (date) => getDateSeason(date) === "baja",
+                  media: (date) => getDateSeason(date) === "media",
+                  alta: (date) => getDateSeason(date) === "alta",
+                }}
+                modifiersClassNames={{
+                  baja: "bg-green-100 text-green-800 hover:bg-green-200",
+                  media: "bg-orange-100 text-orange-800 hover:bg-orange-200",
+                  alta: "bg-red-100 text-red-800 hover:bg-red-200",
                 }}
               />
             </PopoverContent>
@@ -456,20 +451,15 @@ const ReservaProcess = () => {
                 }}
                 initialFocus
                 disabled={(date) => !checkIn || date <= checkIn}
-                components={{
-                  Day: ({ date, ...props }) => {
-                    const seasonStyle = getSeasonStyles(date);
-                    const isSelected = checkOut && date.toDateString() === checkOut.toDateString();
-                    
-                    return (
-                      <div 
-                        className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 ${seasonStyle} ${isSelected ? 'ring-2 ring-hotel-purple' : ''}`} 
-                        {...props}
-                      >
-                        <span>{date.getDate()}</span>
-                      </div>
-                    );
-                  }
+                modifiers={{
+                  baja: (date) => getDateSeason(date) === "baja",
+                  media: (date) => getDateSeason(date) === "media",
+                  alta: (date) => getDateSeason(date) === "alta",
+                }}
+                modifiersClassNames={{
+                  baja: "bg-green-100 text-green-800 hover:bg-green-200",
+                  media: "bg-orange-100 text-orange-800 hover:bg-orange-200",
+                  alta: "bg-red-100 text-red-800 hover:bg-red-200",
                 }}
               />
             </PopoverContent>

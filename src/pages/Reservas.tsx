@@ -69,21 +69,6 @@ const getSeasonStyles = (day: Date): string => {
   }
 };
 
-// Función para mostrar el precio según la temporada
-const getSeasonLabel = (day: Date): string => {
-  const season = getDateSeason(day);
-  switch (season) {
-    case "baja":
-      return "B";
-    case "media":
-      return "M";
-    case "alta":
-      return "A";
-    default:
-      return "";
-  }
-};
-
 const Reservas = () => {
   const navigate = useNavigate();
   const [checkIn, setCheckIn] = useState<Date>();
@@ -222,26 +207,15 @@ const Reservas = () => {
                       onSelect={setCheckIn}
                       initialFocus
                       disabled={(date) => date < new Date()}
-                      components={{
-                        Day: (props) => {
-                          const seasonStyle = getSeasonStyles(props.date);
-                          const seasonLabel = getSeasonLabel(props.date);
-                          const isSelected = checkIn && props.date.toDateString() === checkIn.toDateString();
-                          
-                          return (
-                            <div 
-                              className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 ${seasonStyle} ${isSelected ? 'ring-2 ring-hotel-purple' : ''}`} 
-                              {...props}
-                            >
-                              <div className="flex flex-col items-center justify-center">
-                                <span>{props.date.getDate()}</span>
-                                {seasonLabel && (
-                                  <span className="text-xs font-bold">{seasonLabel}</span>
-                                )}
-                              </div>
-                            </div>
-                          );
-                        }
+                      modifiers={{
+                        baja: (date) => getDateSeason(date) === "baja",
+                        media: (date) => getDateSeason(date) === "media",
+                        alta: (date) => getDateSeason(date) === "alta",
+                      }}
+                      modifiersClassNames={{
+                        baja: "bg-green-100 text-green-800 hover:bg-green-200",
+                        media: "bg-orange-100 text-orange-800 hover:bg-orange-200",
+                        alta: "bg-red-100 text-red-800 hover:bg-red-200",
                       }}
                     />
                   </PopoverContent>
@@ -291,26 +265,15 @@ const Reservas = () => {
                       onSelect={setCheckOut}
                       initialFocus
                       disabled={(date) => !checkIn || date <= checkIn}
-                      components={{
-                        Day: (props) => {
-                          const seasonStyle = getSeasonStyles(props.date);
-                          const seasonLabel = getSeasonLabel(props.date);
-                          const isSelected = checkOut && props.date.toDateString() === checkOut.toDateString();
-                          
-                          return (
-                            <div 
-                              className={`h-9 w-9 p-0 font-normal flex items-center justify-center rounded-md hover:bg-gray-100 ${seasonStyle} ${isSelected ? 'ring-2 ring-hotel-purple' : ''}`} 
-                              {...props}
-                            >
-                              <div className="flex flex-col items-center justify-center">
-                                <span>{props.date.getDate()}</span>
-                                {seasonLabel && (
-                                  <span className="text-xs font-bold">{seasonLabel}</span>
-                                )}
-                              </div>
-                            </div>
-                          );
-                        }
+                      modifiers={{
+                        baja: (date) => getDateSeason(date) === "baja",
+                        media: (date) => getDateSeason(date) === "media",
+                        alta: (date) => getDateSeason(date) === "alta",
+                      }}
+                      modifiersClassNames={{
+                        baja: "bg-green-100 text-green-800 hover:bg-green-200",
+                        media: "bg-orange-100 text-orange-800 hover:bg-orange-200",
+                        alta: "bg-red-100 text-red-800 hover:bg-red-200",
                       }}
                     />
                   </PopoverContent>
