@@ -1,4 +1,3 @@
-
 import { Product } from '@/types/product';
 
 export const products: Product[] = [
@@ -325,5 +324,60 @@ export const products: Product[] = [
     image: "https://www.tropiacuariumbilbao.com/contents/media/t_1540_fd_artemia_shrimps100_20180308130341.jpg",
     category: "snacks",
     stock: 20
+  },
+  {
+    id: "37",
+    name: "Champú Hidratante para Gatos",
+    price: 13.99,
+    description: "Champú especialmente formulado para la piel sensible de los gatos. Con ingredientes naturales que mantienen el pelo suave y brillante sin irritar la piel.",
+    image: "https://m.media-amazon.com/images/I/71ZHq+0xO3L._AC_SL1500_.jpg",
+    category: "champus",
+    stock: 14
+  },
+  {
+    id: "38",
+    name: "Champú Suave para Conejos",
+    price: 11.50,
+    description: "Champú suave y sin lágrimas para la higiene de conejos. Formulado con extractos vegetales para limpiar sin dañar su delicada piel.",
+    image: "https://m.media-amazon.com/images/I/71C1Fg13KyL._AC_SL1500_.jpg",
+    category: "champus",
+    stock: 10
+  },
+  // Nuevos antiparasitarios para otros mamíferos
+  {
+    id: "39",
+    name: "Antiparasitario para Conejos",
+    price: 16.75,
+    description: "Tratamiento antiparasitario seguro y eficaz para conejos. Protege contra parásitos externos como pulgas y ácaros. Aplicación tópica de fácil uso.",
+    image: "https://www.animalstock.es/20005-large_default/advantix-pipeta-antiparasitaria-perros-de-101-kg-a-25-kg.jpg",
+    category: "antiparasitarios",
+    stock: 12
+  },
+  {
+    id: "40",
+    name: "Antiparasitario para Hurones",
+    price: 18.50,
+    description: "Solución antiparasitaria para hurones que elimina y previene infestaciones de pulgas, garrapatas y ácaros. Con aplicador especial para facilitar el tratamiento.",
+    image: "https://www.animalstock.es/20006-thickbox_default/advantix-pipeta-antiparasitaria-perros-mas-de-25-kg.jpg",
+    category: "antiparasitarios",
+    stock: 8
+  },
+  {
+    id: "41",
+    name: "Spray Antiparasitario para Roedores",
+    price: 12.25,
+    description: "Spray suave para proteger a hámsters, cobayas y otros pequeños roedores contra parásitos. Sin olor y de secado rápido, seguro para mascotas sensibles.",
+    image: "https://www.zoomascota.com/4831-large_default/frontline-spray-antiparasitario-para-perros-y-gatos-.jpg",
+    category: "antiparasitarios",
+    stock: 15
+  },
+  {
+    id: "42",
+    name: "Gotas Antiparasitarias para Aves",
+    price: 14.99,
+    description: "Gotas concentradas para añadir al agua de bebida de aves ornamentales. Tratamiento preventivo contra parásitos internos común en canarios, periquitos y otras aves.",
+    image: "https://m.media-amazon.com/images/I/61JZiyfH7YL._AC_SL1500_.jpg",
+    category: "antiparasitarios",
+    stock: 10
   }
 ];
