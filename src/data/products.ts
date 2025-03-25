@@ -61,7 +61,7 @@ export const products: Product[] = [
     name: "Chaleco Ligero Reflectante",
     price: 8.25,
     description: "Chaleco ligero con bandas reflectantes para mayor visibilidad en paseos nocturnos. Proporciona una capa extra de protección sin limitar el movimiento.",
-    image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c44",
+    image: "https://contents.mediadecathlon.com/p2612154/k$31da3913a402ffd55437c4f72d764b33/sq/chaleco-perro-caza-solognac-100-amarillo-fluo.jpg?format=auto&f=1800x1800",
     category: "abrigos",
     stock: 14
   },
@@ -70,7 +70,7 @@ export const products: Product[] = [
     name: "Arnés Acolchado Ajustable",
     price: 15.99,
     description: "Arnés acolchado con múltiples puntos de ajuste para un ajuste perfecto y cómodo. Diseñado para distribuir la presión uniformemente y evitar tirones en el cuello.",
-    image: "https://images.unsplash.com/photo-1535294435445-d7249524ef2e",
+    image: "https://img.kwcdn.com/product/fancy/f41cc5b7-d61b-47b0-a152-f86d11846a0a.jpg?imageView2/2/w/800/q/70/format/webp",
     category: "arnes",
     stock: 15
   },
@@ -79,7 +79,7 @@ export const products: Product[] = [
     name: "Arnés Antitirón para Paseos",
     price: 12.50,
     description: "Arnés especialmente diseñado para prevenir tirones durante el paseo. Con punto de enganche frontal que facilita el control y el entrenamiento de paseo.",
-    image: "https://images.unsplash.com/photo-1567014327298-1abd38a5a3ff",
+    image: "https://ae-pic-a1.aliexpress-media.com/kf/S47f73108e8ba478a83a24b9069feb246T.jpg_960x960q75.jpg_.webp",
     category: "arnes",
     stock: 12
   },
@@ -88,7 +88,7 @@ export const products: Product[] = [
     name: "Chubasquero con Capucha",
     price: 19.99,
     description: "Chubasquero impermeable con capucha para proteger a tu mascota completamente de la lluvia. Con aberturas para las patas y ajuste elástico para mayor comodidad.",
-    image: "https://images.unsplash.com/photo-1600077106724-946750eeaf3c",
+    image: "https://www.dukier.com/cdn/shop/files/chubasqueros_avocado_1.jpg?v=1741720020&width=1800",
     category: "chubasqueros",
     stock: 8
   },
@@ -97,7 +97,7 @@ export const products: Product[] = [
     name: "Poncho Impermeable Plegable",
     price: 15.75,
     description: "Poncho impermeable ligero y fácil de plegar para llevar a todas partes. Protección instantánea contra la lluvia imprevista durante los paseos.",
-    image: "https://images.unsplash.com/photo-1523626797181-8c5ae80d40c2",
+    image: "https://img.kwcdn.com/product/fancy/4e5af142-4019-4772-a83e-3e5869c3e091.jpg?imageView2/2/w/800/q/70/format/webp",
     category: "chubasqueros",
     stock: 15
   },
@@ -106,7 +106,7 @@ export const products: Product[] = [
     name: "Difusor de Feromonas para Gatos",
     price: 22.95,
     description: "Difusor de feromonas que ayuda a reducir el estrés y la ansiedad en gatos. Ideal para mudanzas, viajes o para calmar a gatos nerviosos o asustadizos.",
-    image: "https://images.unsplash.com/photo-1563278689-3819a3be1cd1",
+    image: "https://media.zooplus.com/bilder/0/800/67609_pla_ceva_feliway_classic_starterset_0.jpg",
     category: "feromonas",
     stock: 10
   },
