@@ -34,7 +34,7 @@ export const products: Product[] = [
     name: "Pelota Interactiva con Sonido",
     price: 7.95,
     description: "Juguete interactivo con sonido que estimula el instinto de juego de tu mascota. Fabricado con materiales resistentes y seguros. Ideal para juegos de buscar y traer.",
-    image: "https://images.unsplash.com/photo-1546975490-e8b92a360b24",
+    image: "https://img.kwcdn.com/product/1eed5135d0/40b116de-cc29-48dd-b40f-1182bdbb5fe8_800x800.png?imageView2/2/w/800/q/70/format/webp",
     category: "juguetes",
     stock: 25
   },
@@ -43,7 +43,7 @@ export const products: Product[] = [
     name: "Ratón de Peluche con Catnip",
     price: 5.50,
     description: "Juguete de peluche en forma de ratón relleno de catnip natural. Perfecto para estimular el juego y el ejercicio en gatos. Tamaño ideal para atrapar y morder.",
-    image: "https://images.unsplash.com/photo-1574158622682-e40e69881006",
+    image: "https://goldpet.es/36918-large_default/raton-de-peluche-con-catnip-para-gato.jpg",
     category: "juguetes",
     stock: 30
   },
