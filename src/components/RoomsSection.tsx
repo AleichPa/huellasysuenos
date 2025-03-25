@@ -63,7 +63,7 @@ const rooms = [
   {
     title: "Oasis Caparazón Tranquilo",
     description: "Un espacio sereno para tortugas y reptiles con áreas húmedas y secas perfectamente balanceadas.",
-    image: "https://images.unsplash.com/photo-1597162216923-ba9b920f29fa",
+    image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2Ffb8841c2-489e-4736-8a27-ae832d79b259.png",
     price: "$32",
     features: ["Áreas secas y húmedas", "Lámparas UV especiales", "Rocas para tomar el sol", "Dieta balanceada especializada", "Limpieza diaria"],
     icon: <Turtle size={28} className="text-hotel-sage" />
@@ -71,7 +71,7 @@ const rooms = [
   {
     title: "Habitación Naturaleza Viva",
     description: "Espacio con vegetación natural y escondites para que tu mascota exótica se sienta en su hábitat.",
-    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04",
+    image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2F16ca3a74-02d4-4d59-a41f-b659c9b9d78b.png",
     price: "$42",
     features: ["Vegetación natural", "Control de humedad", "Refugios naturales", "Alimentos exóticos", "Monitoreo 24/7"],
     icon: <Squirrel size={28} className="text-hotel-orange" />
