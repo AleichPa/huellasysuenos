@@ -156,6 +156,15 @@ export const products: Product[] = [
     stock: 22
   },
   {
+    id: "36",
+    name: "Collar Ajustable de Nylon para gatos",
+    price: 8.99,
+    description: "Collar ajustable de nylon resistente con hebilla de seguridad. Disponible en varios colores y tamaños para adaptarse a cualquier mascota.",
+    image: "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/356985cee4a8afd2a6ad68c1abaa1e00.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp",
+    category: "correas",
+    stock: 22
+  },
+  {
     id: "17",
     name: "Correa Retráctil con Mango Ergonómico",
     price: 15.50,
