@@ -330,7 +330,7 @@ export const products: Product[] = [
     name: "Champú Hidratante para Gatos",
     price: 13.99,
     description: "Champú especialmente formulado para la piel sensible de los gatos. Con ingredientes naturales que mantienen el pelo suave y brillante sin irritar la piel.",
-    image: "https://m.media-amazon.com/images/I/71ZHq+0xO3L._AC_SL1500_.jpg",
+    image: "https://www.tiendanimal.es/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dw0b9af9d2/images/champu_gatos_yesph_antinudos_YESTA38NCHGG_M.jpg?sw=780&sh=780&sm=fit&q=85",
     category: "champus",
     stock: 14
   },
@@ -339,7 +339,7 @@ export const products: Product[] = [
     name: "Champú Suave para Conejos",
     price: 11.50,
     description: "Champú suave y sin lágrimas para la higiene de conejos. Formulado con extractos vegetales para limpiar sin dañar su delicada piel.",
-    image: "https://m.media-amazon.com/images/I/71C1Fg13KyL._AC_SL1500_.jpg",
+    image: "https://static.zoomalia.com/prod_img/135364/lm_242e4a6222cdb5b34375400904f03d8e6a51680611579.jpg",
     category: "champus",
     stock: 10
   },
@@ -349,7 +349,7 @@ export const products: Product[] = [
     name: "Antiparasitario para Conejos",
     price: 16.75,
     description: "Tratamiento antiparasitario seguro y eficaz para conejos. Protege contra parásitos externos como pulgas y ácaros. Aplicación tópica de fácil uso.",
-    image: "https://www.animalstock.es/20005-large_default/advantix-pipeta-antiparasitaria-perros-de-101-kg-a-25-kg.jpg",
+    image: "https://www.kiwoko.com/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dwb6856dcf/images/Nayeco_Dancing_Rain_chubasquero_para_perro_azul_MENM0015.jpg?sw=780&sh=780&sm=fit&q=85",
     category: "antiparasitarios",
     stock: 12
   },
@@ -358,7 +358,7 @@ export const products: Product[] = [
     name: "Antiparasitario para Hurones",
     price: 18.50,
     description: "Solución antiparasitaria para hurones que elimina y previene infestaciones de pulgas, garrapatas y ácaros. Con aplicador especial para facilitar el tratamiento.",
-    image: "https://www.animalstock.es/20006-thickbox_default/advantix-pipeta-antiparasitaria-perros-mas-de-25-kg.jpg",
+    image: "https://www.lepetitrongeur.com/4087-medium_default/hamiform-pipetas-antiparasitarias-para-hurones.jpg",
     category: "antiparasitarios",
     stock: 8
   },
@@ -367,13 +367,13 @@ export const products: Product[] = [
     name: "Spray Antiparasitario para Roedores",
     price: 12.25,
     description: "Spray suave para proteger a hámsters, cobayas y otros pequeños roedores contra parásitos. Sin olor y de secado rápido, seguro para mascotas sensibles.",
-    image: "https://www.zoomascota.com/4831-large_default/frontline-spray-antiparasitario-para-perros-y-gatos-.jpg",
+    image: "https://static.miscota.com/media/1/photos/products/512925/00082380-6571ec3f6787d_g.png",
     category: "antiparasitarios",
     stock: 15
   },
   {
     id: "42",
-    name: "Gotas Antiparasitarias para Aves",
+    name: "https://static.miscota.com/media/1/photos/products/512925/00082380-6571ec3f6787d_g.png",
     price: 14.99,
     description: "Gotas concentradas para añadir al agua de bebida de aves ornamentales. Tratamiento preventivo contra parásitos internos común en canarios, periquitos y otras aves.",
     image: "https://m.media-amazon.com/images/I/61JZiyfH7YL._AC_SL1500_.jpg",
