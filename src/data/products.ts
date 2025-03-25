@@ -16,7 +16,7 @@ export const products: Product[] = [
     name: "Pienso Orgánico Equilibrado",
     price: 18.50,
     description: "Pienso orgánico formulado específicamente para ofrecer una nutrición completa y equilibrada. Con vitaminas y minerales esenciales para mantener a tu mascota saludable y con un pelaje brillante.",
-    image: "https://images.unsplash.com/photo-1589924691985-18e8c2327512",
+    image: "https://images.ctfassets.net/550nf1gumh01/3On3unatR5g271dhnyAlY4/0373744af73afb3aca80bfeb08e2d0de/Pack_-_Cat_Adult_Kibble_Salmon_EN.png?fm=webp&q=85&w=1096",
     category: "alimentacion",
     stock: 20
   },
@@ -25,7 +25,7 @@ export const products: Product[] = [
     name: "Pienso para Cachorros",
     price: 11.99,
     description: "Alimento especial para cachorros que proporciona todos los nutrientes necesarios para un crecimiento óptimo. Enriquecido con DHA para el desarrollo cerebral y visual.",
-    image: "https://images.unsplash.com/photo-1602341129460-344ccc225d0a",
+    image: "https://images.ctfassets.net/550nf1gumh01/77YQSg0m2pgdvftVh8tJqo/d54e0e79809f018a0105c00d05029822/Pack_-_Dog_Junior_Kibble_Duck_Chicken_EN.png?fm=webp&q=85&w=1096",
     category: "alimentacion",
     stock: 18
   },
@@ -115,7 +115,7 @@ export const products: Product[] = [
     name: "Collar con Feromonas Calmantes",
     price: 18.50,
     description: "Collar que libera feromonas calmantes de forma continua durante hasta 30 días. Ayuda a reducir comportamientos no deseados causados por el estrés.",
-    image: "https://images.unsplash.com/photo-1526947425960-945c6e72858f",
+    image: "https://img.kwcdn.com/product/fancy/7c5d16d3-c659-459d-9552-6e77d2c7644a.jpg?imageView2/2/w/800/q/70/format/webp",
     category: "feromonas",
     stock: 12
   },
@@ -124,7 +124,7 @@ export const products: Product[] = [
     name: "Bolso Transportín Premium",
     price: 35.99,
     description: "Bolso transportín elegante y funcional con ventilación óptima y materiales duraderos. Interior acolchado para mayor comodidad durante los viajes.",
-    image: "https://images.unsplash.com/photo-1560743641-3914f2c45636",
+    image: "https://media.zooplus.com/bilder/3/800/295099_deluxe_umhaengetasche_fuzz_fg_4568_3.jpg",
     category: "transportin",
     stock: 5
   },
@@ -133,7 +133,7 @@ export const products: Product[] = [
     name: "Transportín Plegable para Viajes",
     price: 28.50,
     description: "Transportín plegable fácil de almacenar cuando no está en uso. Ligero pero resistente, con múltiples aberturas para una ventilación adecuada.",
-    image: "https://images.unsplash.com/photo-1597843786411-a7fa8ad44a95",
+    image: "https://media.zooplus.com/bilder/9/800/469744_transporth_tte_first_class_basic_11_9.jpg",
     category: "transportin",
     stock: 7
   },
@@ -142,7 +142,7 @@ export const products: Product[] = [
     name: "Collar Ajustable de Nylon",
     price: 8.99,
     description: "Collar ajustable de nylon resistente con hebilla de seguridad. Disponible en varios colores y tamaños para adaptarse a cualquier mascota.",
-    image: "https://images.unsplash.com/photo-1452378174528-3090a4bba7b2",
+    image: "https://i5.walmartimages.com/asr/56b1c597-5220-41b1-bf88-04a29e6c7e22.1dcd12714c9a4c32eb1161517b667a8f.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
     category: "correas",
     stock: 22
   },
@@ -151,7 +151,7 @@ export const products: Product[] = [
     name: "Correa Retráctil con Mango Ergonómico",
     price: 15.50,
     description: "Correa retráctil con sistema de bloqueo y mango ergonómico para mayor comodidad. Ideal para paseos largos y entrenamientos.",
-    image: "https://images.unsplash.com/photo-1548199569-3e1c6aa8f469",
+    image: "https://m.media-amazon.com/images/I/71tLWy4rfTL.jpg",
     category: "correas",
     stock: 18
   },
@@ -160,7 +160,7 @@ export const products: Product[] = [
     name: "Cepillo Desenredante para Pelo Largo",
     price: 9.75,
     description: "Cepillo especialmente diseñado para desenredar el pelo largo sin causar molestias. Ideal para gatos y perros de pelo largo o semi-largo.",
-    image: "https://images.unsplash.com/photo-1516750105099-4b8a83e217ee",
+    image: "https://img.kwcdn.com/product/fancy/a9bc7f6c-ce8b-4642-b8cf-bf98cc07b984.jpg?imageView2/2/w/800/q/70/format/webp",
     category: "cepillos",
     stock: 14
   },
@@ -169,7 +169,7 @@ export const products: Product[] = [
     name: "Peine de Púas Finas para Pelo Corto",
     price: 6.50,
     description: "Peine con púas finas para eliminar pelo muerto y suciedad en mascotas de pelo corto. Ayuda a prevenir la formación de nudos y mantiene el pelaje sano.",
-    image: "https://images.unsplash.com/photo-1560743641-3914f2c45636",
+    image: "https://m.media-amazon.com/images/I/716bOT6xCDL._AC_SL1500_.jpg",
     category: "cepillos",
     stock: 20
   },
@@ -178,7 +178,7 @@ export const products: Product[] = [
     name: "Champú Hidratante para Pieles Sensibles",
     price: 14.99,
     description: "Champú formulado específicamente para mascotas con piel sensible. Con ingredientes naturales que hidratan y calman la irritación, dejando el pelo suave y brillante.",
-    image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1",
+    image: "https://m.media-amazon.com/images/I/81X2E61q4RL._AC_UF894,1000_QL80_.jpg",
     category: "champus",
     stock: 12
   },
