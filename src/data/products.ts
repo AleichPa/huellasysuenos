@@ -112,10 +112,19 @@ export const products: Product[] = [
   },
   {
     id: "13",
-    name: "Collar con Feromonas Calmantes",
+    name: "Collar con Feromonas Calmantes para gatos",
     price: 18.50,
     description: "Collar que libera feromonas calmantes de forma continua durante hasta 30 días. Ayuda a reducir comportamientos no deseados causados por el estrés.",
     image: "https://img.kwcdn.com/product/fancy/7c5d16d3-c659-459d-9552-6e77d2c7644a.jpg?imageView2/2/w/800/q/70/format/webp",
+    category: "feromonas",
+    stock: 12
+  },
+  {
+    id: "35",
+    name: "Collar con Feromonas Calmantes para perros",
+    price: 18.50,
+    description: "Collar que libera feromonas calmantes de forma continua durante hasta 30 días. Ayuda a reducir comportamientos no deseados causados por el estrés.",
+    image: "https://m.media-amazon.com/images/I/61B-Qg3AytL._AC_SL1500_.jpg",
     category: "feromonas",
     stock: 12
   },
