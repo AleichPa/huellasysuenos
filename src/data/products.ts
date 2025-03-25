@@ -196,7 +196,7 @@ export const products: Product[] = [
     name: "Acondicionador Desenredante con Aloe Vera",
     price: 12.25,
     description: "Acondicionador con aloe vera que facilita el desenredado y aporta brillo al pelaje. Ideal para usar después del champú para un cuidado completo.",
-    image: "https://images.unsplash.com/photo-1589924691985-18e8c2327512",
+    image: "https://www.tiendanimal.es/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dwba03abc5/images/large/980db82678ad42d8ae95a2829806c7b6.jpg?sw=780&sh=780&sm=fit&q=85",
     category: "champus",
     stock: 15
   },
@@ -205,7 +205,7 @@ export const products: Product[] = [
     name: "Snacks Naturales Deshidratados",
     price: 6.95,
     description: "Snacks naturales deshidratados sin conservantes ni aditivos. Perfectos como premio o complemento a la alimentación diaria de tu mascota.",
-    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901",
+    image: "https://maikaipets.com/wp-content/uploads/09-maikai-pets-blog-snacks-deshi.jpg",
     category: "snacks",
     stock: 28
   },
@@ -214,7 +214,7 @@ export const products: Product[] = [
     name: "Premios Dentales Masticables",
     price: 4.50,
     description: "Premios masticables que ayudan a limpiar los dientes y reducir el sarro mientras tu mascota disfruta. Con forma especial para llegar a todas las zonas de la boca.",
-    image: "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd",
+    image: "https://images.ctfassets.net/550nf1gumh01/6sw4NfnoWoeTG67Z9MoBk/4a7afa442a2b2ee460de66a376d76d03/Pack_-_Dog_Adult_Dental_Apple_Eucalyptus_Small_EN.png",
     category: "snacks",
     stock: 32
   },
@@ -223,7 +223,7 @@ export const products: Product[] = [
     name: "Kit Dental con Pasta y Cepillo",
     price: 12.99,
     description: "Kit completo para la higiene dental de tu mascota, incluye pasta dental con sabor a pollo y cepillo de dientes ergonómico para facilitar la limpieza.",
-    image: "https://images.unsplash.com/photo-1597843786411-a7fa8ad44a95",
+    image: "https://static.zoomalia.com/prod_img/33703/lm_33904025959b191f8f9de3f924f0940515f1479204072.jpg",
     category: "higiene-dental",
     stock: 10
   },
@@ -232,7 +232,7 @@ export const products: Product[] = [
     name: "Limpiador Bucal Líquido",
     price: 8.75,
     description: "Limpiador bucal líquido que se añade al agua de tu mascota. Ayuda a combatir el mal aliento y reduce la formación de placa bacteriana sin necesidad de cepillado.",
-    image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee",
+    image: "https://media.zooplus.com/bilder/2/800/317896_pla_vetsbest_dental_atemerfrischer_hs_01_2.jpg",
     category: "higiene-dental",
     stock: 18
   },
@@ -241,7 +241,7 @@ export const products: Product[] = [
     name: "Collar Antiparasitario de Larga Duración",
     price: 18.99,
     description: "Collar antiparasitario que protege a tu mascota contra pulgas y garrapatas durante hasta 8 meses. Resistente al agua y ajustable para diferentes tamaños.",
-    image: "https://images.unsplash.com/photo-1485833077593-4278bba3f11f",
+    image: "https://piensoymascotas.com/21256-thickbox_default/prevendog-collar-garrapatas-perro-picaduras.webp",
     category: "antiparasitarios",
     stock: 15
   },
@@ -250,7 +250,7 @@ export const products: Product[] = [
     name: "Pipetas Repelentes para Perros",
     price: 14.50,
     description: "Pack de pipetas repelentes de insectos y parásitos para perros. Fácil aplicación y efecto duradero, protegiéndolos durante semanas.",
-    image: "https://images.unsplash.com/photo-1567014327298-1abd38a5a3ff",
+    image: "https://www.tiendanimal.es/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dwc31c83ac/images/pipetas_antiparasitarias_perros_grandes_beaphar_spot_on_BEA10616.jpg?sw=780&sh=780&sm=fit&q=85",
     category: "antiparasitarios",
     stock: 20
   },
@@ -268,7 +268,7 @@ export const products: Product[] = [
     name: "Barritas de Semillas para Aves",
     price: 4.99,
     description: "Barritas nutritivas con mezcla de semillas y frutas para canarios, periquitos y otras aves. Proporcionan vitaminas y minerales esenciales.",
-    image: "https://images.unsplash.com/photo-1553264701-d138db4fd5d4",
+    image: "https://static.zoomalia.com/prod_img/60632/lm_49f457c545a9ded88f18ecee47145a72c01562832607.jpg",
     category: "snacks",
     stock: 20
   },
@@ -277,7 +277,7 @@ export const products: Product[] = [
     name: "Snacks de Heno para Conejos",
     price: 3.75,
     description: "Snacks de heno prensado con hierbas aromáticas. Ayudan al desgaste dental y aportan fibra a la dieta de conejos y roedores.",
-    image: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308",
+    image: "https://media.zooplus.com/bilder/5/400/28140_pla_jrfarm_grainless_complete_zwergkaninchen_5.jpg",
     category: "snacks",
     stock: 18
   },
@@ -286,7 +286,7 @@ export const products: Product[] = [
     name: "Topping de Vegetales para Roedores",
     price: 2.95,
     description: "Mezcla deshidratada de vegetales para complementar la alimentación de cobayos, hámsters y otros pequeños roedores. Rico en vitamina C.",
-    image: "https://images.unsplash.com/photo-1522184216316-3c25379f9760",
+    image: "https://media.zooplus.com/bilder/6/400/84485_pla_jr_farm_nager_traum_600g_2__6.jpg",
     category: "snacks",
     stock: 22
   },
@@ -295,7 +295,7 @@ export const products: Product[] = [
     name: "Cubos de Alfalfa para Conejos",
     price: 5.25,
     description: "Cubos de alfalfa comprimida, ideales como golosina nutritiva para conejos y cobayas. Favorecen un correcto desgaste dental.",
-    image: "https://images.unsplash.com/photo-1560788784-66abd38628d8",
+    image: "https://media.zooplus.com/bilder/4/400/84624_pla_jr_farm_grainless_one_2850g_4.jpg",
     category: "snacks",
     stock: 15
   },
@@ -304,7 +304,7 @@ export const products: Product[] = [
     name: "Insectos Deshidratados para Reptiles",
     price: 8.50,
     description: "Mezcla de grillos y gusanos de la harina deshidratados. Alimento complementario alto en proteínas para lagartos, camaleones y otros reptiles.",
-    image: "https://images.unsplash.com/photo-1559804452-a688d0d12f21",
+    image: "https://www.tiendanimal.es/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dw93472827/images/Trixie_grillos_deshidratados_para_reptil_y_erizo_TRI14389.jpg?sw=780&sh=780&sm=fit&q=85",
     category: "snacks",
     stock: 12
   },
@@ -313,7 +313,7 @@ export const products: Product[] = [
     name: "Alimento Liofilizado para Peces",
     price: 6.75,
     description: "Alimento liofilizado en escamas para peces tropicales. Conserva todas las propiedades nutricionales y vitaminas. No enturbia el agua.",
-    image: "https://images.unsplash.com/photo-1520302518254-ea46e7c71955",
+    image: "https://www.tropiacuariumbilbao.com/contents/media/t_1540_fd_artemia_shrimps100_20180308130341.jpg",
     category: "snacks",
     stock: 20
   }
