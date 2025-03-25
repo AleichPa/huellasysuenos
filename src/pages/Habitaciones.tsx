@@ -2,7 +2,7 @@
 import Navbar from "@/components/Navbar";
 import RoomsSection from "@/components/RoomsSection";
 import Footer from "@/components/Footer";
-import { Cat, Dog, Bone, PawPrint } from "lucide-react";
+import { Cat, Dog, Bone, PawPrint, Fish, Bird, Rabbit, Mouse, Turtle, Squirrel } from "lucide-react";
 
 const Habitaciones = () => {
   return (
@@ -24,6 +24,15 @@ const Habitaciones = () => {
       <div className="absolute top-1/2 left-1/4 text-hotel-pastel-green/10 -z-5">
         <PawPrint size={60} className="animate-bounce-slight" style={{ animationDelay: "0.8s" }} />
       </div>
+      <div className="absolute bottom-1/4 right-1/4 text-hotel-light-blue/10 -z-5">
+        <Fish size={80} className="animate-bounce-slight" style={{ animationDelay: "1.0s" }} />
+      </div>
+      <div className="absolute top-1/4 right-1/2 text-hotel-pastel-yellow/10 -z-5">
+        <Bird size={65} className="animate-bounce-slight" style={{ animationDelay: "1.2s" }} />
+      </div>
+      <div className="absolute bottom-2/3 left-1/3 text-hotel-purple/10 -z-5">
+        <Rabbit size={75} className="animate-bounce-slight" style={{ animationDelay: "1.4s" }} />
+      </div>
       
       <Navbar />
       <div className="pt-24">
@@ -37,8 +46,10 @@ const Habitaciones = () => {
           <h1 className="font-display text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-hotel-purple to-hotel-dark-purple">
             Nuestras Habitaciones
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto px-4">
+          <p className="text-gray-600 max-w-3xl mx-auto px-4">
             Espacios diseñados con amor para que tu mascota se sienta cómoda, feliz y como en casa.
+            Cada habitación está adaptada para diferentes tipos de mascotas, desde perros y gatos hasta 
+            aves, roedores, reptiles y mascotas exóticas.
           </p>
           
           {/* Cute paw decorations */}

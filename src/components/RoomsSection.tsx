@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, PawPrint, Cat, Dog, Heart, Bone } from "lucide-react";
+import { Check, PawPrint, Cat, Dog, Heart, Bone, Fish, Bird, Rabbit, Mouse, Turtle, Squirrel } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const rooms = [
@@ -28,6 +27,54 @@ const rooms = [
     price: "$55",
     features: ["Espacio extra grande y acogedor", "Varias camitas para elegir", "Juegos interactivos grupales", "Tiempo de juego con otros amigos", "Cámaras para que les veas todo el día"],
     icon: <Heart size={28} className="text-hotel-dark-purple" />
+  },
+  {
+    title: "Refugio Escamitas Felices",
+    description: "Espacio diseñado especialmente para peces y reptiles con control de temperatura y humedad.",
+    image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5",
+    price: "$35",
+    features: ["Control de temperatura", "Iluminación especializada", "Filtración de agua premium", "Mantenimiento diario", "Alimentación especializada"],
+    icon: <Fish size={28} className="text-hotel-light-blue" />
+  },
+  {
+    title: "Nido Plumitas Dulces",
+    description: "Un espacio tranquilo y seguro para aves con todo lo que necesitan para sentirse en su hábitat natural.",
+    image: "https://images.unsplash.com/photo-1520808663317-647b476a81b9",
+    price: "$30",
+    features: ["Perchas cómodas y seguras", "Juguetes interactivos", "Semillas premium variadas", "Música relajante", "Área de vuelo supervisado"],
+    icon: <Bird size={28} className="text-hotel-pastel-yellow" />
+  },
+  {
+    title: "Madriguera Orejitas Largas",
+    description: "Habitación especializada para conejos y roedores con espacios para explorar y esconderse.",
+    image: "https://images.unsplash.com/photo-1591382386627-349b692688ff",
+    price: "$28",
+    features: ["Tubos y túneles para explorar", "Heno fresco premium", "Juguetes para roer", "Área de ejercicio", "Escondites acogedores"],
+    icon: <Rabbit size={28} className="text-hotel-pastel-green" />
+  },
+  {
+    title: "Rincón Ratoncitos Curiosos",
+    description: "Espacio diseñado para pequeños roedores con laberintos y áreas de exploración seguras.",
+    image: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
+    price: "$23",
+    features: ["Laberintos divertidos", "Ruedas de ejercicio silenciosas", "Escondites múltiples", "Alimento fresco diario", "Viruta suave y absorbente"],
+    icon: <Mouse size={28} className="text-hotel-soft-lavender" />
+  },
+  {
+    title: "Oasis Caparazón Tranquilo",
+    description: "Un espacio sereno para tortugas y reptiles con áreas húmedas y secas perfectamente balanceadas.",
+    image: "https://images.unsplash.com/photo-1597162216923-ba9b920f29fa",
+    price: "$32",
+    features: ["Áreas secas y húmedas", "Lámparas UV especiales", "Rocas para tomar el sol", "Dieta balanceada especializada", "Limpieza diaria"],
+    icon: <Turtle size={28} className="text-hotel-sage" />
+  },
+  {
+    title: "Habitación Naturaleza Viva",
+    description: "Espacio con vegetación natural y escondites para que tu mascota exótica se sienta en su hábitat.",
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04",
+    price: "$42",
+    features: ["Vegetación natural", "Control de humedad", "Refugios naturales", "Alimentos exóticos", "Monitoreo 24/7"],
+    icon: <Squirrel size={28} className="text-hotel-orange" />
   },
 ];
 
@@ -87,7 +134,17 @@ const RoomsSection = () => {
                 {/* Cute room badge */}
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg flex items-center gap-2">
                   {room.icon}
-                  <span className="text-sm font-medium">{index === 0 ? "Acogedor" : index === 1 ? "Popular" : "Familiar"}</span>
+                  <span className="text-sm font-medium">
+                    {index === 0 ? "Acogedor" : 
+                     index === 1 ? "Popular" : 
+                     index === 2 ? "Familiar" :
+                     index === 3 ? "Acuático" :
+                     index === 4 ? "Aves" :
+                     index === 5 ? "Conejos" :
+                     index === 6 ? "Roedores" :
+                     index === 7 ? "Reptiles" :
+                     "Exótico"}
+                  </span>
                 </div>
               </div>
               <CardHeader className="pb-2">
