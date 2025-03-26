@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, PawPrint, Cat, Dog, Heart, Bone, Fish, Bird, Rabbit, Mouse, Turtle } from "lucide-react";
@@ -66,24 +65,14 @@ const rooms = [
     features: ["Perchas variadas", "Juguetes coloridos", "Música ambiental", "Alimentación variada", "Baño para aves"]
   },
   {
-    id: "peces-con-pecera",
-    title: "Standard de peces con pecera",
-    description: "Alojamiento para peces con mantenimiento profesional del agua. Condición: estancia mínima de una semana, traer pecera propia. Incluye control de parámetros, alimentación específica y monitoreo constante.",
+    id: "peces-standard",
+    title: "Standard de peces",
+    description: "Alojamiento para peces con mantenimiento profesional del agua. Opción con pecera propia (5€) o peceras profesionales (10€). Incluye control de parámetros, filtración, iluminación adecuada y alimentación específica con monitoreo constante.",
     image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5",
-    price: "5€",
+    price: "5€-10€",
     category: "Acuático",
     icon: <Fish size={28} className="text-hotel-light-blue" />,
-    features: ["Control de parámetros del agua", "Alimentación específica", "Monitoreo constante", "Mínimo una semana de estancia", "Requiere traer pecera propia"]
-  },
-  {
-    id: "peces-sin-pecera",
-    title: "Standard de peces sin pecera",
-    description: "Servicio completo para peces en peceras profesionales. Incluye control de temperatura, filtración avanzada, iluminación adecuada y alimentación específica con monitoreo constante de parámetros del agua.",
-    image: "https://images.unsplash.com/photo-1571106816054-1aa8af14e471",
-    price: "10€",
-    category: "Acuático",
-    icon: <Fish size={28} className="text-hotel-dark-purple" />,
-    features: ["Peceras profesionales", "Filtración avanzada", "Iluminación controlada", "Mantenimiento diario", "Tratamiento de agua especializado"]
+    features: ["Control de parámetros del agua", "Alimentación específica", "Monitoreo constante", "Opción con/sin pecera", "Estancia mínima 7 días con pecera propia"]
   },
   {
     id: "suite-perros-pequenos",

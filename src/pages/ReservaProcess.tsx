@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { format } from "date-fns";
@@ -25,6 +26,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  RadioGroup,
+  RadioGroupItem
+} from "@/components/ui/radio-group";
 import { SEASONS, generateSeasonDates, getSeason, SeasonType, formatPercentage } from "@/utils/seasonData";
 
 const rooms = [
@@ -77,20 +82,12 @@ const rooms = [
     features: ["Perchas variadas", "Juguetes coloridos", "Música ambiental", "Alimentación variada", "Baño para aves"]
   },
   {
-    id: "peces-con-pecera",
-    title: "Standard de peces con pecera",
-    description: "Alojamiento para peces con mantenimiento profesional del agua. Condición: estancia mínima de una semana, traer pecera propia. Incluye control de parámetros, alimentación específica y monitoreo constante.",
+    id: "peces-standard",
+    title: "Standard de peces",
+    description: "Alojamiento para peces con mantenimiento profesional del agua. Opción con pecera propia (5€) o peceras profesionales (10€). Incluye control de parámetros, filtración, iluminación adecuada y alimentación específica con monitoreo constante.",
     image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5",
-    price: 5,
-    features: ["Control de parámetros del agua", "Alimentación específica", "Monitoreo constante", "Mínimo una semana de estancia", "Requiere traer pecera propia"]
-  },
-  {
-    id: "peces-sin-pecera",
-    title: "Standard de peces sin pecera",
-    description: "Servicio completo para peces en peceras profesionales. Incluye control de temperatura, filtración avanzada, iluminación adecuada y alimentación específica con monitoreo constante de parámetros del agua.",
-    image: "https://images.unsplash.com/photo-1571106816054-1aa8af14e471",
-    price: 10,
-    features: ["Peceras profesionales", "Filtración avanzada", "Iluminación controlada", "Mantenimiento diario", "Tratamiento de agua especializado"]
+    price: 5, // Base price, will be modified by tank option
+    features: ["Control de parámetros del agua", "Alimentación específica", "Monitoreo constante", "Opción con/sin pecera", "Estancia mínima 7 días con pecera propia"]
   },
   {
     id: "suite-perros-pequenos",
@@ -155,10 +152,24 @@ const ReservaProcess = () => {
   const [ownerName, setOwnerName] = useState("");
   const [ownerEmail, setOwnerEmail] = useState("");
   const [ownerPhone, setOwnerPhone] = useState("");
+  const [ownTank, setOwnTank] = useState<"yes" | "no">("no");
 
   // Cálculo de costos
   const getSelectedRoom = () => rooms.find(room => room.id === selectedRoom);
-  const roomPrice = getSelectedRoom()?.price || 0;
+  
+  const getRoomPrice = () => {
+    const room = getSelectedRoom();
+    if (!room) return 0;
+    
+    // Special case for fish room
+    if (room.id === "peces-standard") {
+      return ownTank === "yes" ? 5 : 10;
+    }
+    
+    return room.price;
+  };
+  
+  const roomPrice = getRoomPrice();
   
   const getServicesPrice = () => {
     return selectedServices.reduce((total, serviceId) => {
@@ -217,9 +228,29 @@ const ReservaProcess = () => {
     setSeasonData(generateSeasonDates());
   }, []);
 
+  // Validate if minimum stay for fish with own tank is met
+  const validateFishReservation = () => {
+    if (selectedRoom === "peces-standard" && ownTank === "yes") {
+      const nights = calculateNights();
+      if (nights < 7) {
+        toast({
+          title: "Estancia mínima requerida",
+          description: "Para la opción de peces con pecera propia, se requiere una estancia mínima de 7 días.",
+          variant: "destructive",
+        });
+        return false;
+      }
+    }
+    return true;
+  };
+
   // Manejadores de eventos
   const handleSelectRoom = (roomId: string) => {
     setSelectedRoom(roomId);
+    // Reset tank selection when changing rooms
+    if (roomId !== "peces-standard") {
+      setOwnTank("no");
+    }
   };
 
   const handleSelectService = (serviceId: string) => {
@@ -240,13 +271,20 @@ const ReservaProcess = () => {
       return;
     }
 
-    if (currentStep === 3 && (!checkIn || !checkOut)) {
-      toast({
-        title: "Error",
-        description: "Por favor selecciona las fechas de entrada y salida",
-        variant: "destructive",
-      });
-      return;
+    if (currentStep === 3) {
+      if (!checkIn || !checkOut) {
+        toast({
+          title: "Error",
+          description: "Por favor selecciona las fechas de entrada y salida",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      // Validate fish reservation with own tank
+      if (!validateFishReservation()) {
+        return;
+      }
     }
 
     if (currentStep === 4 && (!petName || !petType || !ownerName || !ownerEmail || !ownerPhone)) {
@@ -310,7 +348,11 @@ const ReservaProcess = () => {
             <CardHeader>
               <div className="flex justify-between items-center">
                 <CardTitle className="text-xl">{room.title}</CardTitle>
-                <span className="text-hotel-purple font-bold">${room.price}/noche</span>
+                {room.id === "peces-standard" ? (
+                  <span className="text-hotel-purple font-bold">5€-10€/noche</span>
+                ) : (
+                  <span className="text-hotel-purple font-bold">${room.price}/noche</span>
+                )}
               </div>
               <CardDescription className="text-justify">{room.description}</CardDescription>
             </CardHeader>
@@ -327,6 +369,43 @@ const ReservaProcess = () => {
           </Card>
         ))}
       </div>
+
+      {/* Tank option for fish room */}
+      {selectedRoom === "peces-standard" && (
+        <div className="mt-8 p-6 border rounded-lg bg-hotel-light-blue/10">
+          <h3 className="font-bold mb-4">Opciones para alojamiento de peces</h3>
+          <RadioGroup 
+            value={ownTank} 
+            onValueChange={(value) => setOwnTank(value as "yes" | "no")}
+            className="space-y-4"
+          >
+            <div className="flex items-start space-x-2">
+              <RadioGroupItem value="yes" id="option-own-tank" />
+              <div className="grid gap-1.5">
+                <Label htmlFor="option-own-tank" className="font-medium">
+                  Con pecera propia (5€/noche)
+                </Label>
+                <p className="text-sm text-gray-500">
+                  Traes tu propia pecera. Estancia mínima de 7 días. 
+                  Incluye mantenimiento del agua y control de parámetros.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-2">
+              <RadioGroupItem value="no" id="option-our-tank" />
+              <div className="grid gap-1.5">
+                <Label htmlFor="option-our-tank" className="font-medium">
+                  Con nuestras peceras (10€/noche)
+                </Label>
+                <p className="text-sm text-gray-500">
+                  Usamos nuestras peceras profesionales con filtración avanzada,
+                  iluminación controlada y mantenimiento diario.
+                </p>
+              </div>
+            </div>
+          </RadioGroup>
+        </div>
+      )}
     </div>
   );
 
@@ -583,7 +662,10 @@ const ReservaProcess = () => {
                 <h3 className="font-bold mb-2">Resumen de costos</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span>Habitación ({getSelectedRoom()?.title})</span>
+                    <span>
+                      Habitación ({getSelectedRoom()?.title})
+                      {selectedRoom === "peces-standard" && ` (${ownTank === "yes" ? "con pecera propia" : "con nuestras peceras"})`}
+                    </span>
                     <span>${roomPrice}/noche</span>
                   </div>
                   {selectedServices.length > 0 && (
