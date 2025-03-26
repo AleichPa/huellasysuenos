@@ -5,18 +5,18 @@ import { Link } from "react-router-dom";
 
 const rooms = [
   {
-    title: "Habitación Patitas Pequeñas",
-    description: "Un nidito acogedor para mascotas pequeñas con todo lo que necesitan para sentirse como en casa.",
+    title: "Standard para perros pequeños",
+    description: "La **Habitación Standard para Perros Pequeños** es un espacio pensado para brindar comodidad y calidez a los pequeños amigos de cuatro patas. Con una cama suave adaptada a su tamaño, juguetes divertidos y seguros, y detalles cuidadosamente seleccionados para su bienestar, esta habitación ofrece un entorno tranquilo y acogedor. Además, cuenta con áreas específicas para facilitar el acceso a la comida y agua, junto con un diseño que asegura supervisión constante y protección. Ideal para que los perros pequeños disfruten de una estancia feliz y relajada. 🐶✨",
     image: "https://images.unsplash.com/photo-1441057206919-63d19fac2369",
-    price: "$25",
+    price: "40€",
     features: ["Camita suave y calentita", "Platos coloridos", "Juguetes divertidos", "Limpieza diaria con productos eco"],
     icon: <Cat size={28} className="text-hotel-purple" />
   },
   {
-    title: "Suite Peluditos Felices",
-    description: "Un paraíso para mascotas que merecen un trato especial con extras que les encantarán.",
+    title: "Standard para perros grandes",
+    description: "La Habitación Standard para Perros Grandes es un espacio amplio y diseñado para ofrecer comodidad a los amigos peludos de mayor tamaño. Equipada con una cama firme pero acolchada que se adapta a su peso y complexión, esta habitación garantiza descanso y relax. Además, cuenta con juguetes resistentes y un área designada para facilitar su alimentación. Con un diseño que prioriza la movilidad y espacio suficiente para estirarse o jugar, tu perro grande disfrutará de una experiencia cómoda y segura. 🐕💪",
     image: "https://images.unsplash.com/photo-1485833077593-4278bba3f11f",
-    price: "$40",
+    price: "50€",
     features: ["Cama ortopédica extra suave", "Zona de juegos con túneles", "Galletas y premios caseros", "Paseos extra largos", "TV con programas para mascotas"],
     icon: <Dog size={28} className="text-hotel-orange" />
   },
@@ -82,14 +82,14 @@ const RoomsSection = () => {
   return (
     <section id="habitaciones" className="py-20 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
       {/* Cute decorative elements */}
-      <div className="absolute -top-10 left-0 w-full h-10 bg-repeat-x" style={{ 
+      <div className="absolute -top-10 left-0 w-full h-10 bg-repeat-x" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='20' viewBox='0 0 60 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0 0 C 10 10, 30 10, 30 0 C 30 10, 50 10, 60 0 L 60 0 L 0 0' fill='%23B8F4D3' /%3E%3C/svg%3E")`,
         backgroundSize: '60px 20px'
       }}></div>
-      
+
       <div className="absolute top-0 right-0 w-80 h-80 bg-hotel-soft-lavender/30 rounded-full blur-3xl -z-10"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-hotel-pastel-yellow/30 rounded-full blur-3xl -z-10"></div>
-      
+
       {/* Paw pattern decoration */}
       <div className="absolute top-20 left-10 text-hotel-purple/10 opacity-50 animate-bounce-slight" style={{ animationDelay: "0.3s" }}>
         <PawPrint size={60} />
@@ -100,7 +100,7 @@ const RoomsSection = () => {
       <div className="absolute top-1/3 right-1/3 text-hotel-pastel-green/20 opacity-50 animate-bounce-slight" style={{ animationDelay: "0.9s" }}>
         <Bone size={70} />
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center">
@@ -120,9 +120,9 @@ const RoomsSection = () => {
           {rooms.map((room, index) => (
             <Card key={index} className="overflow-hidden border-none shadow-lg transition-all hover:-translate-y-2 hover:shadow-xl group rounded-3xl">
               <div className="relative h-56 overflow-hidden">
-                <img 
-                  src={room.image} 
-                  alt={room.title} 
+                <img
+                  src={room.image}
+                  alt={room.title}
                   className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent opacity-60"></div>
@@ -130,20 +130,20 @@ const RoomsSection = () => {
                   {room.price}/noche
                   <Heart className="h-4 w-4 text-hotel-dark-purple" />
                 </div>
-                
+
                 {/* Cute room badge */}
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg flex items-center gap-2">
                   {room.icon}
                   <span className="text-sm font-medium">
-                    {index === 0 ? "Acogedor" : 
-                     index === 1 ? "Popular" : 
-                     index === 2 ? "Familiar" :
-                     index === 3 ? "Acuático" :
-                     index === 4 ? "Aves" :
-                     index === 5 ? "Conejos" :
-                     index === 6 ? "Roedores" :
-                     index === 7 ? "Reptiles" :
-                     "Exótico"}
+                    {index === 0 ? "Acogedor" :
+                      index === 1 ? "Popular" :
+                        index === 2 ? "Familiar" :
+                          index === 3 ? "Acuático" :
+                            index === 4 ? "Aves" :
+                              index === 5 ? "Conejos" :
+                                index === 6 ? "Roedores" :
+                                  index === 7 ? "Reptiles" :
+                                    "Exótico"}
                   </span>
                 </div>
               </div>
@@ -171,7 +171,7 @@ const RoomsSection = () => {
                   </Link>
                 </Button>
               </CardFooter>
-              
+
               {/* Cute paw print corner decoration */}
               <div className="absolute -top-4 -right-4 transform rotate-45 opacity-20 group-hover:opacity-100 transition-opacity">
                 <PawPrint size={24} className="text-hotel-orange" />
@@ -183,9 +183,9 @@ const RoomsSection = () => {
           ))}
         </div>
       </div>
-      
+
       {/* Bottom wave decoration */}
-      <div className="absolute -bottom-2 left-0 right-0 h-8 bg-repeat-x" style={{ 
+      <div className="absolute -bottom-2 left-0 right-0 h-8 bg-repeat-x" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='20' viewBox='0 0 60 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0 20 C 10 10, 30 10, 30 20 C 30 10, 50 10, 60 20 L 60 20 L 0 20' fill='%23FFECD9' /%3E%3C/svg%3E")`,
         backgroundSize: '60px 20px'
       }}></div>
