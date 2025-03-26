@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { format } from "date-fns";
@@ -37,7 +36,7 @@ const rooms = [
     id: "perros-pequenos-standard",
     title: "Standard para perros pequeños",
     description: "Espacio acogedor para perros pequeños con cama suave, juguetes seguros y zonas de alimentación. Supervisión constante y entorno tranquilo para que tu mascota disfrute de una estancia feliz y relajada.",
-    image: "https://images.unsplash.com/photo-1441057206919-63d19fac2369",
+    image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2Fff5e2471-4c08-4816-9a61-7970184abbd0.png",
     price: 40,
     features: ["Camita suave y calentita", "Platos coloridos", "Juguetes divertidos", "Limpieza diaria con productos eco"]
   },
@@ -45,7 +44,7 @@ const rooms = [
     id: "perros-grandes-standard",
     title: "Standard para perros grandes",
     description: "Habitación amplia para perros grandes con cama firme y acolchada, juguetes resistentes y espacios designados para alimentación. Diseñada para garantizar movilidad y comodidad a tus amigos de mayor tamaño.",
-    image: "https://images.unsplash.com/photo-1485833077593-4278bba3f11f",
+    image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2F8c1a75e7-aba5-4947-8eea-5926c299343c.png",
     price: 50,
     features: ["Cama ortopédica extra suave", "Zona de juegos con túneles", "Galletas y premios caseros", "Paseos extra largos", "TV con programas para mascotas"]
   },
@@ -53,7 +52,7 @@ const rooms = [
     id: "gatos-standard",
     title: "Standard para gatos",
     description: "Espacio tranquilo para gatos con múltiples niveles para trepar, escondites acogedores y juguetes estimulantes. Incluye rascadores, camas suaves y ventanas para observar el exterior, perfecto para el descanso felino.",
-    image: "https://images.unsplash.com/photo-1519052537078-e6302a4968d4",
+    image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2Fbd6ad9cc-dec0-46cd-9423-422b84cf49b4.png",
     price: 30,
     features: ["Rascadores de diferentes texturas", "Camas elevadas", "Juguetes interactivos", "Ventanas para observación", "Espacios para esconderse"]
   },
@@ -69,7 +68,7 @@ const rooms = [
     id: "reptiles-standard",
     title: "Standard Reptiles",
     description: "Espacio especializado para reptiles con control preciso de temperatura y humedad. Equipado con zonas de calor, lámparas UVB/UVA y escondites naturales que simulan su hábitat para una estancia óptima.",
-    image: "https://images.unsplash.com/photo-1597162216923-ba9b920f29fa",
+    image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2Fcbf88461-64cf-4433-836b-5a388eb68d11.png",
     price: 10,
     features: ["Control preciso de temperatura", "Lámparas UVB/UVA", "Escondites naturales", "Fuentes de agua fresca", "Sustratos específicos"]
   },
