@@ -33,6 +33,12 @@ const Habitaciones = () => {
       <div className="absolute bottom-2/3 left-1/3 text-hotel-purple/10 -z-5">
         <Rabbit size={75} className="animate-bounce-slight" style={{ animationDelay: "1.4s" }} />
       </div>
+      <div className="absolute top-3/4 right-1/3 text-hotel-sage/10 -z-5">
+        <Turtle size={65} className="animate-bounce-slight" style={{ animationDelay: "1.6s" }} />
+      </div>
+      <div className="absolute bottom-1/2 right-2/3 text-hotel-soft-lavender/10 -z-5">
+        <Mouse size={55} className="animate-bounce-slight" style={{ animationDelay: "1.8s" }} />
+      </div>
       
       <Navbar />
       <div className="pt-24">
@@ -49,7 +55,7 @@ const Habitaciones = () => {
           <p className="text-gray-600 max-w-3xl mx-auto px-4">
             Espacios diseñados con amor para que tu mascota se sienta cómoda, feliz y como en casa.
             Cada habitación está adaptada para diferentes tipos de mascotas, desde perros y gatos hasta 
-            aves, roedores, reptiles y mascotas exóticas.
+            aves, roedores, reptiles y mascotas acuáticas.
           </p>
           
           {/* Cute paw decorations */}

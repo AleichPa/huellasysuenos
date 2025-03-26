@@ -10,7 +10,7 @@ const rooms = [
     image: "https://images.unsplash.com/photo-1441057206919-63d19fac2369",
     price: "40€",
     features: ["Camita suave y calentita", "Platos coloridos", "Juguetes divertidos", "Limpieza diaria con productos eco"],
-    icon: <Cat size={28} className="text-hotel-purple" />
+    icon: <Dog size={28} className="text-hotel-purple" />
   },
   {
     title: "Standard para perros grandes",
@@ -21,60 +21,68 @@ const rooms = [
     icon: <Dog size={28} className="text-hotel-orange" />
   },
   {
-    title: "Suite Familiar Patitas Unidas",
-    description: "Perfecta para familias de mascotas que quieren compartir aventuras y sueños.",
-    image: "https://images.unsplash.com/photo-1452378174528-3090a4bba7b2",
-    price: "$55",
-    features: ["Espacio extra grande y acogedor", "Varias camitas para elegir", "Juegos interactivos grupales", "Tiempo de juego con otros amigos", "Cámaras para que les veas todo el día"],
-    icon: <Heart size={28} className="text-hotel-dark-purple" />
+    title: "Standard para gatos",
+    description: "Un espacio tranquilo y confortable diseñado específicamente para gatos, con múltiples niveles para trepar, escondites acogedores, y juguetes que estimulan su instinto cazador. Nuestro alojamiento felino garantiza seguridad y privacidad, con rascadores, camas suaves y ventanas para observar el exterior. Un ambiente perfecto para que tu minino se sienta como en casa. 🐱",
+    image: "https://images.unsplash.com/photo-1519052537078-e6302a4968d4",
+    price: "30€",
+    features: ["Rascadores de diferentes texturas", "Camas elevadas", "Juguetes interactivos", "Ventanas para observación", "Espacios para esconderse"],
+    icon: <Cat size={28} className="text-hotel-light-blue" />
   },
   {
-    title: "Refugio Escamitas Felices",
-    description: "Espacio diseñado especialmente para peces y reptiles con control de temperatura y humedad.",
-    image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5",
-    price: "$35",
-    features: ["Control de temperatura", "Iluminación especializada", "Filtración de agua premium", "Mantenimiento diario", "Alimentación especializada"],
-    icon: <Fish size={28} className="text-hotel-light-blue" />
-  },
-  {
-    title: "Nido Plumitas Dulces",
-    description: "Un espacio tranquilo y seguro para aves con todo lo que necesitan para sentirse en su hábitat natural.",
-    image: "https://images.unsplash.com/photo-1520808663317-647b476a81b9",
-    price: "$30",
-    features: ["Perchas cómodas y seguras", "Juguetes interactivos", "Semillas premium variadas", "Música relajante", "Área de vuelo supervisado"],
-    icon: <Bird size={28} className="text-hotel-pastel-yellow" />
-  },
-  {
-    title: "Madriguera Orejitas Largas",
-    description: "Habitación especializada para conejos y roedores con espacios para explorar y esconderse.",
-    image: "https://images.unsplash.com/photo-1591382386627-349b692688ff",
-    price: "$28",
-    features: ["Tubos y túneles para explorar", "Heno fresco premium", "Juguetes para roer", "Área de ejercicio", "Escondites acogedores"],
-    icon: <Rabbit size={28} className="text-hotel-pastel-green" />
-  },
-  {
-    title: "Rincón Ratoncitos Curiosos",
-    description: "Espacio diseñado para pequeños roedores con laberintos y áreas de exploración seguras.",
+    title: "Standard Roedores",
+    description: "Habitación diseñada para el confort y seguridad de pequeños roedores como hámsters, cobayas y conejos enanos. Cuenta con túneles, ruedas y juguetes para masticar que mantendrán a tu pequeña mascota entretenida y activa durante su estancia. Ambiente controlado con temperatura ideal y materiales seguros para mordisquear. 🐹",
     image: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
-    price: "$23",
-    features: ["Laberintos divertidos", "Ruedas de ejercicio silenciosas", "Escondites múltiples", "Alimento fresco diario", "Viruta suave y absorbente"],
+    price: "10€",
+    features: ["Tubos y túneles", "Juguetes para roer", "Viruta premium", "Control de temperatura", "Ruedas de ejercicio"],
     icon: <Mouse size={28} className="text-hotel-soft-lavender" />
   },
   {
-    title: "Oasis Caparazón Tranquilo",
-    description: "Un espacio sereno para tortugas y reptiles con áreas húmedas y secas perfectamente balanceadas.",
-    image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2Ffb8841c2-489e-4736-8a27-ae832d79b259.png",
-    price: "$32",
-    features: ["Áreas secas y húmedas", "Lámparas UV especiales", "Rocas para tomar el sol", "Dieta balanceada especializada", "Limpieza diaria"],
+    title: "Standard Reptiles",
+    description: "Espacio especializado para reptiles con control preciso de temperatura y humedad. Equipado con zonas de calor, lámparas UVB y UVA, y escondites naturales que simulan su hábitat. Mantenemos un ambiente limpio y seguro, con agua fresca diaria y las condiciones ideales para que tu reptil disfrute de una estancia óptima. 🦎",
+    image: "https://images.unsplash.com/photo-1597162216923-ba9b920f29fa",
+    price: "10€",
+    features: ["Control preciso de temperatura", "Lámparas UVB/UVA", "Escondites naturales", "Fuentes de agua fresca", "Sustratos específicos"],
     icon: <Turtle size={28} className="text-hotel-sage" />
   },
   {
-    title: "Habitación Naturaleza Viva",
-    description: "Espacio con vegetación natural y escondites para que tu mascota exótica se sienta en su hábitat.",
-    image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2F16ca3a74-02d4-4d59-a41f-b659c9b9d78b.png",
-    price: "$42",
-    features: ["Vegetación natural", "Control de humedad", "Refugios naturales", "Alimentos exóticos", "Monitoreo 24/7"],
-    icon: <Squirrel size={28} className="text-hotel-orange" />
+    title: "Standard aves",
+    description: "Un espacio luminoso y seguro para que tus aves disfruten de su estancia. Con perchas de diferentes grosores para el cuidado de sus patas, juguetes coloridos para estimulación mental, y un ambiente tranquilo con música suave. Ofrecemos alimentación variada y agua fresca diaria en un espacio diseñado para su comodidad. 🦜",
+    image: "https://images.unsplash.com/photo-1520808663317-647b476a81b9",
+    price: "8€",
+    features: ["Perchas variadas", "Juguetes coloridos", "Música ambiental", "Alimentación variada", "Baño para aves"],
+    icon: <Bird size={28} className="text-hotel-pastel-yellow" />
+  },
+  {
+    title: "Standard de peces con pecera",
+    description: "Alojamiento perfecto para peces con mantenimiento profesional de la calidad del agua. **Condición: estancia mínima de una semana y es necesario traer su propia pecera**. Incluye control de parámetros del agua, alimentación adecuada para cada especie y monitoreo constante para garantizar el bienestar de tus amigos acuáticos. 🐠",
+    image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5",
+    price: "5€",
+    features: ["Control de parámetros del agua", "Alimentación específica", "Monitoreo constante", "Mínimo una semana de estancia", "Requiere traer pecera propia"],
+    icon: <Fish size={28} className="text-hotel-light-blue" />
+  },
+  {
+    title: "Standard de peces sin pecera",
+    description: "Servicio completo para el cuidado de tus peces en nuestras peceras profesionales. Incluye control de temperatura, filtración avanzada, iluminación adecuada y alimentación específica según especies. Nuestro equipo especializado monitorizará constantemente los parámetros del agua para garantizar un entorno óptimo durante toda la estancia. 🐟",
+    image: "https://images.unsplash.com/photo-1571106816054-1aa8af14e471",
+    price: "10€",
+    features: ["Peceras profesionales", "Filtración avanzada", "Iluminación controlada", "Mantenimiento diario", "Tratamiento de agua especializado"],
+    icon: <Fish size={28} className="text-hotel-dark-purple" />
+  },
+  {
+    title: "Suite para perros pequeños",
+    description: "Lujosa habitación con espacio para hasta 3 perros pequeños que quieran disfrutar de una estancia premium. Con camas individuales ultra suaves, zona de juegos amplia, televisión con programas caninos, servicio de snacks premium y paseos extendidos. El espacio perfecto para que tus pequeños compañeros se sientan como auténticas estrellas. 🌟🐕",
+    image: "https://images.unsplash.com/photo-1583512603806-077998240c7a",
+    price: "60€-70€",
+    features: ["Capacidad hasta 3 perros pequeños", "Camas individuales premium", "Zona de juegos privada", "Servicio de snacks gourmet", "Paseos personalizados"],
+    icon: <Heart size={28} className="text-hotel-purple" />
+  },
+  {
+    title: "Suite para perros grandes",
+    description: "Nuestra suite más exclusiva y espaciosa para perros grandes, con capacidad hasta 3 perros. Cuenta con camas ortopédicas XL, zona de juegos privada con obstáculos, servicio de masajes relajantes, menú personalizado y paseos extendidos. El lujo máximo para que tus grandes compañeros disfruten de unas vacaciones inolvidables. 🏆🐕‍🦺",
+    image: "https://images.unsplash.com/photo-1541599540903-216a46ca1dc0",
+    price: "80€-100€",
+    features: ["Capacidad hasta 3 perros grandes", "Camas ortopédicas XL", "Zona de juegos exclusiva", "Servicio de masajes", "Menú gourmet personalizado", "Paseos VIP"],
+    icon: <Bone size={28} className="text-hotel-orange" />
   },
 ];
 
