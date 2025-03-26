@@ -2,7 +2,7 @@
 import Navbar from "@/components/Navbar";
 import RoomsSection from "@/components/RoomsSection";
 import Footer from "@/components/Footer";
-import { Cat, Dog, Bone, PawPrint, Fish, Bird, Rabbit, Mouse, Turtle, Squirrel } from "lucide-react";
+import { Cat, Dog, Bone, PawPrint, Fish, Bird, Rabbit, Mouse, Turtle } from "lucide-react";
 
 const Habitaciones = () => {
   return (
@@ -52,7 +52,7 @@ const Habitaciones = () => {
           <h1 className="font-display text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-hotel-purple to-hotel-dark-purple">
             Nuestras Habitaciones
           </h1>
-          <p className="text-gray-600 max-w-3xl mx-auto px-4">
+          <p className="text-gray-600 max-w-3xl mx-auto px-4 text-justify">
             Espacios diseñados con amor para que tu mascota se sienta cómoda, feliz y como en casa.
             Cada habitación está adaptada para diferentes tipos de mascotas, desde perros y gatos hasta 
             aves, roedores, reptiles y mascotas acuáticas.

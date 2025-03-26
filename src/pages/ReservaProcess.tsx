@@ -31,7 +31,7 @@ const rooms = [
   {
     id: "perros-pequenos-standard",
     title: "Standard para perros pequeños",
-    description: "Un nidito acogedor para perros pequeños con todo lo que necesitan para sentirse como en casa.",
+    description: "Espacio acogedor para perros pequeños con cama suave, juguetes seguros y zonas de alimentación. Supervisión constante y entorno tranquilo para que tu mascota disfrute de una estancia feliz y relajada.",
     image: "https://images.unsplash.com/photo-1441057206919-63d19fac2369",
     price: 40,
     features: ["Camita suave y calentita", "Platos coloridos", "Juguetes divertidos", "Limpieza diaria con productos eco"]
@@ -39,7 +39,7 @@ const rooms = [
   {
     id: "perros-grandes-standard",
     title: "Standard para perros grandes",
-    description: "Espacio amplio y diseñado para ofrecer comodidad a los amigos peludos de mayor tamaño.",
+    description: "Habitación amplia para perros grandes con cama firme y acolchada, juguetes resistentes y espacios designados para alimentación. Diseñada para garantizar movilidad y comodidad a tus amigos de mayor tamaño.",
     image: "https://images.unsplash.com/photo-1485833077593-4278bba3f11f",
     price: 50,
     features: ["Cama ortopédica extra suave", "Zona de juegos con túneles", "Galletas y premios caseros", "Paseos extra largos", "TV con programas para mascotas"]
@@ -47,7 +47,7 @@ const rooms = [
   {
     id: "gatos-standard",
     title: "Standard para gatos",
-    description: "Un espacio tranquilo y confortable diseñado específicamente para gatos, con múltiples niveles para trepar.",
+    description: "Espacio tranquilo para gatos con múltiples niveles para trepar, escondites acogedores y juguetes estimulantes. Incluye rascadores, camas suaves y ventanas para observar el exterior, perfecto para el descanso felino.",
     image: "https://images.unsplash.com/photo-1519052537078-e6302a4968d4",
     price: 30,
     features: ["Rascadores de diferentes texturas", "Camas elevadas", "Juguetes interactivos", "Ventanas para observación", "Espacios para esconderse"]
@@ -55,7 +55,7 @@ const rooms = [
   {
     id: "roedores-standard",
     title: "Standard Roedores",
-    description: "Habitación diseñada para el confort y seguridad de pequeños roedores como hámsters, cobayas y conejos enanos.",
+    description: "Habitación diseñada para pequeños roedores con túneles, ruedas y juguetes para masticar. Ambiente controlado con temperatura ideal y materiales seguros que mantendrán a tu mascota activa y entretenida.",
     image: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
     price: 10,
     features: ["Tubos y túneles", "Juguetes para roer", "Viruta premium", "Control de temperatura", "Ruedas de ejercicio"]
@@ -63,7 +63,7 @@ const rooms = [
   {
     id: "reptiles-standard",
     title: "Standard Reptiles",
-    description: "Espacio especializado para reptiles con control preciso de temperatura y humedad.",
+    description: "Espacio especializado para reptiles con control preciso de temperatura y humedad. Equipado con zonas de calor, lámparas UVB/UVA y escondites naturales que simulan su hábitat para una estancia óptima.",
     image: "https://images.unsplash.com/photo-1597162216923-ba9b920f29fa",
     price: 10,
     features: ["Control preciso de temperatura", "Lámparas UVB/UVA", "Escondites naturales", "Fuentes de agua fresca", "Sustratos específicos"]
@@ -71,7 +71,7 @@ const rooms = [
   {
     id: "aves-standard",
     title: "Standard aves",
-    description: "Un espacio luminoso y seguro para que tus aves disfruten de su estancia.",
+    description: "Espacio luminoso y seguro para aves con perchas variadas, juguetes coloridos y música suave. Ofrecemos alimentación diversa y agua fresca diaria en un ambiente tranquilo diseñado para su bienestar.",
     image: "https://images.unsplash.com/photo-1520808663317-647b476a81b9",
     price: 8,
     features: ["Perchas variadas", "Juguetes coloridos", "Música ambiental", "Alimentación variada", "Baño para aves"]
@@ -79,7 +79,7 @@ const rooms = [
   {
     id: "peces-con-pecera",
     title: "Standard de peces con pecera",
-    description: "Alojamiento perfecto para peces con mantenimiento profesional. Mínimo una semana de estancia y requiere traer pecera propia.",
+    description: "Alojamiento para peces con mantenimiento profesional del agua. Condición: estancia mínima de una semana, traer pecera propia. Incluye control de parámetros, alimentación específica y monitoreo constante.",
     image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5",
     price: 5,
     features: ["Control de parámetros del agua", "Alimentación específica", "Monitoreo constante", "Mínimo una semana de estancia", "Requiere traer pecera propia"]
@@ -87,7 +87,7 @@ const rooms = [
   {
     id: "peces-sin-pecera",
     title: "Standard de peces sin pecera",
-    description: "Servicio completo para el cuidado de tus peces en nuestras peceras profesionales.",
+    description: "Servicio completo para peces en peceras profesionales. Incluye control de temperatura, filtración avanzada, iluminación adecuada y alimentación específica con monitoreo constante de parámetros del agua.",
     image: "https://images.unsplash.com/photo-1571106816054-1aa8af14e471",
     price: 10,
     features: ["Peceras profesionales", "Filtración avanzada", "Iluminación controlada", "Mantenimiento diario", "Tratamiento de agua especializado"]
@@ -95,7 +95,7 @@ const rooms = [
   {
     id: "suite-perros-pequenos",
     title: "Suite para perros pequeños",
-    description: "Lujosa habitación con espacio para hasta 3 perros pequeños que quieran disfrutar de una estancia premium.",
+    description: "Lujosa habitación para hasta 3 perros pequeños con camas individuales ultra suaves, zona de juegos, TV con programas caninos, snacks premium y paseos extendidos. Un espacio premium para consentir a tus mascotas.",
     image: "https://images.unsplash.com/photo-1583512603806-077998240c7a",
     price: 65, // Promedio entre 60-70€
     features: ["Capacidad hasta 3 perros pequeños", "Camas individuales premium", "Zona de juegos privada", "Servicio de snacks gourmet", "Paseos personalizados"]
@@ -103,7 +103,7 @@ const rooms = [
   {
     id: "suite-perros-grandes",
     title: "Suite para perros grandes",
-    description: "Nuestra suite más exclusiva y espaciosa para perros grandes, con capacidad hasta 3 perros.",
+    description: "Suite exclusiva para hasta 3 perros grandes con camas ortopédicas XL, zona de juegos privada, masajes relajantes, menú personalizado y paseos extendidos. El máximo lujo para consentir a tus grandes compañeros.",
     image: "https://images.unsplash.com/photo-1541599540903-216a46ca1dc0",
     price: 90, // Promedio entre 80-100€
     features: ["Capacidad hasta 3 perros grandes", "Camas ortopédicas XL", "Zona de juegos exclusiva", "Servicio de masajes", "Menú gourmet personalizado", "Paseos VIP"]
@@ -312,7 +312,7 @@ const ReservaProcess = () => {
                 <CardTitle className="text-xl">{room.title}</CardTitle>
                 <span className="text-hotel-purple font-bold">${room.price}/noche</span>
               </div>
-              <CardDescription>{room.description}</CardDescription>
+              <CardDescription className="text-justify">{room.description}</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-1">

@@ -1,88 +1,109 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, PawPrint, Cat, Dog, Heart, Bone, Fish, Bird, Rabbit, Mouse, Turtle, Squirrel } from "lucide-react";
+import { Check, PawPrint, Cat, Dog, Heart, Bone, Fish, Bird, Rabbit, Mouse, Turtle } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const rooms = [
   {
+    id: "perros-pequenos-standard",
     title: "Standard para perros pequeños",
-    description: "La **Habitación Standard para Perros Pequeños** es un espacio pensado para brindar comodidad y calidez a los pequeños amigos de cuatro patas. Con una cama suave adaptada a su tamaño, juguetes divertidos y seguros, y detalles cuidadosamente seleccionados para su bienestar, esta habitación ofrece un entorno tranquilo y acogedor. Además, cuenta con áreas específicas para facilitar el acceso a la comida y agua, junto con un diseño que asegura supervisión constante y protección. Ideal para que los perros pequeños disfruten de una estancia feliz y relajada. 🐶✨",
+    description: "Espacio acogedor para perros pequeños con cama suave, juguetes seguros y zonas de alimentación. Supervisión constante y entorno tranquilo para que tu mascota disfrute de una estancia feliz y relajada.",
     image: "https://images.unsplash.com/photo-1441057206919-63d19fac2369",
     price: "40€",
-    features: ["Camita suave y calentita", "Platos coloridos", "Juguetes divertidos", "Limpieza diaria con productos eco"],
-    icon: <Dog size={28} className="text-hotel-purple" />
+    category: "Canino",
+    icon: <Dog size={28} className="text-hotel-purple" />,
+    features: ["Camita suave y calentita", "Platos coloridos", "Juguetes divertidos", "Limpieza diaria con productos eco"]
   },
   {
+    id: "perros-grandes-standard",
     title: "Standard para perros grandes",
-    description: "La Habitación Standard para Perros Grandes es un espacio amplio y diseñado para ofrecer comodidad a los amigos peludos de mayor tamaño. Equipada con una cama firme pero acolchada que se adapta a su peso y complexión, esta habitación garantiza descanso y relax. Además, cuenta con juguetes resistentes y un área designada para facilitar su alimentación. Con un diseño que prioriza la movilidad y espacio suficiente para estirarse o jugar, tu perro grande disfrutará de una experiencia cómoda y segura. 🐕💪",
+    description: "Habitación amplia para perros grandes con cama firme y acolchada, juguetes resistentes y espacios designados para alimentación. Diseñada para garantizar movilidad y comodidad a tus amigos de mayor tamaño.",
     image: "https://images.unsplash.com/photo-1485833077593-4278bba3f11f",
     price: "50€",
-    features: ["Cama ortopédica extra suave", "Zona de juegos con túneles", "Galletas y premios caseros", "Paseos extra largos", "TV con programas para mascotas"],
-    icon: <Dog size={28} className="text-hotel-orange" />
+    category: "Canino",
+    icon: <Dog size={28} className="text-hotel-orange" />,
+    features: ["Cama ortopédica extra suave", "Zona de juegos con túneles", "Galletas y premios caseros", "Paseos extra largos", "TV con programas para mascotas"]
   },
   {
+    id: "gatos-standard",
     title: "Standard para gatos",
-    description: "Un espacio tranquilo y confortable diseñado específicamente para gatos, con múltiples niveles para trepar, escondites acogedores, y juguetes que estimulan su instinto cazador. Nuestro alojamiento felino garantiza seguridad y privacidad, con rascadores, camas suaves y ventanas para observar el exterior. Un ambiente perfecto para que tu minino se sienta como en casa. 🐱",
+    description: "Espacio tranquilo para gatos con múltiples niveles para trepar, escondites acogedores y juguetes estimulantes. Incluye rascadores, camas suaves y ventanas para observar el exterior, perfecto para el descanso felino.",
     image: "https://images.unsplash.com/photo-1519052537078-e6302a4968d4",
     price: "30€",
-    features: ["Rascadores de diferentes texturas", "Camas elevadas", "Juguetes interactivos", "Ventanas para observación", "Espacios para esconderse"],
-    icon: <Cat size={28} className="text-hotel-light-blue" />
+    category: "Felino",
+    icon: <Cat size={28} className="text-hotel-light-blue" />,
+    features: ["Rascadores de diferentes texturas", "Camas elevadas", "Juguetes interactivos", "Ventanas para observación", "Espacios para esconderse"]
   },
   {
+    id: "roedores-standard",
     title: "Standard Roedores",
-    description: "Habitación diseñada para el confort y seguridad de pequeños roedores como hámsters, cobayas y conejos enanos. Cuenta con túneles, ruedas y juguetes para masticar que mantendrán a tu pequeña mascota entretenida y activa durante su estancia. Ambiente controlado con temperatura ideal y materiales seguros para mordisquear. 🐹",
+    description: "Habitación diseñada para pequeños roedores con túneles, ruedas y juguetes para masticar. Ambiente controlado con temperatura ideal y materiales seguros que mantendrán a tu mascota activa y entretenida.",
     image: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
     price: "10€",
-    features: ["Tubos y túneles", "Juguetes para roer", "Viruta premium", "Control de temperatura", "Ruedas de ejercicio"],
-    icon: <Mouse size={28} className="text-hotel-soft-lavender" />
+    category: "Roedor",
+    icon: <Mouse size={28} className="text-hotel-soft-lavender" />,
+    features: ["Tubos y túneles", "Juguetes para roer", "Viruta premium", "Control de temperatura", "Ruedas de ejercicio"]
   },
   {
+    id: "reptiles-standard",
     title: "Standard Reptiles",
-    description: "Espacio especializado para reptiles con control preciso de temperatura y humedad. Equipado con zonas de calor, lámparas UVB y UVA, y escondites naturales que simulan su hábitat. Mantenemos un ambiente limpio y seguro, con agua fresca diaria y las condiciones ideales para que tu reptil disfrute de una estancia óptima. 🦎",
+    description: "Espacio especializado para reptiles con control preciso de temperatura y humedad. Equipado con zonas de calor, lámparas UVB/UVA y escondites naturales que simulan su hábitat para una estancia óptima.",
     image: "https://images.unsplash.com/photo-1597162216923-ba9b920f29fa",
     price: "10€",
-    features: ["Control preciso de temperatura", "Lámparas UVB/UVA", "Escondites naturales", "Fuentes de agua fresca", "Sustratos específicos"],
-    icon: <Turtle size={28} className="text-hotel-sage" />
+    category: "Reptil",
+    icon: <Turtle size={28} className="text-hotel-sage" />,
+    features: ["Control preciso de temperatura", "Lámparas UVB/UVA", "Escondites naturales", "Fuentes de agua fresca", "Sustratos específicos"]
   },
   {
+    id: "aves-standard",
     title: "Standard aves",
-    description: "Un espacio luminoso y seguro para que tus aves disfruten de su estancia. Con perchas de diferentes grosores para el cuidado de sus patas, juguetes coloridos para estimulación mental, y un ambiente tranquilo con música suave. Ofrecemos alimentación variada y agua fresca diaria en un espacio diseñado para su comodidad. 🦜",
+    description: "Espacio luminoso y seguro para aves con perchas variadas, juguetes coloridos y música suave. Ofrecemos alimentación diversa y agua fresca diaria en un ambiente tranquilo diseñado para su bienestar.",
     image: "https://images.unsplash.com/photo-1520808663317-647b476a81b9",
     price: "8€",
-    features: ["Perchas variadas", "Juguetes coloridos", "Música ambiental", "Alimentación variada", "Baño para aves"],
-    icon: <Bird size={28} className="text-hotel-pastel-yellow" />
+    category: "Ave",
+    icon: <Bird size={28} className="text-hotel-pastel-yellow" />,
+    features: ["Perchas variadas", "Juguetes coloridos", "Música ambiental", "Alimentación variada", "Baño para aves"]
   },
   {
+    id: "peces-con-pecera",
     title: "Standard de peces con pecera",
-    description: "Alojamiento perfecto para peces con mantenimiento profesional de la calidad del agua. **Condición: estancia mínima de una semana y es necesario traer su propia pecera**. Incluye control de parámetros del agua, alimentación adecuada para cada especie y monitoreo constante para garantizar el bienestar de tus amigos acuáticos. 🐠",
+    description: "Alojamiento para peces con mantenimiento profesional del agua. Condición: estancia mínima de una semana, traer pecera propia. Incluye control de parámetros, alimentación específica y monitoreo constante.",
     image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5",
     price: "5€",
-    features: ["Control de parámetros del agua", "Alimentación específica", "Monitoreo constante", "Mínimo una semana de estancia", "Requiere traer pecera propia"],
-    icon: <Fish size={28} className="text-hotel-light-blue" />
+    category: "Acuático",
+    icon: <Fish size={28} className="text-hotel-light-blue" />,
+    features: ["Control de parámetros del agua", "Alimentación específica", "Monitoreo constante", "Mínimo una semana de estancia", "Requiere traer pecera propia"]
   },
   {
+    id: "peces-sin-pecera",
     title: "Standard de peces sin pecera",
-    description: "Servicio completo para el cuidado de tus peces en nuestras peceras profesionales. Incluye control de temperatura, filtración avanzada, iluminación adecuada y alimentación específica según especies. Nuestro equipo especializado monitorizará constantemente los parámetros del agua para garantizar un entorno óptimo durante toda la estancia. 🐟",
+    description: "Servicio completo para peces en peceras profesionales. Incluye control de temperatura, filtración avanzada, iluminación adecuada y alimentación específica con monitoreo constante de parámetros del agua.",
     image: "https://images.unsplash.com/photo-1571106816054-1aa8af14e471",
     price: "10€",
-    features: ["Peceras profesionales", "Filtración avanzada", "Iluminación controlada", "Mantenimiento diario", "Tratamiento de agua especializado"],
-    icon: <Fish size={28} className="text-hotel-dark-purple" />
+    category: "Acuático",
+    icon: <Fish size={28} className="text-hotel-dark-purple" />,
+    features: ["Peceras profesionales", "Filtración avanzada", "Iluminación controlada", "Mantenimiento diario", "Tratamiento de agua especializado"]
   },
   {
+    id: "suite-perros-pequenos",
     title: "Suite para perros pequeños",
-    description: "Lujosa habitación con espacio para hasta 3 perros pequeños que quieran disfrutar de una estancia premium. Con camas individuales ultra suaves, zona de juegos amplia, televisión con programas caninos, servicio de snacks premium y paseos extendidos. El espacio perfecto para que tus pequeños compañeros se sientan como auténticas estrellas. 🌟🐕",
+    description: "Lujosa habitación para hasta 3 perros pequeños con camas individuales ultra suaves, zona de juegos, TV con programas caninos, snacks premium y paseos extendidos. Un espacio premium para consentir a tus mascotas.",
     image: "https://images.unsplash.com/photo-1583512603806-077998240c7a",
     price: "60€-70€",
-    features: ["Capacidad hasta 3 perros pequeños", "Camas individuales premium", "Zona de juegos privada", "Servicio de snacks gourmet", "Paseos personalizados"],
-    icon: <Heart size={28} className="text-hotel-purple" />
+    category: "Premium",
+    icon: <Heart size={28} className="text-hotel-purple" />,
+    features: ["Capacidad hasta 3 perros pequeños", "Camas individuales premium", "Zona de juegos privada", "Servicio de snacks gourmet", "Paseos personalizados"]
   },
   {
+    id: "suite-perros-grandes",
     title: "Suite para perros grandes",
-    description: "Nuestra suite más exclusiva y espaciosa para perros grandes, con capacidad hasta 3 perros. Cuenta con camas ortopédicas XL, zona de juegos privada con obstáculos, servicio de masajes relajantes, menú personalizado y paseos extendidos. El lujo máximo para que tus grandes compañeros disfruten de unas vacaciones inolvidables. 🏆🐕‍🦺",
+    description: "Suite exclusiva para hasta 3 perros grandes con camas ortopédicas XL, zona de juegos privada, masajes relajantes, menú personalizado y paseos extendidos. El máximo lujo para consentir a tus grandes compañeros.",
     image: "https://images.unsplash.com/photo-1541599540903-216a46ca1dc0",
     price: "80€-100€",
-    features: ["Capacidad hasta 3 perros grandes", "Camas ortopédicas XL", "Zona de juegos exclusiva", "Servicio de masajes", "Menú gourmet personalizado", "Paseos VIP"],
-    icon: <Bone size={28} className="text-hotel-orange" />
+    category: "Premium",
+    icon: <Bone size={28} className="text-hotel-orange" />,
+    features: ["Capacidad hasta 3 perros grandes", "Camas ortopédicas XL", "Zona de juegos exclusiva", "Servicio de masajes", "Menú gourmet personalizado", "Paseos VIP"]
   },
 ];
 
@@ -139,19 +160,11 @@ const RoomsSection = () => {
                   <Heart className="h-4 w-4 text-hotel-dark-purple" />
                 </div>
 
-                {/* Cute room badge */}
+                {/* Updated room category badge */}
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg flex items-center gap-2">
                   {room.icon}
                   <span className="text-sm font-medium">
-                    {index === 0 ? "Acogedor" :
-                      index === 1 ? "Popular" :
-                        index === 2 ? "Familiar" :
-                          index === 3 ? "Acuático" :
-                            index === 4 ? "Aves" :
-                              index === 5 ? "Conejos" :
-                                index === 6 ? "Roedores" :
-                                  index === 7 ? "Reptiles" :
-                                    "Exótico"}
+                    {room.category}
                   </span>
                 </div>
               </div>
@@ -159,7 +172,7 @@ const RoomsSection = () => {
                 <CardTitle className="text-xl font-bold flex items-center gap-2">
                   <span>{room.title}</span>
                 </CardTitle>
-                <CardDescription className="text-gray-600">{room.description}</CardDescription>
+                <CardDescription className="text-gray-600 text-justify">{room.description}</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
