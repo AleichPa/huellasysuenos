@@ -1,3 +1,4 @@
+
 import { Product } from '@/types/product';
 
 export const products: Product[] = [
@@ -453,3 +454,48 @@ export const products: Product[] = [
     stock: 10
   },
   {
+    id: "54",
+    name: "Frisbee Flotante para Perros",
+    price: 8.99,
+    description: "Frisbee de goma suave y resistente que flota en el agua. Ideal para juegos de recuperación en tierra o agua. Diseño ergonómico que no daña los dientes ni encías.",
+    image: "https://media.zooplus.com/bilder/4/400/26785_pla_kong_flyer_hundefrisbee_l_hs_kf3e_4.jpg",
+    category: "juguetes",
+    stock: 20
+  },
+  {
+    id: "55",
+    name: "Columpio para Pájaros",
+    price: 6.75,
+    description: "Columpio de madera natural para jaulas de pájaros. Proporciona entretenimiento y ejercicio, estimulando el comportamiento natural de balanceo en aves domésticas.",
+    image: "https://media.zooplus.com/bilder/4/400/451114_tiaki_bird_swing_s_fg_9567_4.jpg",
+    category: "juguetes",
+    stock: 18
+  },
+  {
+    id: "56",
+    name: "Pelota de Caucho Natural para Perros",
+    price: 9.95,
+    description: "Pelota resistente hecha de caucho 100% natural y sostenible. Ideal para perros con mucha energía o masticadores intensos. Su diseño rebotante proporciona horas de diversión y ejercicio.",
+    image: "https://media.zooplus.com/bilder/0/800/554997_pla_earth_rated_fetch_toy_hs_01_0.jpg",
+    category: "juguetes",
+    stock: 25
+  },
+  {
+    id: "57",
+    name: "Pelota de Caucho Natural para Gatos",
+    price: 6.50,
+    description: "Pelota suave de caucho natural con cascabel interior. Perfecta para gatos activos que disfrutan persiguiendo objetos. Su textura agradable y sonido estimulan el instinto cazador de forma natural.",
+    image: "https://w24cdn.cz/www.stepar.cz/_/520x520-1-0-0-0-255255255/product/product_595/b4bb44ee73b4c5821a2c849054eebfd5.jpg",
+    category: "juguetes",
+    stock: 30
+  },
+  {
+    id: "58",
+    name: "Pelota de Ejercicio para Pequeños Roedores",
+    price: 4.95,
+    description: "Pelota de ejercicio segura para hámsters, jerbos y otros pequeños roedores. Permite que tu mascota haga ejercicio rodando mientras explora el entorno de forma segura.",
+    image: "https://media.zooplus.com/bilder/1/400/11906_PLA_Trixie_Snacky_1.jpg",
+    category: "juguetes",
+    stock: 15
+  }
+];
