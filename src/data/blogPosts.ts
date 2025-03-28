@@ -108,7 +108,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Día de aventuras: ¡comienza la diversión!",
         paragraphs: [
-          "En Huellas y Sueños sabemos que la rutina es importante, pero también creemos en crear momentos especiales. Por eso, organizamos regularmente "Días de Aventura" donde nuestros huéspedes disfrutan de actividades extraordinarias, siempre adaptadas a sus capacidades y personalidades.",
+          "En Huellas y Sueños sabemos que la rutina es importante, pero también creemos en crear momentos especiales. Por eso, organizamos regularmente \"Días de Aventura\" donde nuestros huéspedes disfrutan de actividades extraordinarias, siempre adaptadas a sus capacidades y personalidades.",
           "Estos días comienzan con la misma rutina matutina para mantener la estabilidad que las mascotas necesitan, pero desde el desayuno se respira un ambiente diferente. El personal usa distintivos especiales y hay una energía contagiosa que hasta los animales más tímidos perciben."
         ],
         image: "https://images.unsplash.com/photo-1439886183900-e79ec0057170",
