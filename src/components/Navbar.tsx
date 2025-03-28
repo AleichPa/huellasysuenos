@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { PawPrint, Menu, X, Heart, Cat, Dog, ShoppingBag } from "lucide-react";
+import { PawPrint, Menu, X, Heart, Cat, Dog, ShoppingBag, BookOpen } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ShoppingCart from "@/components/ShoppingCart";
@@ -67,6 +67,11 @@ const Navbar = () => {
             <PawPrint size={14} className="text-hotel-orange opacity-0 group-hover:opacity-100 transition-opacity" />
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-hotel-purple group-hover:w-full transition-all duration-300"></span>
           </Link>
+          <Link to="/blog" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors relative group py-2 flex items-center gap-1">
+            <span>Blog</span>
+            <BookOpen size={14} className="text-hotel-orange opacity-0 group-hover:opacity-100 transition-opacity" />
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-hotel-purple group-hover:w-full transition-all duration-300"></span>
+          </Link>
           <Link to="/contacto" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors relative group py-2 flex items-center gap-1">
             <span>Contacto</span>
             <PawPrint size={14} className="text-hotel-orange opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -108,6 +113,10 @@ const Navbar = () => {
             <Link to="/testimonios" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2 border-b border-gray-100 flex items-center gap-2">
               <PawPrint size={16} className="text-hotel-soft-lavender" />
               <span>Testimonios</span>
+            </Link>
+            <Link to="/blog" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2 border-b border-gray-100 flex items-center gap-2">
+              <BookOpen size={16} className="text-hotel-orange" />
+              <span>Blog</span>
             </Link>
             <Link to="/contacto" className="font-medium text-gray-700 hover:text-hotel-purple transition-colors py-2 border-b border-gray-100 flex items-center gap-2">
               <PawPrint size={16} className="text-hotel-pastel-yellow" />
