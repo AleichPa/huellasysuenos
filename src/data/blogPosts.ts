@@ -38,7 +38,7 @@ export const blogPosts: BlogPost[] = [
           "El día en Huellas y Sueños comienza temprano. A las 6:30 de la mañana, nuestro equipo ya está listo para recibir a las mascotas que despiertan con energía. Los primeros rayos del sol iluminan las habitaciones a través de amplios ventanales, diseñados específicamente para que nuestros huéspedes disfruten de la luz natural.",
           "Cada mascota tiene su propio ritmo, por lo que respetamos sus hábitos de sueño. Algunos perros madrugan y esperan ansiosos el primer paseo del día, mientras que muchos gatos prefieren estirarse lentamente y observar el movimiento desde la comodidad de sus espacios elevados."
         ],
-        image: "https://images.unsplash.com/photo-1452960962994-acf4fd70b632",
+        image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2Fd97d015a-f302-4637-8eb9-1580b4db8a77.png&s=1024",
         imageAlt: "Mascotas despertando en el hotel",
         imageCaption: "Los primeros rayos de sol iluminan nuestras instalaciones"
       },
@@ -56,9 +56,6 @@ export const blogPosts: BlogPost[] = [
           "Para los gatos, disponemos de espacios de escalada, juguetes interactivos y tiempo de exploración en zonas seguras. Los roedores y pequeñas mascotas tienen sus momentos de salida en áreas controladas donde pueden ejercitarse y explorar nuevos entornos.",
           "Nuestros especialistas en comportamiento animal supervisan todas las actividades, asegurando que cada mascota se sienta cómoda y disfrute según su personalidad y necesidades."
         ],
-        image: "https://images.unsplash.com/photo-1501286353178-1ec871214838",
-        imageAlt: "Tiempo de juego con las mascotas",
-        imageCaption: "Nuestros huéspedes disfrutan de juegos supervisados por profesionales"
       },
       {
         heading: "La siesta y tiempo de tranquilidad",
@@ -80,9 +77,6 @@ export const blogPosts: BlogPost[] = [
           "A medida que cae la tarde, comenzamos a preparar todo para la cena y el descanso nocturno. La cena se sirve siguiendo los mismos principios personalizados que el desayuno y el almuerzo. Cada mascota tiene su momento específico para comer tranquilamente.",
           "Después de la cena, los perros disfrutan de un último paseo del día. Las luces comienzan a atenuarse gradualmente y la música cambia a tonos más suaves. Preparamos cada habitación con las comodidades que cada mascota necesita para pasar una noche tranquila: mantas favoritas, juguetes reconfortantes y, en algunos casos, prendas con el olor de sus dueños."
         ],
-        image: "https://images.unsplash.com/photo-1469041797191-50ace28483c3",
-        imageAlt: "Mascotas preparándose para dormir",
-        imageCaption: "La hora de dormir es un momento especial en nuestro hotel"
       },
       {
         heading: "La noche: seguridad y tranquilidad",
@@ -101,7 +95,7 @@ export const blogPosts: BlogPost[] = [
     author: "Carlos Mendoza",
     date: "28 de junio 2023",
     category: "Actividades",
-    coverImage: "https://images.unsplash.com/photo-1441057206919-63d19fac2369",
+    coverImage: "https://media.istockphoto.com/id/1252455620/es/foto/golden-retriever-dog.jpg?s=612x612&w=0&k=20&c=3EXj38x_IPSOuBHMNp9Wgn6jmS_yr0sFPFwVrSlN30A=",
     excerpt: "¡Acompáñanos en un recorrido por las emocionantes actividades y aventuras que viven nuestros huéspedes peludos en un día especial! Desde juegos en grupo hasta excursiones supervisadas, descubre cómo hacemos que la estancia de cada mascota sea una experiencia inolvidable.",
     readingTime: 7,
     content: [
@@ -128,9 +122,6 @@ export const blogPosts: BlogPost[] = [
           "Durante los meses cálidos, nuestra piscina para perros se convierte en el centro de atención. Diseñada específicamente para uso canino, cuenta con diferentes profundidades y rampas de acceso para que todos puedan disfrutar según su nivel de comodidad con el agua.",
           "Para las razas que naturalmente disfrutan del agua, organizamos juegos de recuperación y actividades que aprovechan este elemento. Siempre bajo la supervisión de nuestros especialistas certificados en natación canina, estas sesiones son tan divertidas como beneficiosas para la salud de nuestros huéspedes."
         ],
-        image: "https://images.unsplash.com/photo-1465379944081-7f47de8d74ac",
-        imageAlt: "Perros disfrutando de juegos acuáticos",
-        imageCaption: "Nuestras actividades acuáticas son supervisadas por especialistas"
       },
       {
         heading: "Excursiones y paseos temáticos",
@@ -152,9 +143,6 @@ export const blogPosts: BlogPost[] = [
           "¿Qué sería de un día especial sin recuerdos para compartir con los dueños? Durante estos días, nuestro fotógrafo especializado en mascotas captura momentos únicos que luego compartimos con las familias. Estas imágenes profesionales se convierten en un recuerdo invaluable y una forma de mantener a los propietarios conectados con sus mascotas durante la separación.",
           "Además, para las mascotas que lo disfrutan, organizamos pequeñas sesiones temáticas con accesorios seguros y divertidos que realzan su personalidad. Siempre respetando el temperamento de cada animal y sin forzar situaciones que puedan causarles estrés."
         ],
-        image: "https://images.unsplash.com/photo-1452378174528-3090a4bba7b2",
-        imageAlt: "Sesión de fotos con mascotas",
-        imageCaption: "Nuestro fotógrafo captura momentos inolvidables para compartir con las familias"
       },
       {
         heading: "Meriendas especiales y treats caseros",
