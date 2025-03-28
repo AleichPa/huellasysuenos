@@ -1,4 +1,3 @@
-
 import { Product } from '@/types/product';
 
 export const products: Product[] = [
@@ -450,34 +449,4 @@ export const products: Product[] = [
     price: 11.99,
     description: "Juguete masticable fabricado con nylon de alta calidad. Diseñado para los masticadores más intensos, este juguete resiste incluso a los perros más destructivos. Con textura que ayuda a la limpieza dental.",
     image: "https://m.media-amazon.com/images/I/61uTgpiLnZL._AC_SL1500_.jpg",
-    category: "juguetes",
-    stock: 18
-  },
-  {
-    id: "51",
-    name: "Cuerda de Juego Resistente",
-    price: 8.99,
-    description: "Cuerda trenzada de algodón resistente para juegos de tira y afloja. Ideal para fortalecer los dientes y encías mientras tu perro se divierte. Con múltiples nudos para un mejor agarre.",
-    image: "https://m.media-amazon.com/images/I/71xbzwNnlXL._AC_SL1500_.jpg",
-    category: "juguetes",
-    stock: 22
-  },
-  {
-    id: "52",
-    name: "Rascador de Sisal para Gatos",
-    price: 15.99,
-    description: "Rascador vertical de sisal natural, material ideal para que los gatos afilen sus uñas de forma segura. Ayuda a prevenir daños en muebles y estimula el estiramiento natural.",
-    image: "https://m.media-amazon.com/images/I/61eS5p+O3SL._AC_SL1500_.jpg",
-    category: "juguetes",
-    stock: 14
-  },
-  {
-    id: "53",
-    name: "Planta Artificial de Seda para Terrarios",
-    price: 9.25,
-    description: "Planta artificial de seda ideal para decorar terrarios y acuarios. Crea un ambiente natural y seguro para reptiles, anfibios y peces. Fácil de limpiar y resistente al agua.",
-    image: "https://m.media-amazon.com/images/I/71unrsV+plL._AC_SL1500_.jpg",
-    category: "juguetes",
-    stock: 18
-  }
-];
+    category: "juguetes
