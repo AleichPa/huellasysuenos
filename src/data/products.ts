@@ -1,4 +1,3 @@
-
 import { Product } from '@/types/product';
 
 export const products: Product[] = [
@@ -382,33 +381,6 @@ export const products: Product[] = [
     stock: 10
   },
   {
-    id: "43",
-    name: "Pelota de Caucho Natural para Perros",
-    price: 9.95,
-    description: "Pelota resistente hecha de caucho 100% natural y sostenible. Ideal para perros con mucha energía o masticadores intensos. Su diseño rebotante proporciona horas de diversión y ejercicio.",
-    image: "https://m.media-amazon.com/images/I/71pFPC9WQIL._AC_SL1500_.jpg",
-    category: "juguetes",
-    stock: 25
-  },
-  {
-    id: "44",
-    name: "Pelota de Caucho Natural para Gatos",
-    price: 6.50,
-    description: "Pelota suave de caucho natural con cascabel interior. Perfecta para gatos activos que disfrutan persiguiendo objetos. Su textura agradable y sonido estimulan el instinto cazador de forma natural.",
-    image: "https://www.tiendanimal.es/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dw1e49ee53/images/juguete_gato_pelota_colores_240811_M.jpg?sw=780&sh=780&sm=fit&q=85",
-    category: "juguetes",
-    stock: 30
-  },
-  {
-    id: "45",
-    name: "Pelota de Ejercicio para Pequeños Roedores",
-    price: 4.95,
-    description: "Pelota de ejercicio segura para hámsters, jerbos y otros pequeños roedores. Permite que tu mascota haga ejercicio rodando mientras explora el entorno de forma segura.",
-    image: "https://www.kiwoko.com/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dw0bcd1654/images/accesorios_roedores_savic_bola_de_ejercicio_rolly_giant_SAV0191.jpg?sw=780&sh=780&sm=fit&q=85",
-    category: "juguetes",
-    stock: 15
-  },
-  {
     id: "46",
     name: "Hueso de Golosinas Sabor Pollo",
     price: 3.75,
@@ -449,7 +421,7 @@ export const products: Product[] = [
     name: "Juguete Masticable de Nylon Ultra Resistente",
     price: 11.99,
     description: "Juguete masticable fabricado con nylon de alta calidad. Diseñado para los masticadores más intensos, este juguete resiste incluso a los perros más destructivos. Con textura que ayuda a la limpieza dental.",
-    image: "https://m.media-amazon.com/images/I/61uTgpiLnZL._AC_SL1500_.jpg",
+    image: "https://img.kwcdn.com/product/fancy/2551cffa-f5f0-4216-991b-7a42a1564f5f.jpg?imageView2/2/w/800/q/70/format/webp",
     category: "juguetes",
     stock: 18
   },
@@ -458,7 +430,7 @@ export const products: Product[] = [
     name: "Pelota con Sonido para Perros",
     price: 7.50,
     description: "Pelota de goma resistente con sonido que estimula el juego. Perfecta para lanzar y recuperar, proporcionando horas de diversión y ejercicio para tu perro.",
-    image: "placeholder-image.jpg",
+    image: "https://img.kwcdn.com/product/fancy/0ba9a1cd-2374-40de-a148-1e7349d10f83.jpg?imageView2/2/w/800/q/70/format/webp",
     category: "juguetes",
     stock: 25
   },
@@ -467,7 +439,7 @@ export const products: Product[] = [
     name: "Ratón Electrónico para Gatos",
     price: 12.99,
     description: "Juguete electrónico con forma de ratón que se mueve de manera impredecible, estimulando el instinto cazador de tu gato. Con batería recargable y función de apagado automático.",
-    image: "placeholder-image.jpg",
+    image: "https://media.zooplus.com/bilder/9/800/67334_katzenspielzeug_wild_mouse_mit_sound_und_led_fg_2719_9.jpg",
     category: "juguetes",
     stock: 15
   },
@@ -476,26 +448,8 @@ export const products: Product[] = [
     name: "Túnel Plegable para Gatos",
     price: 14.50,
     description: "Túnel de juego plegable con múltiples entradas. Proporciona un escondite perfecto y estimula el ejercicio de tu gato. Fácil de guardar cuando no está en uso.",
-    image: "placeholder-image.jpg",
+    image: "https://ae-pic-a1.aliexpress-media.com/kf/S16162ed65c0a4e52bd26c6b477d26cb2g.jpg_960x960q75.jpg_.avif",
     category: "juguetes",
     stock: 10
   },
   {
-    id: "54",
-    name: "Frisbee Flotante para Perros",
-    price: 8.99,
-    description: "Frisbee de goma suave y resistente que flota en el agua. Ideal para juegos de recuperación en tierra o agua. Diseño ergonómico que no daña los dientes ni encías.",
-    image: "placeholder-image.jpg",
-    category: "juguetes",
-    stock: 20
-  },
-  {
-    id: "55",
-    name: "Columpio para Pájaros",
-    price: 6.75,
-    description: "Columpio de madera natural para jaulas de pájaros. Proporciona entretenimiento y ejercicio, estimulando el comportamiento natural de balanceo en aves domésticas.",
-    image: "placeholder-image.jpg",
-    category: "juguetes",
-    stock: 18
-  },
-];
