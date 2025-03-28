@@ -498,40 +498,4 @@ export const products: Product[] = [
     category: "juguetes",
     stock: 18
   },
-  {
-    id: "56",
-    name: "Rueda de Ejercicio para Hámsters",
-    price: 9.25,
-    description: "Rueda silenciosa de ejercicio para hámsters y pequeños roedores. Con superficie antideslizante y diseño cerrado que previene accidentes. Mantiene a tu mascota activa y saludable.",
-    image: "placeholder-image.jpg",
-    category: "juguetes",
-    stock: 12
-  },
-  {
-    id: "57",
-    name: "Escondite de Madera para Conejos",
-    price: 15.99,
-    description: "Casa de madera natural para conejos y pequeños mamíferos. Sirve como refugio y juguete para masticar, satisfaciendo el instinto natural de roer y esconderse.",
-    image: "placeholder-image.jpg",
-    category: "juguetes",
-    stock: 8
-  },
-  {
-    id: "58",
-    name: "Juguete Dispensador de Golosinas",
-    price: 10.50,
-    description: "Juguete interactivo que dispensa golosinas mientras tu mascota juega. Estimula la mente y proporciona ejercicio, combatiendo el aburrimiento y la ansiedad por separación.",
-    image: "placeholder-image.jpg",
-    category: "juguetes",
-    stock: 15
-  },
-  {
-    id: "59",
-    name: "Ramas de Corcho para Reptiles",
-    price: 12.75,
-    description: "Conjunto de ramas de corcho natural para terrarios. Ideales para que reptiles y anfibios trepen, se escondan y exploren. Resistentes a la humedad y fáciles de limpiar.",
-    image: "placeholder-image.jpg",
-    category: "juguetes",
-    stock: 10
-  }
 ];
