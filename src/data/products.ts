@@ -1,3 +1,4 @@
+
 import { Product } from '@/types/product';
 
 export const products: Product[] = [
@@ -449,4 +450,88 @@ export const products: Product[] = [
     price: 11.99,
     description: "Juguete masticable fabricado con nylon de alta calidad. Diseñado para los masticadores más intensos, este juguete resiste incluso a los perros más destructivos. Con textura que ayuda a la limpieza dental.",
     image: "https://m.media-amazon.com/images/I/61uTgpiLnZL._AC_SL1500_.jpg",
-    category: "juguetes
+    category: "juguetes",
+    stock: 18
+  },
+  {
+    id: "51",
+    name: "Pelota con Sonido para Perros",
+    price: 7.50,
+    description: "Pelota de goma resistente con sonido que estimula el juego. Perfecta para lanzar y recuperar, proporcionando horas de diversión y ejercicio para tu perro.",
+    image: "placeholder-image.jpg",
+    category: "juguetes",
+    stock: 25
+  },
+  {
+    id: "52",
+    name: "Ratón Electrónico para Gatos",
+    price: 12.99,
+    description: "Juguete electrónico con forma de ratón que se mueve de manera impredecible, estimulando el instinto cazador de tu gato. Con batería recargable y función de apagado automático.",
+    image: "placeholder-image.jpg",
+    category: "juguetes",
+    stock: 15
+  },
+  {
+    id: "53",
+    name: "Túnel Plegable para Gatos",
+    price: 14.50,
+    description: "Túnel de juego plegable con múltiples entradas. Proporciona un escondite perfecto y estimula el ejercicio de tu gato. Fácil de guardar cuando no está en uso.",
+    image: "placeholder-image.jpg",
+    category: "juguetes",
+    stock: 10
+  },
+  {
+    id: "54",
+    name: "Frisbee Flotante para Perros",
+    price: 8.99,
+    description: "Frisbee de goma suave y resistente que flota en el agua. Ideal para juegos de recuperación en tierra o agua. Diseño ergonómico que no daña los dientes ni encías.",
+    image: "placeholder-image.jpg",
+    category: "juguetes",
+    stock: 20
+  },
+  {
+    id: "55",
+    name: "Columpio para Pájaros",
+    price: 6.75,
+    description: "Columpio de madera natural para jaulas de pájaros. Proporciona entretenimiento y ejercicio, estimulando el comportamiento natural de balanceo en aves domésticas.",
+    image: "placeholder-image.jpg",
+    category: "juguetes",
+    stock: 18
+  },
+  {
+    id: "56",
+    name: "Rueda de Ejercicio para Hámsters",
+    price: 9.25,
+    description: "Rueda silenciosa de ejercicio para hámsters y pequeños roedores. Con superficie antideslizante y diseño cerrado que previene accidentes. Mantiene a tu mascota activa y saludable.",
+    image: "placeholder-image.jpg",
+    category: "juguetes",
+    stock: 12
+  },
+  {
+    id: "57",
+    name: "Escondite de Madera para Conejos",
+    price: 15.99,
+    description: "Casa de madera natural para conejos y pequeños mamíferos. Sirve como refugio y juguete para masticar, satisfaciendo el instinto natural de roer y esconderse.",
+    image: "placeholder-image.jpg",
+    category: "juguetes",
+    stock: 8
+  },
+  {
+    id: "58",
+    name: "Juguete Dispensador de Golosinas",
+    price: 10.50,
+    description: "Juguete interactivo que dispensa golosinas mientras tu mascota juega. Estimula la mente y proporciona ejercicio, combatiendo el aburrimiento y la ansiedad por separación.",
+    image: "placeholder-image.jpg",
+    category: "juguetes",
+    stock: 15
+  },
+  {
+    id: "59",
+    name: "Ramas de Corcho para Reptiles",
+    price: 12.75,
+    description: "Conjunto de ramas de corcho natural para terrarios. Ideales para que reptiles y anfibios trepen, se escondan y exploren. Resistentes a la humedad y fáciles de limpiar.",
+    image: "placeholder-image.jpg",
+    category: "juguetes",
+    stock: 10
+  }
+];
