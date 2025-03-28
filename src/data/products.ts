@@ -379,5 +379,74 @@ export const products: Product[] = [
     image: "https://m.media-amazon.com/images/I/61JZiyfH7YL._AC_SL1500_.jpg",
     category: "antiparasitarios",
     stock: 10
-  }
-];
+  },
+  {
+    id: "43",
+    name: "Pelota de Caucho Natural para Perros",
+    price: 9.95,
+    description: "Pelota resistente hecha de caucho 100% natural y sostenible. Ideal para perros con mucha energía o masticadores intensos. Su diseño rebotante proporciona horas de diversión y ejercicio.",
+    image: "https://m.media-amazon.com/images/I/71pFPC9WQIL._AC_SL1500_.jpg",
+    category: "juguetes",
+    stock: 25
+  },
+  {
+    id: "44",
+    name: "Pelota de Caucho Natural para Gatos",
+    price: 6.50,
+    description: "Pelota suave de caucho natural con cascabel interior. Perfecta para gatos activos que disfrutan persiguiendo objetos. Su textura agradable y sonido estimulan el instinto cazador de forma natural.",
+    image: "https://www.tiendanimal.es/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dw1e49ee53/images/juguete_gato_pelota_colores_240811_M.jpg?sw=780&sh=780&sm=fit&q=85",
+    category: "juguetes",
+    stock: 30
+  },
+  {
+    id: "45",
+    name: "Pelota de Ejercicio para Pequeños Roedores",
+    price: 4.95,
+    description: "Pelota de ejercicio segura para hámsters, jerbos y otros pequeños roedores. Permite que tu mascota haga ejercicio rodando mientras explora el entorno de forma segura.",
+    image: "https://www.kiwoko.com/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dw0bcd1654/images/accesorios_roedores_savic_bola_de_ejercicio_rolly_giant_SAV0191.jpg?sw=780&sh=780&sm=fit&q=85",
+    category: "juguetes",
+    stock: 15
+  },
+  {
+    id: "46",
+    name: "Hueso de Golosinas Sabor Pollo",
+    price: 3.75,
+    description: "Hueso masticable hecho con ingredientes naturales y sabor a pollo. Una deliciosa recompensa que además ayuda a mantener la higiene dental de tu perro. Para razas pequeñas y medianas.",
+    image: "https://www.kiwoko.com/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dwcd473cb4/images/snacks_perros_trixie_huesos_denta_fun_TRI31774.jpg?sw=780&sh=780&sm=fit&q=85",
+    category: "snacks",
+    stock: 40
+  },
+  {
+    id: "47",
+    name: "Hueso de Golosinas XXL para Razas Grandes",
+    price: 5.50,
+    description: "Hueso de golosinas de tamaño extra grande para perros de razas grandes. Con sabor a carne de vacuno y fórmula especial que promueve la masticación prolongada y saludable.",
+    image: "https://www.kiwoko.com/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dw0a6342a1/images/snacks_perros_arquizoo_hueso_blanco_8_pulgadas_ARQTE012.jpg?sw=780&sh=780&sm=fit&q=85",
+    category: "snacks",
+    stock: 22
+  },
+  {
+    id: "48",
+    name: "Hueso Dental Antibacteriano",
+    price: 7.25,
+    description: "Hueso dental con fórmula antibacteriana para una limpieza profunda. Ayuda a eliminar el sarro y la placa dental mientras tu perro disfruta masticando. Con forma ergonómica para alcanzar todas las zonas de la boca.",
+    image: "https://www.kiwoko.com/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dwd78d14ee/images/hueso_dental_perros_nylabone_NYLNTE202.jpg?sw=780&sh=780&sm=fit&q=85",
+    category: "higiene-dental",
+    stock: 18
+  },
+  {
+    id: "49",
+    name: "Hueso Dental para Cachorros",
+    price: 5.95,
+    description: "Hueso dental especialmente diseñado para cachorros en etapa de dentición. Con textura suave que alivia las encías y limpia los dientes emergentes. Sabor a pollo que encantará a tu cachorro.",
+    image: "https://www.kiwoko.com/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sites-kiwoko-master-catalog/default/dw1bea8a17/images/hueso_dental_cachorros_nylabone_puppy_NYLNTE203.jpg?sw=780&sh=780&sm=fit&q=85",
+    category: "higiene-dental",
+    stock: 15
+  },
+  {
+    id: "50",
+    name: "Juguete Masticable de Nylon Ultra Resistente",
+    price: 11.99,
+    description: "Juguete masticable fabricado con nylon de alta calidad. Diseñado para los masticadores más intensos, este juguete resiste incluso a los perros más destructivos. Con textura que ayuda a la limpieza dental.",
+    image: "https://m.media-amazon.com/images/I/61uTgpiLnZL._AC_SL1500_.jpg",
+    category: "
