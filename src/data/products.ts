@@ -12,13 +12,13 @@ export const products: Product[] = [
     stock: 15
   },
   {
-    id: "1",
+    id: "150",
     name: "Paté natural Huellas y Sueños",
     price: 14.99,
     description: "Comida natural de alta calidad para perros y gatos. Elaborada con ingredientes frescos, sin conservantes ni aditivos artificiales. Ideal para mascotas con alergias o problemas digestivos.",
     image: "https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-2678-61f7-befc-9dfcd4a65703/raw?se=2025-04-20T14%3A33%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=19287b3b-c41f-5a56-a303-eab39d3a8727&skoid=ae70be19-8043-4428-a990-27c58b478304&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-19T18%3A25%3A21Z&ske=2025-04-20T18%3A25%3A21Z&sks=b&skv=2024-08-04&sig=sH0B0tF9pYBrGo2JTw7P2gqJVic%2BI4BJ1m8FPcHIGmo%3D",
     category: "alimentacion",
-    stock: 150
+    stock: 15
   },
   {
     id: "2",
