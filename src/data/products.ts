@@ -7,7 +7,7 @@ export const products: Product[] = [
     name: "Pienso natural Huellas y Sueños",
     price: 24.99,
     description: "Comida natural de alta calidad para perros y gatos. Elaborada con ingredientes frescos, sin conservantes ni aditivos artificiales. Ideal para mascotas con alergias o problemas digestivos.",
-    image: "https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-e308-61f7-bbce-bd706b3084d8/raw?se=2025-04-20T14%3A33%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=22a566a5-55cf-53b4-863a-481068b15537&skoid=ae70be19-8043-4428-a990-27c58b478304&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-19T18%3A26%3A35Z&ske=2025-04-20T18%3A26%3A35Z&sks=b&skv=2024-08-04&sig=58RDqAclpDF7RPQOGCzRbqPnLVqUzEeZ47EF0ZgmREI%3D",
+    image: "public/PATÉ.png",
     category: "alimentacion",
     stock: 15
   },
@@ -16,7 +16,7 @@ export const products: Product[] = [
     name: "Paté natural Huellas y Sueños",
     price: 14.99,
     description: "Comida natural de alta calidad para perros y gatos. Elaborada con ingredientes frescos, sin conservantes ni aditivos artificiales. Ideal para mascotas con alergias o problemas digestivos.",
-    image: "https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-2678-61f7-befc-9dfcd4a65703/raw?se=2025-04-20T14%3A33%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=19287b3b-c41f-5a56-a303-eab39d3a8727&skoid=ae70be19-8043-4428-a990-27c58b478304&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-19T18%3A25%3A21Z&ske=2025-04-20T18%3A25%3A21Z&sks=b&skv=2024-08-04&sig=sH0B0tF9pYBrGo2JTw7P2gqJVic%2BI4BJ1m8FPcHIGmo%3D",
+    image: "public/PIENSO.png",
     category: "alimentacion",
     stock: 15
   },
