@@ -383,10 +383,10 @@ export const products: Product[] = [
   },
   {
     id: "42",
-    name: "https://static.miscota.com/media/1/photos/products/512925/00082380-6571ec3f6787d_g.png",
+    name: "Desparasitario para aves",
     price: 14.99,
     description: "Gotas concentradas para añadir al agua de bebida de aves ornamentales. Tratamiento preventivo contra parásitos internos común en canarios, periquitos y otras aves.",
-    image: "https://m.media-amazon.com/images/I/61JZiyfH7YL._AC_SL1500_.jpg",
+    image: "https://static.miscota.com/media/1/photos/products/512925/00082380-6571ec3f6787d_g.png",
     category: "antiparasitarios",
     stock: 10
   },
