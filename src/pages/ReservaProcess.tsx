@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -16,7 +15,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import { generatePDF } from "@/utils/pdfGenerator";
+import { generateInvoicePDF } from "@/utils/pdfGenerator";
 
 const ReservaProcess = () => {
   const { toast } = useToast();
@@ -144,7 +143,7 @@ const ReservaProcess = () => {
       .filter(service => formData.additionalServices.includes(service.id))
       .map(service => ({ name: service.name, price: service.price }));
       
-    generatePDF({
+    generateInvoicePDF({
       reservaId,
       petInfo: {
         name: formData.petName,
@@ -176,7 +175,7 @@ const ReservaProcess = () => {
     if (formData.startDate && formData.endDate) {
       const start = new Date(formData.startDate);
       const end = new Date(formData.endDate);
-      days = Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60 * 24)));
+      days = Math.max(1, Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)));
     }
     
     // Precio base de habitación
