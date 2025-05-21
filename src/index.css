@@ -130,6 +130,11 @@
   .card-cute {
     @apply rounded-3xl border-none shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden;
   }
+  
+  /* Estilos específicos para corregir problemas con botones y separaciones */
+  .products-button {
+    @apply inline-block mx-auto bg-gradient-to-r from-hotel-olive to-hotel-dark-olive hover:from-hotel-dark-olive hover:to-hotel-olive text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 px-6 py-3;
+  }
 }
 
 @keyframes floating {

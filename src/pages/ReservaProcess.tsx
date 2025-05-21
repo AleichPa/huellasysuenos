@@ -1,734 +1,773 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { format } from "date-fns";
-import { es } from "date-fns/locale";
-import { CalendarIcon, ArrowLeft, ArrowRight, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { toast } from "@/hooks/use-toast";
+
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { CalendarIcon, Loader2, ArrowRight, PawPrint, Heart } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import {
-  RadioGroup,
-  RadioGroupItem
-} from "@/components/ui/radio-group";
-import { SEASONS, generateSeasonDates, getSeason, SeasonType, formatPercentage } from "@/utils/seasonData";
-
-const rooms = [
-  {
-    id: "perros-pequenos-standard",
-    title: "Standard para perros pequeños",
-    description: "Espacio acogedor para perros pequeños con cama suave, juguetes seguros y zonas de alimentación. Supervisión constante y entorno tranquilo para que tu mascota disfrute de una estancia feliz y relajada.",
-    image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2Fff5e2471-4c08-4816-9a61-7970184abbd0.png",
-    price: 40,
-    features: ["Camita suave y calentita", "Platos coloridos", "Juguetes divertidos", "Limpieza diaria con productos eco"]
-  },
-  {
-    id: "perros-grandes-standard",
-    title: "Standard para perros grandes",
-    description: "Habitación amplia para perros grandes con cama firme y acolchada, juguetes resistentes y espacios designados para alimentación. Diseñada para garantizar movilidad y comodidad a tus amigos de mayor tamaño.",
-    image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2F8c1a75e7-aba5-4947-8eea-5926c299343c.png",
-    price: 50,
-    features: ["Cama ortopédica extra suave", "Zona de juegos con túneles", "Galletas y premios caseros", "Paseos extra largos", "TV con programas para mascotas"]
-  },
-  {
-    id: "gatos-standard",
-    title: "Standard para gatos",
-    description: "Espacio tranquilo para gatos con múltiples niveles para trepar, escondites acogedores y juguetes estimulantes. Incluye rascadores, camas suaves y ventanas para observar el exterior, perfecto para el descanso felino.",
-    image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2Fbd6ad9cc-dec0-46cd-9423-422b84cf49b4.png",
-    price: 30,
-    features: ["Rascadores de diferentes texturas", "Camas elevadas", "Juguetes interactivos", "Ventanas para observación", "Espacios para esconderse"]
-  },
-  {
-    id: "roedores-standard",
-    title: "Standard Roedores",
-    description: "Habitación diseñada para pequeños roedores con túneles, ruedas y juguetes para masticar. Ambiente controlado con temperatura ideal y materiales seguros que mantendrán a tu mascota activa y entretenida.",
-    image: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
-    price: 10,
-    features: ["Tubos y túneles", "Juguetes para roer", "Viruta premium", "Control de temperatura", "Ruedas de ejercicio"]
-  },
-  {
-    id: "reptiles-standard",
-    title: "Standard Reptiles",
-    description: "Espacio especializado para reptiles con control preciso de temperatura y humedad. Equipado con zonas de calor, lámparas UVB/UVA y escondites naturales que simulan su hábitat para una estancia óptima.",
-    image: "https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2Fcbf88461-64cf-4433-836b-5a388eb68d11.png",
-    price: 10,
-    features: ["Control preciso de temperatura", "Lámparas UVB/UVA", "Escondites naturales", "Fuentes de agua fresca", "Sustratos específicos"]
-  },
-  {
-    id: "aves-standard",
-    title: "Standard aves",
-    description: "Espacio luminoso y seguro para aves con perchas variadas, juguetes coloridos y música suave. Ofrecemos alimentación diversa y agua fresca diaria en un ambiente tranquilo diseñado para su bienestar.",
-    image: "https://images.unsplash.com/photo-1520808663317-647b476a81b9",
-    price: 8,
-    features: ["Perchas variadas", "Juguetes coloridos", "Música ambiental", "Alimentación variada", "Baño para aves"]
-  },
-  {
-    id: "peces-standard",
-    title: "Standard de peces",
-    description: "Alojamiento para peces con mantenimiento profesional del agua. Opción con pecera propia (5€) o peceras profesionales (10€). Incluye control de parámetros, filtración, iluminación adecuada y alimentación específica con monitoreo constante.",
-    image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5",
-    price: 5, // Base price, will be modified by tank option
-    features: ["Control de parámetros del agua", "Alimentación específica", "Monitoreo constante", "Opción con/sin pecera", "Estancia mínima 7 días con pecera propia"]
-  },
-  {
-    id: "suite-perros-pequenos",
-    title: "Suite para perros pequeños",
-    description: "Lujosa habitación para hasta 3 perros pequeños con camas individuales ultra suaves, zona de juegos, TV con programas caninos, snacks premium y paseos extendidos. Un espacio premium para consentir a tus mascotas.",
-    image: "https://images.unsplash.com/photo-1583512603806-077998240c7a",
-    price: 65, // Promedio entre 60-70€
-    features: ["Capacidad hasta 3 perros pequeños", "Camas individuales premium", "Zona de juegos privada", "Servicio de snacks gourmet", "Paseos personalizados"]
-  },
-  {
-    id: "suite-perros-grandes",
-    title: "Suite para perros grandes",
-    description: "Suite exclusiva para hasta 3 perros grandes con camas ortopédicas XL, zona de juegos privada, masajes relajantes, menú personalizado y paseos extendidos. El máximo lujo para consentir a tus grandes compañeros.",
-    image: "https://images.unsplash.com/photo-1541599540903-216a46ca1dc0",
-    price: 90, // Promedio entre 80-100€
-    features: ["Capacidad hasta 3 perros grandes", "Camas ortopédicas XL", "Zona de juegos exclusiva", "Servicio de masajes", "Menú gourmet personalizado", "Paseos VIP"]
-  },
-];
-
-const additionalServices = [
-  {
-    id: "paseo",
-    title: "Paseos diarios extra",
-    description: "Paseos adicionales para que tu mascota se ejercite",
-    price: 10,
-  },
-  {
-    id: "baño",
-    title: "Baño y peluquería",
-    description: "Servicio completo de baño y peluquería al final de la estancia",
-    price: 15,
-  },
-  {
-    id: "training",
-    title: "Sesión de entrenamiento",
-    description: "Sesiones de entrenamiento básico con nuestros especialistas",
-    price: 20,
-  },
-  {
-    id: "premium-food",
-    title: "Alimentación premium",
-    description: "Menú especial con alimentos de primera calidad",
-    price: 8,
-  },
-];
+import { useToast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
+import { generatePDF } from "@/utils/pdfGenerator";
 
 const ReservaProcess = () => {
+  const { toast } = useToast();
+  const location = useLocation();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const preselectedRoomId = searchParams.get("room");
+  const queryParams = new URLSearchParams(location.search);
+  const selectedRoom = queryParams.get("room") || "";
   
-  // Estados para los pasos del proceso
-  const [currentStep, setCurrentStep] = useState(1);
-  const [selectedRoom, setSelectedRoom] = useState<string | null>(
-    preselectedRoomId ? preselectedRoomId.toLowerCase() : null
-  );
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [checkIn, setCheckIn] = useState<Date | undefined>(undefined);
-  const [checkOut, setCheckOut] = useState<Date | undefined>(undefined);
-  const [petName, setPetName] = useState("");
-  const [petType, setPetType] = useState("");
-  const [ownerName, setOwnerName] = useState("");
-  const [ownerEmail, setOwnerEmail] = useState("");
-  const [ownerPhone, setOwnerPhone] = useState("");
-  const [ownTank, setOwnTank] = useState<"yes" | "no">("no");
-
-  // Cálculo de costos
-  const getSelectedRoom = () => rooms.find(room => room.id === selectedRoom);
-  
-  const getRoomPrice = () => {
-    const room = getSelectedRoom();
-    if (!room) return 0;
-    
-    // Special case for fish room
-    if (room.id === "peces-standard") {
-      return ownTank === "yes" ? 5 : 10;
-    }
-    
-    return room.price;
-  };
-  
-  const roomPrice = getRoomPrice();
-  
-  const getServicesPrice = () => {
-    return selectedServices.reduce((total, serviceId) => {
-      const service = additionalServices.find(s => s.id === serviceId);
-      return total + (service?.price || 0);
-    }, 0);
-  };
-  
-  const calculateNights = () => {
-    if (!checkIn || !checkOut) return 0;
-    const diffTime = Math.abs(checkOut.getTime() - checkIn.getTime());
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  };
-  
-  // Calculate price with season adjustments
-  const calculateTotalPrice = () => {
-    if (!checkIn || !checkOut) return 0;
-    
-    const nights = calculateNights();
-    if (nights <= 0) return 0;
-    
-    let totalPrice = 0;
-    const baseNightPrice = roomPrice + getServicesPrice();
-    
-    // Iterate through each night to apply correct seasonal rates
-    const currentDate = new Date(checkIn);
-    for (let i = 0; i < nights; i++) {
-      // Clone the date to avoid modifying the original
-      const nightDate = new Date(currentDate);
-      nightDate.setDate(nightDate.getDate() + i);
-      
-      // Get the season for this specific date
-      const season = getSeason(nightDate);
-      const priceMultiplier = SEASONS[season].priceMultiplier;
-      
-      // Add price for this night with seasonal adjustment
-      totalPrice += baseNightPrice * priceMultiplier;
-    }
-    
-    return Math.round(totalPrice);
-  };
-  
-  const totalPrice = calculateTotalPrice();
-
-  // Generate season dates for calendar display
-  const [seasonData, setSeasonData] = useState({
-    low: [] as Date[],
-    medium: [] as Date[],
-    high: [] as Date[]
+  // Estado para el formulario
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    petName: "",
+    petType: "",
+    petBreed: "",
+    petAge: "",
+    ownerName: "",
+    ownerEmail: "",
+    ownerPhone: "",
+    startDate: null,
+    endDate: null,
+    additionalServices: [],
+    specialRequirements: "",
+    room: selectedRoom
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [reservaCompleta, setReservaCompleta] = useState(false);
+  const [reservaId, setReservaId] = useState("");
 
-  const [showSeasonInfo, setShowSeasonInfo] = useState(false);
+  // Opciones para selects
+  const petTypes = [
+    { value: "perro", label: "Perro" },
+    { value: "gato", label: "Gato" },
+    { value: "ave", label: "Ave" },
+    { value: "roedor", label: "Roedor pequeño" },
+    { value: "reptil", label: "Reptil" },
+    { value: "pez", label: "Pez" },
+    { value: "otro", label: "Otro" }
+  ];
 
-  useEffect(() => {
-    // Generate season data for the entire year
-    setSeasonData(generateSeasonDates());
-  }, []);
+  const additionalServices = [
+    { id: "grooming", name: "Peluquería y baño", price: 25 },
+    { id: "training", name: "Entrenamiento básico", price: 35 },
+    { id: "walks", name: "Paseos extra", price: 15 },
+    { id: "toys", name: "Pack de juguetes", price: 20 },
+    { id: "premium-food", name: "Alimentación premium", price: 30 },
+    { id: "photo", name: "Servicio fotográfico", price: 22 }
+  ];
 
-  // Validate if minimum stay for fish with own tank is met
-  const validateFishReservation = () => {
-    if (selectedRoom === "peces-standard" && ownTank === "yes") {
-      const nights = calculateNights();
-      if (nights < 7) {
-        toast({
-          title: "Estancia mínima requerida",
-          description: "Para la opción de peces con pecera propia, se requiere una estancia mínima de 7 días.",
-          variant: "destructive",
-        });
-        return false;
+  // Handlers
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleDateSelect = (field, date) => {
+    setFormData(prev => ({ ...prev, [field]: date }));
+  };
+
+  const handleServiceToggle = (serviceId) => {
+    setFormData(prev => {
+      const currentServices = [...prev.additionalServices];
+      if (currentServices.includes(serviceId)) {
+        return { ...prev, additionalServices: currentServices.filter(id => id !== serviceId) };
+      } else {
+        return { ...prev, additionalServices: [...currentServices, serviceId] };
       }
-    }
-    return true;
+    });
   };
 
-  // Manejadores de eventos
-  const handleSelectRoom = (roomId: string) => {
-    setSelectedRoom(roomId);
-    // Reset tank selection when changing rooms
-    if (roomId !== "peces-standard") {
-      setOwnTank("no");
-    }
-  };
-
-  const handleSelectService = (serviceId: string) => {
-    setSelectedServices(prev => 
-      prev.includes(serviceId) 
-        ? prev.filter(id => id !== serviceId) 
-        : [...prev, serviceId]
-    );
-  };
-
-  const handleNextStep = () => {
-    if (currentStep === 1 && !selectedRoom) {
-      toast({
-        title: "Error",
-        description: "Por favor selecciona una habitación",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (currentStep === 3) {
-      if (!checkIn || !checkOut) {
+  const handleNext = () => {
+    // Validación simple
+    if (step === 1) {
+      if (!formData.petName || !formData.petType) {
         toast({
-          title: "Error",
-          description: "Por favor selecciona las fechas de entrada y salida",
-          variant: "destructive",
+          title: "Completa todos los campos requeridos",
+          description: "Por favor, rellena todos los campos marcados como obligatorios.",
+          variant: "destructive"
         });
         return;
       }
-      
-      // Validate fish reservation with own tank
-      if (!validateFishReservation()) {
+    } else if (step === 2) {
+      if (!formData.ownerName || !formData.ownerEmail || !formData.ownerPhone) {
+        toast({
+          title: "Completa todos los campos requeridos",
+          description: "Por favor, rellena todos los campos marcados como obligatorios.",
+          variant: "destructive"
+        });
+        return;
+      }
+    } else if (step === 3) {
+      if (!formData.startDate || !formData.endDate) {
+        toast({
+          title: "Selecciona las fechas",
+          description: "Por favor, selecciona las fechas de entrada y salida.",
+          variant: "destructive"
+        });
         return;
       }
     }
-
-    if (currentStep === 4 && (!petName || !petType || !ownerName || !ownerEmail || !ownerPhone)) {
-      toast({
-        title: "Error",
-        description: "Por favor completa todos los campos del formulario",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (currentStep < 4) {
-      setCurrentStep(prev => prev + 1);
-    } else {
-      // Envío final del formulario
-      toast({
-        title: "¡Reserva recibida!",
-        description: "Nos pondremos en contacto contigo a la brevedad para confirmar tu reserva.",
-      });
-
-      // Simulamos un retraso y luego redirigimos a la página principal
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
-    }
+    
+    setStep(prev => Math.min(prev + 1, 4));
   };
 
-  const handlePrevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(prev => prev - 1);
-    } else {
-      navigate("/");
-    }
+  const handlePrevious = () => setStep(prev => Math.max(prev - 1, 1));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    // Simulación de envío a servidor
+    setTimeout(() => {
+      const reservationId = `RES-${Math.floor(Math.random() * 10000)}`;
+      setReservaId(reservationId);
+      setReservaCompleta(true);
+      setIsLoading(false);
+      toast({
+        title: "¡Reserva confirmada!",
+        description: `Tu reserva #${reservationId} ha sido confirmada. Recibirás un correo con los detalles.`,
+      });
+    }, 2000);
   };
 
-  const renderRoomSelection = () => (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-center mb-6">Selecciona una habitación</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {rooms.map((room) => (
-          <Card 
-            key={room.id} 
-            className={cn(
-              "overflow-hidden border cursor-pointer transition-all hover:shadow-lg",
-              selectedRoom === room.id ? "ring-2 ring-hotel-purple" : "hover:-translate-y-1"
-            )}
-            onClick={() => handleSelectRoom(room.id)}
-          >
-            <div className="relative h-40 overflow-hidden">
-              <img 
-                src={room.image} 
-                alt={room.title} 
-                className="w-full h-full object-cover"
-              />
-              {selectedRoom === room.id && (
-                <div className="absolute top-2 right-2 bg-hotel-purple text-white p-1 rounded-full">
-                  <Check size={16} />
-                </div>
-              )}
+  const handleGeneratePDF = () => {
+    const selectedServices = additionalServices
+      .filter(service => formData.additionalServices.includes(service.id))
+      .map(service => ({ name: service.name, price: service.price }));
+      
+    generatePDF({
+      reservaId,
+      petInfo: {
+        name: formData.petName,
+        type: formData.petType,
+        breed: formData.petBreed,
+        age: formData.petAge
+      },
+      ownerInfo: {
+        name: formData.ownerName,
+        email: formData.ownerEmail,
+        phone: formData.ownerPhone
+      },
+      dateInfo: {
+        startDate: formData.startDate ? format(formData.startDate, 'dd/MM/yyyy') : '',
+        endDate: formData.endDate ? format(formData.endDate, 'dd/MM/yyyy') : ''
+      },
+      roomInfo: formData.room,
+      services: selectedServices,
+      specialRequirements: formData.specialRequirements
+    });
+  };
+  
+  // Cálculo del precio
+  const calculatePrice = () => {
+    let total = 0;
+    let days = 0;
+    
+    // Calcular días
+    if (formData.startDate && formData.endDate) {
+      const start = new Date(formData.startDate);
+      const end = new Date(formData.endDate);
+      days = Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60 * 24)));
+    }
+    
+    // Precio base de habitación
+    const basePrice = formData.room.includes("Suite") ? 
+                      (formData.room.includes("grandes") ? 90 : 65) : 
+                      (formData.room.includes("grandes") ? 50 : 40);
+    
+    total += basePrice * days;
+    
+    // Servicios adicionales
+    formData.additionalServices.forEach(serviceId => {
+      const service = additionalServices.find(s => s.id === serviceId);
+      if (service) {
+        total += service.price;
+      }
+    });
+    
+    return { total, days, basePrice };
+  };
+  
+  // Renderizado condicional para los pasos
+  const renderStepContent = () => {
+    switch (step) {
+      case 1:
+        return (
+          <div className="space-y-6 bg-white p-8 rounded-xl shadow-md">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-display font-bold text-hotel-olive">Información de tu mascota</h2>
+              <p className="text-gray-600">Cuéntanos sobre tu peludo amigo para darle la mejor atención</p>
             </div>
-            <CardHeader>
-              <div className="flex justify-between items-center">
-                <CardTitle className="text-xl">{room.title}</CardTitle>
-                {room.id === "peces-standard" ? (
-                  <span className="text-hotel-purple font-bold">5€-10€/noche</span>
-                ) : (
-                  <span className="text-hotel-purple font-bold">${room.price}/noche</span>
-                )}
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="petName" className="text-hotel-olive">Nombre de la mascota <span className="text-red-500">*</span></Label>
+                <Input 
+                  id="petName" 
+                  name="petName" 
+                  value={formData.petName} 
+                  onChange={handleInputChange} 
+                  placeholder="Ej. Toby" 
+                  className="border-hotel-olive/30 focus-visible:ring-hotel-olive"
+                />
               </div>
-              <CardDescription className="text-justify">{room.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-1">
-                {room.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-2 text-xs">
-                    <div className="h-1.5 w-1.5 rounded-full bg-hotel-purple"></div>
-                    <span className="text-gray-600">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* Tank option for fish room */}
-      {selectedRoom === "peces-standard" && (
-        <div className="mt-8 p-6 border rounded-lg bg-hotel-light-blue/10">
-          <h3 className="font-bold mb-4">Opciones para alojamiento de peces</h3>
-          <RadioGroup 
-            value={ownTank} 
-            onValueChange={(value) => setOwnTank(value as "yes" | "no")}
-            className="space-y-4"
-          >
-            <div className="flex items-start space-x-2">
-              <RadioGroupItem value="yes" id="option-own-tank" />
-              <div className="grid gap-1.5">
-                <Label htmlFor="option-own-tank" className="font-medium">
-                  Con pecera propia (5€/noche)
-                </Label>
-                <p className="text-sm text-gray-500">
-                  Traes tu propia pecera. Estancia mínima de 7 días. 
-                  Incluye mantenimiento del agua y control de parámetros.
+              
+              <div className="space-y-2">
+                <Label htmlFor="petType" className="text-hotel-olive">Tipo de mascota <span className="text-red-500">*</span></Label>
+                <Select 
+                  value={formData.petType} 
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, petType: value }))}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecciona el tipo de mascota" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Mascotas</SelectLabel>
+                      {petTypes.map(type => (
+                        <SelectItem key={type.value} value={type.value}>{type.label}</SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="petBreed" className="text-hotel-olive">Raza</Label>
+                <Input 
+                  id="petBreed" 
+                  name="petBreed" 
+                  value={formData.petBreed} 
+                  onChange={handleInputChange} 
+                  placeholder="Ej. Border Collie" 
+                  className="border-hotel-olive/30 focus-visible:ring-hotel-olive"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="petAge" className="text-hotel-olive">Edad</Label>
+                <Input 
+                  id="petAge" 
+                  name="petAge" 
+                  value={formData.petAge} 
+                  onChange={handleInputChange} 
+                  placeholder="Ej. 3 años" 
+                  className="border-hotel-olive/30 focus-visible:ring-hotel-olive"
+                />
+              </div>
+            </div>
+            
+            {formData.room && (
+              <div className="mt-6 p-4 bg-hotel-soft-sage/20 rounded-lg">
+                <p className="text-gray-700 flex items-center gap-2">
+                  <PawPrint className="h-5 w-5 text-hotel-olive" />
+                  <span>Habitación seleccionada: <span className="font-semibold text-hotel-dark-olive">{formData.room}</span></span>
                 </p>
               </div>
-            </div>
-            <div className="flex items-start space-x-2">
-              <RadioGroupItem value="no" id="option-our-tank" />
-              <div className="grid gap-1.5">
-                <Label htmlFor="option-our-tank" className="font-medium">
-                  Con nuestras peceras (10€/noche)
-                </Label>
-                <p className="text-sm text-gray-500">
-                  Usamos nuestras peceras profesionales con filtración avanzada,
-                  iluminación controlada y mantenimiento diario.
-                </p>
-              </div>
-            </div>
-          </RadioGroup>
-        </div>
-      )}
-    </div>
-  );
-
-  const renderServiceSelection = () => (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-center mb-2">Selecciona servicios adicionales</h2>
-      <p className="text-center text-gray-600 mb-6">
-        Estos servicios tienen un costo adicional por noche
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {additionalServices.map((service) => (
-          <div 
-            key={service.id}
-            className={cn(
-              "p-4 border rounded-lg flex items-start gap-3 cursor-pointer",
-              selectedServices.includes(service.id) ? "bg-hotel-purple/10 border-hotel-purple" : "hover:bg-gray-50"
             )}
-            onClick={() => handleSelectService(service.id)}
-          >
-            <Checkbox 
-              checked={selectedServices.includes(service.id)}
-              className="mt-1" 
-            />
-            <div className="flex-1">
-              <div className="flex justify-between">
-                <h3 className="font-medium">{service.title}</h3>
-                <span className="text-hotel-purple font-bold">${service.price}</span>
+            
+            <div className="flex justify-end mt-8">
+              <Button 
+                onClick={handleNext}
+                className="bg-gradient-to-r from-hotel-olive to-hotel-dark-olive hover:from-hotel-dark-olive hover:to-hotel-olive text-white px-6"
+              >
+                Siguiente
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        );
+      
+      case 2:
+        return (
+          <div className="space-y-6 bg-white p-8 rounded-xl shadow-md">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-display font-bold text-hotel-olive">Información del propietario</h2>
+              <p className="text-gray-600">Tus datos para poder contactar contigo</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="ownerName" className="text-hotel-olive">Nombre completo <span className="text-red-500">*</span></Label>
+                <Input 
+                  id="ownerName" 
+                  name="ownerName" 
+                  value={formData.ownerName} 
+                  onChange={handleInputChange} 
+                  placeholder="Ej. María García" 
+                  className="border-hotel-olive/30 focus-visible:ring-hotel-olive"
+                />
               </div>
-              <p className="text-sm text-gray-600">{service.description}</p>
+              
+              <div className="space-y-2">
+                <Label htmlFor="ownerEmail" className="text-hotel-olive">Correo electrónico <span className="text-red-500">*</span></Label>
+                <Input 
+                  id="ownerEmail" 
+                  name="ownerEmail" 
+                  type="email" 
+                  value={formData.ownerEmail} 
+                  onChange={handleInputChange} 
+                  placeholder="Ej. maria@email.com" 
+                  className="border-hotel-olive/30 focus-visible:ring-hotel-olive"
+                />
+              </div>
+              
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="ownerPhone" className="text-hotel-olive">Teléfono <span className="text-red-500">*</span></Label>
+                <Input 
+                  id="ownerPhone" 
+                  name="ownerPhone" 
+                  value={formData.ownerPhone} 
+                  onChange={handleInputChange} 
+                  placeholder="Ej. 699123456" 
+                  className="border-hotel-olive/30 focus-visible:ring-hotel-olive"
+                />
+              </div>
+            </div>
+            
+            <div className="flex justify-between mt-8">
+              <Button 
+                variant="outline" 
+                onClick={handlePrevious}
+                className="border-hotel-olive text-hotel-olive"
+              >
+                Anterior
+              </Button>
+              <Button 
+                onClick={handleNext}
+                className="bg-gradient-to-r from-hotel-olive to-hotel-dark-olive hover:from-hotel-dark-olive hover:to-hotel-olive text-white px-6"
+              >
+                Siguiente
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-  );
-
-  const renderDateSelection = () => (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-center mb-6">Selecciona fechas de estancia</h2>
-      
-      <div className="flex justify-center mb-2">
-        <Button 
-          variant="outline"
-          className="text-xs flex items-center gap-1"
-          onClick={() => setShowSeasonInfo(true)}
-        >
-          Ver información de temporadas
-        </Button>
-      </div>
-
-      <Dialog open={showSeasonInfo} onOpenChange={setShowSeasonInfo}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Información de temporadas</DialogTitle>
-            <DialogDescription>
-              Los precios varían según la temporada:
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 py-4">
-            <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-full" style={{ backgroundColor: SEASONS.low.color }}></div>
-              <span>{SEASONS.low.name} - Precio regular</span>
+        );
+        
+      case 3:
+        return (
+          <div className="space-y-6 bg-white p-8 rounded-xl shadow-md">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-display font-bold text-hotel-olive">Fechas y servicios adicionales</h2>
+              <p className="text-gray-600">Elige las fechas de estancia y servicios extra para tu mascota</p>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-full" style={{ backgroundColor: SEASONS.medium.color }}></div>
-              <span>{SEASONS.medium.name} - Recargo del {formatPercentage(SEASONS.medium.priceMultiplier)}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-full" style={{ backgroundColor: SEASONS.high.color }}></div>
-              <span>{SEASONS.high.name} - Recargo del {formatPercentage(SEASONS.high.priceMultiplier)}</span>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <Label>Fecha de entrada</Label>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant={"outline"}
-                className={cn(
-                  "w-full justify-start text-left font-normal",
-                  !checkIn && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {checkIn ? (
-                  format(checkIn, "PPP", { locale: es })
-                ) : (
-                  <span>Selecciona la fecha</span>
-                )}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
-                mode="single"
-                selected={checkIn}
-                onSelect={setCheckIn}
-                initialFocus
-                disabled={(date) => date < new Date()}
-                seasonModifiers={seasonData}
-                className={cn("p-3 pointer-events-auto")}
-              />
-            </PopoverContent>
-          </Popover>
-        </div>
-
-        <div className="space-y-2">
-          <Label>Fecha de salida</Label>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant={"outline"}
-                className={cn(
-                  "w-full justify-start text-left font-normal",
-                  !checkOut && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {checkOut ? (
-                  format(checkOut, "PPP", { locale: es })
-                ) : (
-                  <span>Selecciona la fecha</span>
-                )}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
-                mode="single"
-                selected={checkOut}
-                onSelect={setCheckOut}
-                initialFocus
-                disabled={(date) => !checkIn || date <= checkIn}
-                seasonModifiers={seasonData}
-                className={cn("p-3 pointer-events-auto")}
-              />
-            </PopoverContent>
-          </Popover>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderContactForm = () => (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-center mb-6">Completa tus datos</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <Label htmlFor="petName">Nombre de tu mascota</Label>
-          <Input
-            id="petName"
-            value={petName}
-            onChange={(e) => setPetName(e.target.value)}
-            placeholder="Nombre de tu mascota"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="petType">Tipo de mascota</Label>
-          <Input
-            id="petType"
-            value={petType}
-            onChange={(e) => setPetType(e.target.value)}
-            placeholder="Perro, gato, etc."
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="ownerName">Tu nombre</Label>
-          <Input
-            id="ownerName"
-            value={ownerName}
-            onChange={(e) => setOwnerName(e.target.value)}
-            placeholder="Nombre completo"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="ownerEmail">Email</Label>
-          <Input
-            id="ownerEmail"
-            type="email"
-            value={ownerEmail}
-            onChange={(e) => setOwnerEmail(e.target.value)}
-            placeholder="tu@email.com"
-          />
-        </div>
-
-        <div className="space-y-2 md:col-span-2">
-          <Label htmlFor="ownerPhone">Teléfono</Label>
-          <Input
-            id="ownerPhone"
-            value={ownerPhone}
-            onChange={(e) => setOwnerPhone(e.target.value)}
-            placeholder="Número de teléfono"
-          />
-        </div>
-      </div>
-    </div>
-  );
-
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <div className="container mx-auto px-4 py-12 flex-grow">
-        <Button 
-          variant="ghost" 
-          className="mb-8 flex items-center gap-2" 
-          onClick={handlePrevStep}
-        >
-          <ArrowLeft size={16} />
-          {currentStep === 1 ? 'Volver al inicio' : 'Paso anterior'}
-        </Button>
-
-        <div className="max-w-6xl mx-auto">
-          {/* Indicador de progreso */}
-          <div className="flex justify-between items-center mb-8">
-            {[1, 2, 3, 4].map((step) => (
-              <div
-                key={step}
-                className={cn(
-                  "flex items-center",
-                  step < currentStep ? "text-hotel-purple" : "text-gray-400"
-                )}
-              >
-                <div className={cn(
-                  "w-8 h-8 rounded-full flex items-center justify-center border-2",
-                  step <= currentStep ? "border-hotel-purple bg-hotel-purple text-white" : "border-gray-300"
-                )}>
-                  {step < currentStep ? <Check size={16} /> : step}
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-hotel-dark-olive">Fechas de reserva</h3>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="startDate" className="text-hotel-olive">Fecha de entrada <span className="text-red-500">*</span></Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full justify-start text-left font-normal border-hotel-olive/30",
+                          !formData.startDate && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {formData.startDate ? format(formData.startDate, "PPP", { locale: es }) : "Selecciona una fecha"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        selected={formData.startDate}
+                        onSelect={date => handleDateSelect('startDate', date)}
+                        initialFocus
+                        disabled={(date) => date < new Date()}
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </div>
-                {step < 4 && (
-                  <div className={cn(
-                    "hidden md:block w-24 h-0.5 mx-2",
-                    step < currentStep ? "bg-hotel-purple" : "bg-gray-300"
-                  )} />
-                )}
+                
+                <div className="space-y-2">
+                  <Label htmlFor="endDate" className="text-hotel-olive">Fecha de salida <span className="text-red-500">*</span></Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full justify-start text-left font-normal border-hotel-olive/30",
+                          !formData.endDate && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {formData.endDate ? format(formData.endDate, "PPP", { locale: es }) : "Selecciona una fecha"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        selected={formData.endDate}
+                        onSelect={date => handleDateSelect('endDate', date)}
+                        initialFocus
+                        disabled={(date) => 
+                          date < new Date() || 
+                          (formData.startDate && date < formData.startDate)
+                        }
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+                
+                <div className="space-y-2 mt-6">
+                  <Label htmlFor="specialRequirements" className="text-hotel-olive">Requisitos especiales</Label>
+                  <Textarea 
+                    id="specialRequirements" 
+                    name="specialRequirements" 
+                    value={formData.specialRequirements} 
+                    onChange={handleInputChange} 
+                    placeholder="Si tu mascota tiene necesidades especiales, cuéntanoslas aquí..."
+                    className="border-hotel-olive/30 focus-visible:ring-hotel-olive"
+                    rows={4}
+                  />
+                </div>
               </div>
-            ))}
+              
+              <div>
+                <h3 className="text-lg font-semibold text-hotel-dark-olive mb-4">Servicios adicionales</h3>
+                <div className="grid grid-cols-1 gap-3">
+                  {additionalServices.map(service => (
+                    <div 
+                      key={service.id}
+                      className={cn(
+                        "p-3 rounded-lg border cursor-pointer transition-all flex justify-between items-center",
+                        formData.additionalServices.includes(service.id)
+                          ? "border-hotel-olive bg-hotel-soft-sage/20"
+                          : "border-gray-200 hover:border-hotel-olive/50 hover:bg-hotel-soft-sage/10"
+                      )}
+                      onClick={() => handleServiceToggle(service.id)}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={cn(
+                          "w-5 h-5 rounded-full flex items-center justify-center",
+                          formData.additionalServices.includes(service.id)
+                            ? "bg-hotel-olive text-white"
+                            : "border border-gray-300"
+                        )}>
+                          {formData.additionalServices.includes(service.id) && (
+                            <Heart className="h-3 w-3" />
+                          )}
+                        </div>
+                        <span>{service.name}</span>
+                      </div>
+                      <span className="font-semibold text-hotel-olive">{service.price}€</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex justify-between mt-8">
+              <Button 
+                variant="outline" 
+                onClick={handlePrevious}
+                className="border-hotel-olive text-hotel-olive"
+              >
+                Anterior
+              </Button>
+              <Button 
+                onClick={handleNext}
+                className="bg-gradient-to-r from-hotel-olive to-hotel-dark-olive hover:from-hotel-dark-olive hover:to-hotel-olive text-white px-6"
+              >
+                Revisar y confirmar
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
           </div>
-
-          {/* Contenido del paso actual */}
-          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8">
-            {currentStep === 1 && renderRoomSelection()}
-            {currentStep === 2 && renderServiceSelection()}
-            {currentStep === 3 && renderDateSelection()}
-            {currentStep === 4 && renderContactForm()}
-
-            {/* Resumen de costos con información de temporada */}
-            {selectedRoom && (
-              <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-                <h3 className="font-bold mb-2">Resumen de costos</h3>
-                <div className="space-y-2 text-sm">
+        );
+        
+      case 4:
+        const { total, days, basePrice } = calculatePrice();
+        return (
+          <div className="space-y-6 bg-white p-8 rounded-xl shadow-md">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-display font-bold text-hotel-olive">Revisar y confirmar reserva</h2>
+              <p className="text-gray-600">Comprueba los datos antes de finalizar</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="text-hotel-dark-olive flex items-center gap-2">
+                    <PawPrint className="h-5 w-5" />
+                    Información de la mascota
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
                   <div className="flex justify-between">
-                    <span>
-                      Habitación ({getSelectedRoom()?.title})
-                      {selectedRoom === "peces-standard" && ` (${ownTank === "yes" ? "con pecera propia" : "con nuestras peceras"})`}
-                    </span>
-                    <span>${roomPrice}/noche</span>
+                    <span className="text-gray-600">Nombre:</span>
+                    <span className="font-medium">{formData.petName}</span>
                   </div>
-                  {selectedServices.length > 0 && (
-                    <>
-                      <div className="border-t pt-2">
-                        <p className="font-medium mb-1">Servicios adicionales:</p>
-                        {selectedServices.map(serviceId => {
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Tipo:</span>
+                    <span className="font-medium">{formData.petType}</span>
+                  </div>
+                  {formData.petBreed && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Raza:</span>
+                      <span className="font-medium">{formData.petBreed}</span>
+                    </div>
+                  )}
+                  {formData.petAge && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Edad:</span>
+                      <span className="font-medium">{formData.petAge}</span>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+              
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="text-hotel-dark-olive flex items-center gap-2">
+                    <Heart className="h-5 w-5" />
+                    Tus datos
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Nombre:</span>
+                    <span className="font-medium">{formData.ownerName}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Email:</span>
+                    <span className="font-medium">{formData.ownerEmail}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Teléfono:</span>
+                    <span className="font-medium">{formData.ownerPhone}</span>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="shadow-sm md:col-span-2">
+                <CardHeader>
+                  <CardTitle className="text-hotel-dark-olive flex items-center gap-2">
+                    <CalendarIcon className="h-5 w-5" />
+                    Detalles de la estancia
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <p className="text-gray-600">Habitación:</p>
+                      <p className="font-medium text-hotel-dark-olive">{formData.room}</p>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <p className="text-gray-600">Fechas:</p>
+                      <p className="font-medium">
+                        {formData.startDate && formData.endDate ? (
+                          <>
+                            {format(formData.startDate, "PPP", { locale: es })} - {format(formData.endDate, "PPP", { locale: es })}
+                            <span className="block text-sm text-gray-500">({days} {days === 1 ? 'día' : 'días'})</span>
+                          </>
+                        ) : (
+                          'Fechas no seleccionadas'
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {formData.additionalServices.length > 0 && (
+                    <div className="mt-4">
+                      <p className="text-gray-600 mb-2">Servicios adicionales:</p>
+                      <ul className="space-y-1">
+                        {formData.additionalServices.map(serviceId => {
                           const service = additionalServices.find(s => s.id === serviceId);
                           return (
-                            <div key={serviceId} className="flex justify-between text-sm">
-                              <span>{service?.title}</span>
-                              <span>${service?.price}/noche</span>
-                            </div>
+                            <li key={serviceId} className="flex justify-between">
+                              <span>{service?.name}</span>
+                              <span className="font-medium">{service?.price}€</span>
+                            </li>
                           );
                         })}
-                      </div>
-                    </>
-                  )}
-                  {checkIn && checkOut && (
-                    <div className="border-t pt-2">
-                      <div className="flex justify-between">
-                        <span>Noches:</span>
-                        <span>{calculateNights()}</span>
-                      </div>
-                      
-                      {/* Show season info for selected dates if available */}
-                      {checkIn && (
-                        <div className="flex items-center gap-2 mt-2">
-                          <span>Temporada:</span>
-                          <div className="h-3 w-3 rounded-full" 
-                               style={{ backgroundColor: SEASONS[getSeason(checkIn)].color }}></div>
-                          <span>{SEASONS[getSeason(checkIn)].name}</span>
-                        </div>
-                      )}
+                      </ul>
                     </div>
                   )}
-                  <div className="border-t pt-2 font-bold">
-                    <div className="flex justify-between">
-                      <span>Total</span>
-                      <span>${totalPrice}</span>
+                  
+                  {formData.specialRequirements && (
+                    <div className="mt-4">
+                      <p className="text-gray-600 mb-2">Requisitos especiales:</p>
+                      <p className="text-sm bg-gray-50 p-3 rounded">{formData.specialRequirements}</p>
                     </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+            
+            <Card className="bg-hotel-soft-sage/20 border-hotel-olive/20 shadow-sm mt-6">
+              <CardContent className="pt-6">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="text-gray-700">Precio por noche:</p>
+                    <p className="text-2xl font-bold text-hotel-dark-olive">{basePrice}€</p>
+                    <p className="text-sm text-gray-600">{days} {days === 1 ? 'día' : 'días'} x {basePrice}€</p>
+                    
+                    {formData.additionalServices.length > 0 && (
+                      <p className="text-sm text-gray-600 mt-1">+ Servicios adicionales</p>
+                    )}
+                  </div>
+                  
+                  <div className="text-right">
+                    <p className="text-gray-700">Total:</p>
+                    <p className="text-3xl font-bold text-hotel-dark-olive">{total}€</p>
                   </div>
                 </div>
-              </div>
-            )}
-
-            <div className="mt-8 flex justify-end">
-              <Button
-                onClick={handleNextStep}
-                className="bg-hotel-purple hover:bg-hotel-dark-purple text-white px-8"
+              </CardContent>
+            </Card>
+            
+            <div className="flex justify-between mt-8">
+              <Button 
+                variant="outline" 
+                onClick={handlePrevious}
+                className="border-hotel-olive text-hotel-olive"
               >
-                {currentStep === 4 ? (
-                  'Confirmar Reserva'
+                Volver a editar
+              </Button>
+              <Button 
+                onClick={handleSubmit}
+                disabled={isLoading}
+                className="bg-gradient-to-r from-hotel-olive to-hotel-dark-olive hover:from-hotel-dark-olive hover:to-hotel-olive text-white px-6"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Procesando...
+                  </>
                 ) : (
                   <>
-                    Siguiente
-                    <ArrowRight size={16} />
+                    Confirmar reserva
+                    <Heart className="ml-2 h-4 w-4" />
                   </>
                 )}
               </Button>
             </div>
           </div>
-        </div>
+        );
+      
+      default:
+        return null;
+    }
+  };
+
+  // Renderizado para reserva completada
+  const renderReservaCompleta = () => (
+    <div className="bg-white p-8 rounded-xl shadow-md text-center">
+      <div className="mb-6 text-hotel-olive">
+        <Heart className="h-16 w-16 mx-auto" />
       </div>
+      
+      <h2 className="text-3xl font-display font-bold text-hotel-dark-olive mb-4">¡Reserva confirmada!</h2>
+      <p className="text-gray-600 mb-6 max-w-lg mx-auto">
+        Gracias por confiar en Huellas y Sueños para el cuidado de {formData.petName}. Tu reserva ha sido registrada con éxito.
+      </p>
+      
+      <div className="p-6 bg-hotel-soft-sage/20 rounded-lg inline-block mb-8">
+        <p className="text-hotel-dark-olive font-medium">ID de Reserva:</p>
+        <p className="text-2xl font-bold text-hotel-olive">{reservaId}</p>
+      </div>
+      
+      <div className="space-y-4 mb-8">
+        <p>Te hemos enviado un correo a <span className="font-medium">{formData.ownerEmail}</span> con todos los detalles.</p>
+        <p>Si tienes alguna duda, puedes contactarnos en el <span className="font-medium">999 888 777</span> o vía email en <span className="font-medium">reservas@huellasysuenos.com</span></p>
+      </div>
+      
+      <div className="space-x-4">
+        <Button 
+          onClick={handleGeneratePDF}
+          variant="outline"
+          className="border-hotel-olive text-hotel-olive hover:bg-hotel-soft-sage/20"
+        >
+          Descargar confirmación
+        </Button>
+        
+        <Button 
+          onClick={() => navigate('/')}
+          className="bg-gradient-to-r from-hotel-olive to-hotel-dark-olive hover:from-hotel-dark-olive hover:to-hotel-olive text-white"
+        >
+          Volver al inicio
+        </Button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white to-hotel-soft-sage/20">
+      <Navbar />
+      
+      <main className="pt-28 pb-20">
+        <div className="container mx-auto px-4">
+          {!reservaCompleta ? (
+            <div className="max-w-4xl mx-auto">
+              <div className="flex justify-center items-center mb-10">
+                <div className="w-full max-w-2xl">
+                  <div className="relative">
+                    <div className="absolute left-0 right-0 top-1/2 h-1 bg-gray-200 -translate-y-1/2"></div>
+                    <div className="relative flex justify-between">
+                      {[1, 2, 3, 4].map((stepNumber) => (
+                        <div key={stepNumber} className="flex flex-col items-center">
+                          <div 
+                            className={cn(
+                              "relative z-10 flex items-center justify-center w-10 h-10 rounded-full transition-colors",
+                              stepNumber < step 
+                                ? "bg-hotel-dark-olive text-white" 
+                                : stepNumber === step 
+                                  ? "bg-hotel-olive text-white" 
+                                  : "bg-gray-200 text-gray-400"
+                            )}
+                          >
+                            {stepNumber < step ? (
+                              <PawPrint className="h-5 w-5" />
+                            ) : (
+                              <span>{stepNumber}</span>
+                            )}
+                          </div>
+                          <span 
+                            className={cn(
+                              "mt-2 text-xs font-medium",
+                              stepNumber <= step ? "text-hotel-olive" : "text-gray-500"
+                            )}
+                          >
+                            {stepNumber === 1 
+                              ? "Mascota" 
+                              : stepNumber === 2
+                                ? "Propietario"
+                                : stepNumber === 3
+                                  ? "Fechas y servicios"
+                                  : "Confirmación"
+                            }
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {renderStepContent()}
+            </div>
+          ) : (
+            <div className="max-w-2xl mx-auto">
+              {renderReservaCompleta()}
+            </div>
+          )}
+        </div>
+      </main>
+      
       <Footer />
     </div>
   );
