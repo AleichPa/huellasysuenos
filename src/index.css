@@ -16,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 330 100% 76%;
+    --primary: 82 60% 34%;
     --primary-foreground: 300 0% 100%;
 
     --secondary: 30 100% 92%;
@@ -33,7 +33,7 @@
 
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 330 100% 76%;
+    --ring: 82 60% 34%;
 
     --radius: 1rem;
 
@@ -89,13 +89,13 @@
   /* Updated paw pattern to be more cute */
   .paw-pattern {
     background-color: #fcfaff;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10c-1.5 0-2.5 1.5-2.5 3 0 1.5 1 3 2.5 3s2.5-1.5 2.5-3c0-1.5-1-3-2.5-3zm-7.5 3c-1.25 0-2.25 1.25-2.25 2.5 0 1.25 1 2.5 2.25 2.5s2.25-1.25 2.25-2.5c0-1.25-1-2.5-2.25-2.5zm15 0c-1.25 0-2.25 1.25-2.25 2.5 0 1.25 1 2.5 2.25 2.5s2.25-1.25 2.25-2.5c0-1.25-1-2.5-2.25-2.5zm-20 5c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2zm25 0c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2zm-12.5 5c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9z' fill='%23FF8ACE' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10c-1.5 0-2.5 1.5-2.5 3 0 1.5 1 3 2.5 3s2.5-1.5 2.5-3c0-1.5-1-3-2.5-3zm-7.5 3c-1.25 0-2.25 1.25-2.25 2.5 0 1.25 1 2.5 2.25 2.5s2.25-1.25 2.25-2.5c0-1.25-1-2.5-2.25-2.5zm15 0c-1.25 0-2.25 1.25-2.25 2.5 0 1.25 1 2.5 2.25 2.5s2.25-1.25 2.25-2.5c0-1.25-1-2.5-2.25-2.5zm-20 5c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2zm25 0c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2zm-12.5 5c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9z' fill='%236B8E23' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
   }
   
   /* Updated pet background to be more cute */
   .pet-bg {
     background-color: #ffffff;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24' fill='none' stroke='%23FF8ACE' stroke-width='0.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 12c-1-1-4-1-4 0V9c0-1 0-4-2-4s-2 3-2 4v3c0 1-3 1-4 0s0 6 4 9c-1 2-2 3-2 3h16c-1 0-3-2-3-4 3-4 5-8 0-9-4 1-3 3-4 2-2-2-3-1-2-2 0-5-2-5-2 0z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24' fill='none' stroke='%236B8E23' stroke-width='0.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 12c-1-1-4-1-4 0V9c0-1 0-4-2-4s-2 3-2 4v3c0 1-3 1-4 0s0 6 4 9c-1 2-2 3-2 3h16c-1 0-3-2-3-4 3-4 5-8 0-9-4 1-3 3-4 2-2-2-3-1-2-2 0-5-2-5-2 0z'/%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 50px 50px;
     background-position: center;
@@ -114,7 +114,7 @@
   
   .heart-pattern {
     background-color: #ffffff;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24' fill='none' stroke='%23FF6B9E' stroke-width='0.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24' fill='none' stroke='%236B8E23' stroke-width='0.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z'/%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 50px 50px;
     background-position: center;
@@ -154,7 +154,7 @@
   bottom: 0;
   z-index: -1;
   background-color: #fcfaff;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10c-1.5 0-2.5 1.5-2.5 3 0 1.5 1 3 2.5 3s2.5-1.5 2.5-3c0-1.5-1-3-2.5-3zm-7.5 3c-1.25 0-2.25 1.25-2.25 2.5 0 1.25 1 2.5 2.25 2.5s2.25-1.25 2.25-2.5c0-1.25-1-2.5-2.25-2.5zm15 0c-1.25 0-2.25 1.25-2.25 2.5 0 1.25 1 2.5 2.25 2.5s2.25-1.25 2.25-2.5c0-1.25-1-2.5-2.25-2.5zm-20 5c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2zm25 0c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2zm-12.5 5c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9z' fill='%23FF8ACE' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10c-1.5 0-2.5 1.5-2.5 3 0 1.5 1 3 2.5 3s2.5-1.5 2.5-3c0-1.5-1-3-2.5-3zm-7.5 3c-1.25 0-2.25 1.25-2.25 2.5 0 1.25 1 2.5 2.25 2.5s2.25-1.25 2.25-2.5c0-1.25-1-2.5-2.25-2.5zm15 0c-1.25 0-2.25 1.25-2.25 2.5 0 1.25 1 2.5 2.25 2.5s2.25-1.25 2.25-2.5c0-1.25-1-2.5-2.25-2.5zm-20 5c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2zm25 0c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2zm-12.5 5c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9z' fill='%236B8E23' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
 /* Add cute scalloped border */
@@ -185,7 +185,7 @@
   left: 0;
   right: 0;
   height: 8px;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='10' viewBox='0 0 60 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 C 15 10, 30 0, 45 10, 60 0 Z' fill='%23BDEFFF' /%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='10' viewBox='0 0 60 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 C 15 10, 30 0, 45 10, 60 0 Z' fill='%23E8F4D9' /%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-size: 60px 10px;
 }
